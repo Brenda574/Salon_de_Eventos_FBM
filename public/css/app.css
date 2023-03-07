@@ -1,0 +1,23 @@
+:root {
+    --primary: #808882;
+    --secondary: #fdf6f6;
+    --tercero: #FEFFFF;
+    --cuarto: #867273;
+    --quinto: #858b85;
+  }
+.btnCotizar{
+    border: 0;
+    background-color: var(--secondary);
+    color: var(--primary);
+    padding: .5rem;
+    text-transform: uppercase;
+    border-radius: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--secondary);
+    transition: backgroung-color .2s, color .2s;
+    width: 25vh;
+ }
+ .btnCotizar:hover{
+    background-color: var(--quinto);
+    color: var(--secondary);
+  }
