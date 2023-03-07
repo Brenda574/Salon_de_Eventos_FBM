@@ -8,45 +8,22 @@
     <title>Garden Gate</title>
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/8915/8915119.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-<<<<<<< HEAD
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-=======
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="resources/css/botones">
->>>>>>> 19a4d13 (principal commit)
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
             <div class="container">
-<<<<<<< HEAD
                 <a class="navbar-brand" href="{{route('principal')}}"><img src="https://cdn-icons-png.flaticon.com/512/8915/8915119.png" width="40"><img src="https://www.aimmedia.com/wp-content/uploads/2022/10/GardenGate_LOGO_FINAL-600x250_554e45.png" width="100"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-=======
-                <a class="navbar-brand" href="admin.php"><img
-                        src="https://cdn-icons-png.flaticon.com/512/8915/8915119.png" width="40"><img
-                        src="https://www.aimmedia.com/wp-content/uploads/2022/10/GardenGate_LOGO_FINAL-600x250_554e45.png"
-                        width="100"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                    aria-label="Toggle navigation">
->>>>>>> 19a4d13 (principal commit)
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-<<<<<<< HEAD
                         @yield('usuario')
-                        <!--<li><a class="nav-link" href="{{route('login')}}">Iniciar Sesion</a></li>
-                        <li><a class="nav-link" href="#">Registrarse</a></li>-->
-=======
-                        <li><a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a></li>
-                        <li><a class="nav-link" href="#">Registrarse</a></li>
->>>>>>> 19a4d13 (principal commit)
                     </ul>
                 </div>
             </div>
@@ -79,19 +56,5 @@
             <a class="text-white" href="https://mdbootstrap.com/">GardenGate</a>
         </div>
     </footer>
-<<<<<<< HEAD
-=======
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous">
-    </script>
->>>>>>> 19a4d13 (principal commit)
 </body>
-
 </html>
