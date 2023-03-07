@@ -12,5 +12,7 @@
 @section('contenido')
     <div>
         <h3>Eventos</h3>
+        <table class="table table-hover">
+        </table>
     </div>
 @endsection
