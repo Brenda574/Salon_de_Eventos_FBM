@@ -15,8 +15,8 @@ use App\Http\Controllers\SistemaController;
 */
 
 Route::get('/', function () {
-    return view('principal');
+    return view('menu');
 });
 
-Route::get('/Login',[SistemaController::class, 'login'])->name('login');
-Route::get('/Acceder',[SistemaController::class, 'acceder'])->name('acceder');
+Route::get('/Login', [SistemaController::class, 'login'])->name('login');
+Route::get('/Acceder', [SistemaController::class, 'acceder'])->name('acceder');
