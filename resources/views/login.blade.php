@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesion | Garden Gate</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="resources/css/botones">
+    <link rel="stylesheet" href="/css/botones.css">
 </head>
 
 <body class="h-100 gradient-form" style="background-color: #eee;">
@@ -25,7 +25,7 @@
                                     <div class="text-center">
                                         <img src="https://www.aimmedia.com/wp-content/uploads/2022/10/GardenGate_LOGO_FINAL-600x250_554e45.png" style="width: 185px; " alt="logo">
                                     </div>
-                                    <form action="acceder" method="post" style="padding-top: 2rem">
+                                    <form action="Acceder" method="post" style="padding-top: 2rem">
                                         @csrf
                                         <div class="form-outline mb-4">
                                             <input type="text" id="form2Example11" class="form-control" name="usuario" placeholder="Usuario" />

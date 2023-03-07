@@ -14,22 +14,21 @@ class SistemaController extends Controller
         return view('login');
     }
 
-    public function acceder(Request $acceso) {
+    public function facceder(Request $acceso) {
         $usuario = $acceso->input('usuario');
         $password = $acceso->input('password');
         if ($usuario==$password && ($usuario=='Cliente' || $usuario=='Gerente' || $usuario=='Empleado')) {
-            return view("principal");
-            /*switch ($usuario) {
+            switch ($usuario) {
                 case 'Cliente':
-                    return view("principal");
+                    return redirect(route("principal"));
                     break;
                 case 'Gerente':
-                    return view("principal");
+                    return redirect(route("principal"));
                     break;
                 case 'Empleado':
-                    return view("principal");
+                    return redirect(route("iniEmpleado"));
                     break;
-            }*/
+            }
         } else {
             return view("error");
         }
