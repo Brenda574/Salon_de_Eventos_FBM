@@ -10,17 +10,22 @@
 @endsection
 
 @section('contenido')
+    <div class="p-5 text-center bg-light" style="margin-top: 60px;">
+        <h1 class="mb-3">PORTAL DE EMPLEADOS</h1>
+        <h4 class="mb-3">...</h4>
+    </div>
     <div>
-        <h3>Eventos</h3>
+        <hr>
+        <h3>Registro de Eventos</h3>
         <table class="table table-hover">
             <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Evento</th>
-                  <th scope="col">Cliente</th>
-                  <th scope="col">Fecha</th>
-                  <th scope="col">Estatus</th>
-                  <th scope="col"></th>
+                    <th scope="col">#</th>
+                    <th scope="col">Evento</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Estatus</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +49,8 @@
         </table>
     </div>
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -56,7 +62,8 @@
                         <small class="label float-end fst-italic" style="color: orange">Pendiente</small>
                         <div class="mb-3 row">
                             <label for="staticCosto" class="col-sm-2 col-form-label fw-bold">Total</label>
-                            <div class="col-sm-10"><input type="text" readonly class="form-control-plaintext" id="staticCosto" value="$15,000.00"></div>
+                            <div class="col-sm-10"><input type="text" readonly class="form-control-plaintext"
+                                    id="staticCosto" value="$15,000.00"></div>
                         </div>
                         <hr>
                         <div>
@@ -87,5 +94,6 @@
                 </form>
             </div>
         </div>
+    </div>
     </div>
 @endsection

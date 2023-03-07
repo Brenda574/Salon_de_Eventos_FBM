@@ -6,7 +6,7 @@
 @endsection
 
 @section('contenido')
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top: 60px;">
         <div class="col">
             <div class="card h-100">
                 <img src="https://cdn0.bodas.com.mx/article-real-wedding/221/3_2/960/jpg/1150609.jpeg" class="card-img-top"

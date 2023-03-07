@@ -21,7 +21,15 @@
     background-color: var(--quinto);
     color: var(--secondary);
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce2eebc (EMPLEADO)
 /* EMPLEADO */
+
+.emp_ban {
+    background-image: linear-gradient(180deg, #f0cfcf, #FEFFFF);
+}
 
 .emp_button {
     border-color: #867273;
