@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-</head>
+<link rel="stylesheet" href="resources/css/botones">
+  </head>
 <body>
     <section class="h-100 gradient-form" style="background-color: #eee;">
         <div class="container py-5 h-100">
@@ -39,14 +40,14 @@
                         </div>
       
                         <div class="text-center pt-1 mb-5 pb-1">
-                          <div><button class="btn btn btn-outline-dark-custom-2 mb-3" type="button" style="background-color: #E1D5D5; border:none; transition: all 0.35s;">Iniciar
+                          <div><button class="btn boton4 custom-2 mb-3" type="button" style="background-color: #E1D5D5; transition: all 0.35s;">Iniciar
                             sesión</button></div>
                           <a class="text-muted" href="#!">¿Olvidaste tu contraseña?</a>
                         </div>
       
                         <div class="d-flex align-items-center justify-content-center pb-4">
                           <p class="mb-0 me-2">¿No tienes cuenta?</p>
-                          <button type="button" class="btn btn-outline-dark" style="background-color: #E1D5D5; transition: all 0.35s;">Crear nueva</button>
+                          <button type="button" class="btn boton4" style="background-color: #E1D5D5; transition: all 0.35s;">Crear nueva</button>
                         </div>
       
                       </form>
