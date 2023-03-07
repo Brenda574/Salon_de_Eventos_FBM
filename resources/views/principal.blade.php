@@ -12,10 +12,38 @@
                 <img src="https://cdn0.bodas.com.mx/article-real-wedding/221/3_2/960/jpg/1150609.jpeg" class="card-img-top"
                     alt="" />
                 <div class="card-body" style="background-color: #fff9f9">
-                    <h5 class="card-title">Bodas</h5>
-                    <p class="card-text">
-                        This is a wider carntent is a little bit longer.
-                    </p>
+                    <div>
+                        <h5 class="card-title">Bodas</h5>
+                        <br>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div id="carouselExampleDark" class="carousel carousel-dark slide"
+                            style="width: 60vh; text-align: center">
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" data-bs-interval="10000">
+                                    <h6>Hasta luego</h6>
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2000">
+                                    <h6>Adios</h6>
+
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2000">
+                                    <h6>Bye</h6>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer text-center" style="background-color:#d3ded4">
                     <div><a class="btn btnCotizar">Cotizar</a>
