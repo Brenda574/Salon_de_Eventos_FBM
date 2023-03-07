@@ -26,7 +26,7 @@ class SistemaController extends Controller
                     return redirect(route("principal"));
                     break;
                 case 'Empleado':
-                    return redirect(route("principal"));
+                    return redirect(route("iniEmpleado"));
                     break;
             }
         } else {
