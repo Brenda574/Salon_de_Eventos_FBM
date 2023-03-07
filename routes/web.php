@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SistemaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('principal');
 });
+
+Route::get('/Login',[SistemaController::class, 'login'])->name('login');
