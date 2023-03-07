@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
     --primary: #808882;
     --secondary: #fdf6f6;
@@ -21,3 +22,48 @@
     background-color: var(--quinto);
     color: var(--secondary);
   }
+=======
+/* EMPLEADO */
+
+.emp_button {
+    border-color: #867273;
+    color: #8E9B91;
+    background-image: -webkit-linear-gradient(45deg, #867273 50%, transparent 50%);
+    background-image: linear-gradient(45deg, #867273 50%, transparent 50%);
+    background-position: 100%;
+    background-size: 400%;
+    -webkit-transition: background 300ms ease-in-out;
+    transition: background 300ms ease-in-out;
+}
+
+.emp_button:hover {
+    background-position: 0;
+    color: white;
+}
+
+.emp_button_c {
+    border-color: #585D58;
+    color: #867273;
+    background-image: -webkit-linear-gradient(45deg, #585D58 50%, transparent 50%);
+    background-image: linear-gradient(45deg, #585D58 50%, transparent 50%);
+    background-position: 100%;
+    background-size: 400%;
+    -webkit-transition: background 300ms ease-in-out;
+    transition: background 300ms ease-in-out;
+}
+
+.emp_button_c:hover {
+    background-position: 0;
+    color: white;
+}
+
+.emp_add {
+	color: #585D58;
+}
+
+.emp_add:hover {
+	color: #867273;
+    outline-color: rgba(71, 126, 232, 0);
+    outline-offset: 300px;
+}
+>>>>>>> 0aa2c7c5c90f5630931485377db40147182bbacf

@@ -57,9 +57,9 @@
                     role="button"><i class="bi bi-github"></i></a>
             </section>
         </div>
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        <div class="text-center p-3" style="background-color: #8E9B91">
             © 2020 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/">GardenGate</a>
+            <a class="text-white" href="#">GardenGate</a>
         </div>
     </footer>
 </body>
