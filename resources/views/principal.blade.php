@@ -1,10 +1,4 @@
 @extends('plantilla.layout')
-
-@section('usuario')
-    <li><a class="nav-link" href="{{route('login')}}">Iniciar Sesion</a></li>
-    <li><a class="nav-link" href="#">Registrarse</a></li>
-@endsection
-
 @section('contenido')
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col">
