@@ -25,7 +25,7 @@
                                     <div class="text-center">
                                         <img src="https://www.aimmedia.com/wp-content/uploads/2022/10/GardenGate_LOGO_FINAL-600x250_554e45.png" style="width: 185px; " alt="logo">
                                     </div>
-                                    <form action="acceder" method="post" style="padding-top: 2rem">
+                                    <form action="Acceder" method="post" style="padding-top: 2rem">
                                         @csrf
                                         <div class="form-outline mb-4">
                                             <input type="text" id="form2Example11" class="form-control" name="usuario" placeholder="Usuario" />

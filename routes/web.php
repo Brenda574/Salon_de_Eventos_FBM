@@ -16,4 +16,4 @@ use App\Http\Controllers\SistemaController;
 
 Route::get('/', [SistemaController::class, 'principal'])->name('principal');
 Route::get('/Login', [SistemaController::class, 'login'])->name('login');
-Route::get('/Acceder', [SistemaController::class, 'acceder'])->name('acceder');
+Route::post('/Acceder', [SistemaController::class, 'facceder'])->name('acceder');
