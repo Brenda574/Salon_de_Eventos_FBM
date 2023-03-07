@@ -2,7 +2,7 @@
 
 @section('usuario')
     <li><a class="nav-link" href="{{route('login')}}">Iniciar Sesion</a></li>
-    <li><a class="nav-link" href="#">Registrarse</a></li>
+    <li><a class="nav-link" href="#">Registrarse </a></li>
 @endsection
 
 @section('contenido')
