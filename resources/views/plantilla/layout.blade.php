@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Garden Gate</title>
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/5403/5403989.png">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/8915/8915119.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
@@ -13,13 +13,14 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="admin.php"><img src="https://cdn-icons-png.flaticon.com/512/5403/5403989.png" width="40">Garden Gate</a>
+                <a class="navbar-brand" href="admin.php"><img src="https://cdn-icons-png.flaticon.com/512/8915/8915119.png" width="40"><img src="https://www.aimmedia.com/wp-content/uploads/2022/10/GardenGate_LOGO_FINAL-600x250_554e45.png" width="100"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li><a class="nav-link" href="#">Login</a></li>
+                        <li><a class="nav-link" href="{{route('login')}}">Iniciar Sesion</a></li>
+                        <li><a class="nav-link" href="#">Registrarse</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,7 +44,7 @@
         </div>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2020 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/">SalonEventos.mx</a>
+            <a class="text-white" href="https://mdbootstrap.com/">GardenGate</a>
         </div>
     </footer>
 
