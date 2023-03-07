@@ -14,21 +14,18 @@ class SistemaController extends Controller
         $usuario = $acceso->input('usuario');
         $password = $acceso->input('password');
         if ($usuario==$password && ($usuario=='Cliente' || $usuario=='Gerente' || $usuario=='Empleado')) {
-            switch ($usuario) {
+            return view("principal");
+            /*switch ($usuario) {
                 case 'Cliente':
-                    # code...
+                    return view("principal");
                     break;
                 case 'Gerente':
-                    # code...
+                    return view("principal");
                     break;
                 case 'Empleado':
-                    # code...
+                    return view("principal");
                     break;
-                default:
-                    # code...
-                    break;
-            }
-            //return redirect(route("nopciones"));
+            }*/
         } else {
             return view("error");
         }

@@ -26,13 +26,12 @@
                                         <img src="https://www.aimmedia.com/wp-content/uploads/2022/10/GardenGate_LOGO_FINAL-600x250_554e45.png" style="width: 185px; " alt="logo">
                                     </div>
                                     <form action="acceder" method="post" style="padding-top: 2rem">
+                                        @csrf
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="form2Example11" class="form-control" name="usuario" placeholder="Usuario" />
-                                            <label class="form-label" for="form2Example11">Usuario</label>
+                                            <input type="text" id="form2Example11" class="form-control" name="usuario" placeholder="Usuario" />
                                         </div>
                                         <div class="form-outline mb-4">
                                             <input type="password" id="form2Example22" name="password" placeholder="Contraseña" class="form-control" />
-                                            <label class="form-label" for="form2Example22">Contraseña</label>
                                         </div>
                                         <div class="text-center pt-1 mb-5 pb-1">
                                             <div><button class="btn boton4 custom-2 mb-3" type="submit" style="background-color: #E1D5D5; transition: all 0.35s;">Iniciar sesión</button></div>
