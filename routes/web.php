@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/Login',[SistemaController::class, 'login'])->name('login');
+Route::get('/Acceder',[SistemaController::class, 'acceder'])->name('acceder');
