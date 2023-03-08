@@ -11,7 +11,7 @@
 
 @section('contenido')
     <div class="p-5 text-center bg-light" style="margin-top: 60px;">
-        <h1 class="mb-3">PORTAL DE CLIENTES</h1>
+        <h1 class="mb-3">PORTAL DE CLIENTES uevo</h1>
         <h4 class="mb-3">...</h4>
     </div>
     <div>
