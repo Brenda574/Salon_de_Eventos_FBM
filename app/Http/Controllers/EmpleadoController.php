@@ -9,4 +9,8 @@ class EmpleadoController extends Controller
     public function inicio() {
         return view('Empleado.empleado');
     }
+
+    public function detalles() {
+        return view('Empleado.detalles');
+    }
 }

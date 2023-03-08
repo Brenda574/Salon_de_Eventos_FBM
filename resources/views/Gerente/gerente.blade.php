@@ -14,4 +14,5 @@
         <h1 class="mb-3">PORTAL DE GERENTE</h1>
         <h4 class="mb-3">...</h4>
     </div>
+    <div class="container"></div>
 @endsection
