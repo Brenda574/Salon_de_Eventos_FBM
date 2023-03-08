@@ -4,7 +4,8 @@
     --tercero: #FEFFFF;
     --cuarto: #867273;
     --quinto: #858b85;
-  }
+}
+
 .btnCotizar{
     border: 0;
     background-color: var(--secondary);
@@ -16,15 +17,34 @@
     border: 2px solid var(--secondary);
     transition: backgroung-color .2s, color .2s;
     width: 25vh;
- }
- .btnCotizar:hover{
+}
+
+.btnCotizar:hover{
     background-color: var(--quinto);
     color: var(--secondary);
-  }
+}
+  
 /* EMPLEADO */
 
 .emp_ban {
-    background-image: linear-gradient(180deg, #f0cfcf, #FEFFFF);
+    background-image: linear-gradient(180deg, #f7ebeb, #FFFFFF);
+}
+
+.emp_button_plus {
+    border-radius: 28px;
+    border-color: #e2d0d0;
+    color: #8E9B91;
+    background-image: -webkit-linear-gradient(45deg, #e2d0d0 50%, transparent 50%);
+    background-image: linear-gradient(45deg, #e2d0d0 50%, transparent 50%);
+    background-position: 100%;
+    background-size: 400%;
+    -webkit-transition: background 300ms ease-in-out;
+    transition: background 300ms ease-in-out;
+}
+
+.emp_button_plus:hover {
+    background-position: 0;
+    color: white;
 }
 
 .emp_button {
