@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\GerenteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SistemaController;
 
@@ -20,3 +21,5 @@ Route::get('/Login', [SistemaController::class, 'login'])->name('login');
 Route::post('/Acceder', [SistemaController::class, 'facceder'])->name('acceder');
 
 Route::get('/Empleado', [EmpleadoController::class, 'inicio'])->name('iniEmpleado');
+
+Route::get('/Gerente', [GerenteController::class, 'inicio'])->name('iniGerente');
