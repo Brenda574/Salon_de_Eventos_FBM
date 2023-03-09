@@ -13,8 +13,7 @@
     <div class="p-5 text-center emp_ban">
         <h1 class="mb-3">PORTAL DE EMPLEADOS</h1>
     </div>
-    <div class="container">
-        <hr>
+    <div class="container container_galery">
         <h3>Registro de Eventos</h3>
         <table class="table table-hover">
             <thead>
@@ -30,7 +29,7 @@
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Boda</td>
+                    <td>Boda Premium</td>
                     <td>Cliente 1</td>
                     <td>20/03/2023</td>
                     <td><input class="form-check-input" type="checkbox" value="" checked disabled></td>
