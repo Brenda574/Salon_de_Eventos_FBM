@@ -205,7 +205,7 @@ height: 400px; width: 100%;
             <div class="col">
                 <div class="card h-100">
                     <div class="sc-hdr">
-                        <img src="https://cdn-az.allevents.in/events3/banners/7190c777af8b723c2c3affcef7ce632a3653d819bc745912cca4f95a50c82055-rimg-w960-h640-gmir.jpg?v=1677279045"
+                        <img src="https://cdn-az.allevents.in/events3/banners/7190c777af8b723c2c3affcef7ce632a3653d819bc745912cca4f95a50c82055-rimg-w960-h640-gmir.jpg"
                             class="card-img-top" alt="" />
                         <div class="capacidad-label">
                             <div class="cl-flex w-clearfix">
