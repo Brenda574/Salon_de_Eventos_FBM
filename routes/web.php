@@ -23,26 +23,8 @@ Route::get('/Login', [SistemaController::class, 'login'])->name('login');
 Route::post('/Acceder', [SistemaController::class, 'facceder'])->name('acceder');
 
 Route::get('/Empleado', [EmpleadoController::class, 'inicio'])->name('iniEmpleado');
+Route::get('/Detalles', [EmpleadoController::class, 'detalles'])->name('detEmpleado');
 
 Route::get('/Cliente', [ClienteController::class, 'inicioCliente'])->name('iniCliente');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/Detalles', [EmpleadoController::class, 'detalles'])->name('detEmpleado');
 
 Route::get('/Gerente', [GerenteController::class, 'inicio'])->name('iniGerente');
