@@ -20,7 +20,7 @@ class SistemaController extends Controller
         if ($usuario==$password && ($usuario=='Cliente' || $usuario=='Gerente' || $usuario=='Empleado')) {
             switch ($usuario) {
                 case 'Cliente':
-                    return redirect(route("principal"));
+                    return redirect(route("iniCliente"));
                     break;
                 case 'Gerente':
                     return redirect(route("iniGerente"));
