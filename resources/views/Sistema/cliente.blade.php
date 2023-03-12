@@ -61,8 +61,14 @@
         <div class="container_galery">
             <h4>Galeria</h4>
             <form action="sube.php" method="post" enctype="multipart/form-data">
-                <input class="form-control" type="file" name="archivo">
-                <button class="btn emp_button">Subir</button>
+                <div class="row">
+                    <div class="col-auto">
+                        <input class="form-control" type="file" name="archivo">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn emp_button">Subir</button>
+                    </div>
+                </div>
             </form> 
         </div>
     </div>
