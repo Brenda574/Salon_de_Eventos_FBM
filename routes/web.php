@@ -5,6 +5,7 @@ use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\ServicioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SistemaController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Monolog\Handler\RotatingFileHandler;
 
@@ -39,3 +40,7 @@ Route::get('/Paquete/Editar', [PaqueteController::class, 'edit'])->name('paquete
 Route::get('/Servicio/Crear', [ServicioController::class, 'create'])->name('servicio.create');
 Route::get('/Servicio/Detalles', [ServicioController::class, 'show'])->name('servicio.show');
 Route::get('/Servicio/Editar', [ServicioController::class, 'edit'])->name('servicio.edit');
+
+Route::get('/Usuario/Crear', [UsuarioController::class, 'create'])->name('usuario.create');
+Route::get('/Usuario/Detalles', [UsuarioController::class, 'show'])->name('usuario.show');
+Route::get('/Usuario/Editar', [UsuarioController::class, 'edit'])->name('usuario.edit');

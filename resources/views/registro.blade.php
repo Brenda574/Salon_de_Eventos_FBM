@@ -48,6 +48,10 @@
                                                 placeholder="Contraseña" class="form-control" />
                                         </div>
                                         <div class="form-outline mb-4">
+                                            <input type="date" id="nacimiento" name="fnac"
+                                                title="Fecha de nacimiento" class="form-control" />
+                                        </div>
+                                        <div class="form-outline mb-4">
                                             <input disabled type="text" id="rol" name="rol" value="Cliente"
                                                 class="form-control" />
                                         </div>

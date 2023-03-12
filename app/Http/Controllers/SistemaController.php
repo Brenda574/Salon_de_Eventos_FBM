@@ -42,15 +42,18 @@ class SistemaController extends Controller
         }
     }
 
-    public function gerente() {
+    public function gerente()
+    {
         return view('Sistema.gerente');
     }
 
-    public function empleado() {
+    public function empleado()
+    {
         return view('Sistema.empleado');
     }
 
-    public function cliente() {
+    public function cliente()
+    {
         return view('Sistema.cliente');
     }
 }
