@@ -1,7 +1,7 @@
 @extends('plantilla.layout')
 
 @section('usuario')
-    <li><a class="nav-link" href="{{ route('iniGerente') }}">Inicio</a></li>
+    <li><a class="nav-link" href="{{ route('sistema.gerente') }}">Inicio</a></li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gerente</a>
         <ul class="dropdown-menu">
@@ -17,24 +17,24 @@
             <h3 class="label fw-bold" style="color: #af9495">Editar Paquete</h3>
         </div>
         <hr>
-        <form action="{{ route('iniGerente') }}">
+        <form action="{{ route('sistema.gerente') }}">
             <div>
                 <div class="row container_galery">
                     <div class="mb-3">
                         <small>TITULO</small>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" value="Boda">
                     </div>
                     <div class="mb-3">
                         <small>CAPACIDAD</small>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" value="150 a 200">
                     </div>
                     <div class="mb-3">
                         <small>COSTO</small>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" value="$10,000">
                     </div>
                     <div class="mb-3">
                         <small>DESCRIPCIÓN</small>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" rows="3">Paquete para bodas, con servicios completos.</textarea>
                     </div>
                 </div>
             </div>
@@ -42,16 +42,50 @@
             <div>
                 <div class="row container_galery">
                     <H5>Servicios</H5>
-                    <div class="row">
-                        <div class="col-2 text-center">
-                            <small>#</small>
-                            <p class="label fw-bold"></p>
-                        </div>
-                        <div class="col text-center">
-                            <small>SERVICIO</small>
-                            <p class="label fw-bold"></p>
-                        </div>
-                    </div>
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Musica</td>
+                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Banquete</td>
+                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Jardin y capilla</td>
+                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>Mobiliario y decoración</td>
+                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td>Organización</td>
+                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td>Catering</td>
+                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td>Fotografia</td>
+                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">8</th>
+                                <td>Ambientación</td>
+                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <a class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarServicio"><i class="bi bi-plus-lg"></i></i></a>
                     </div>

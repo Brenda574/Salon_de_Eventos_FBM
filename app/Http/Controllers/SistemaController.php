@@ -29,7 +29,7 @@ class SistemaController extends Controller
                     return redirect(route("iniCliente"));
                     break;
                 case 'Gerente':
-                    return redirect(route("iniGerente"));
+                    return redirect(route("sistema.gerente"));
                     break;
                 case 'Empleado':
                     return redirect(route("iniEmpleado"));
@@ -38,5 +38,9 @@ class SistemaController extends Controller
         } else {
             return view("error");
         }
+    }
+
+    public function gerente() {
+        return view('Sistema.gerente');
     }
 }

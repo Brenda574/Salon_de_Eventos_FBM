@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PaqueteController extends Controller
+class ServicioController extends Controller
 {
     public function index()
     {
@@ -13,7 +13,7 @@ class PaqueteController extends Controller
 
     public function create()
     {
-        return view('Paquetes.create');
+        return view('Servicios.create');
     }
 
     public function store(Request $request)
@@ -24,13 +24,13 @@ class PaqueteController extends Controller
     // show(string $id)
     public function show()
     {
-        return view('Paquetes.show');
+        return view('Servicios.show');
     }
 
     // edit(string $id)
     public function edit()
     {
-        return view('Paquetes.edit');
+        return view('Servicios.edit');
     }
 
     public function update(Request $request, string $id)
