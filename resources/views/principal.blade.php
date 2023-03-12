@@ -32,11 +32,11 @@ height: 400px; width: 100%;
                             class="card-img-top" alt="" />
                         <div class="capacidad-label">
                             <div class="cl-flex w-clearfix">
-                                <div class="cl-txt">10,000</div>
+                                <div class="cl-txt">10,000 + serv.</div>
                                 <div class="icon w-clearfix">
                                     <img src="img/icono_m.svg" alt="" class="icon">
                                 </div>
-                                <div class="cl-txt">200 a 350</div>
+                                <div class="cl-txt">150 a 200</div>
                                 <div class="icon w-clearfix"><img src="img/icono_mh.svg" alt="" class="icon">
                                 </div>
                             </div>
@@ -54,14 +54,28 @@ height: 400px; width: 100%;
 
                                 <div class="carousel-inner">
                                     <div class="carousel-item active" data-bs-interval="10000">
-                                        <h6>Hasta l</h6>
+                                        <h6>Musica</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Adios</h6>
-
+                                        <h6>Banquete</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Bye</h6>
+                                        <h6>Jardin y capilla</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Mobiliario y decoración</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Organización</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Catering</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Fotografia</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Ambientación</h6>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDar"
@@ -91,11 +105,11 @@ height: 400px; width: 100%;
                             class="card-img-top" alt="" />
                         <div class="capacidad-label">
                             <div class="cl-flex w-clearfix">
-                                <div class="cl-txt">10,000</div>
+                                <div class="cl-txt">8,000 + serv.</div>
                                 <div class="icon w-clearfix">
                                     <img src="img/icono_m.svg" alt="" class="icon">
                                 </div>
-                                <div class="cl-txt">200 a 350</div>
+                                <div class="cl-txt">50 a 100</div>
                                 <div class="icon w-clearfix"><img src="img/icono_mh.svg" alt="" class="icon">
                                 </div>
                             </div>
@@ -113,14 +127,25 @@ height: 400px; width: 100%;
 
                                 <div class="carousel-inner">
                                     <div class="carousel-item active" data-bs-interval="10000">
-                                        <h6>Hasta l</h6>
+                                        <h6>Catering</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Adios</h6>
-
+                                        <h6>Mobiliario y decoración</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Bye</h6>
+                                        <h6>Ambientación</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Seguridad</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Barra de snack</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Equipo audiovisual</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Barra de bebidas</h6>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDa"
@@ -150,11 +175,11 @@ height: 400px; width: 100%;
                             class="card-img-top " alt="" />
                         <div class="capacidad-label">
                             <div class="cl-flex w-clearfix">
-                                <div class="cl-txt">10,000</div>
+                                <div class="cl-txt">10,100 + serv.</div>
                                 <div class="icon w-clearfix">
                                     <img src="img/icono_m.svg" alt="" class="icon">
                                 </div>
-                                <div class="cl-txt">200 a 350</div>
+                                <div class="cl-txt">150 a 200</div>
                                 <div class="icon w-clearfix"><img src="img/icono_mh.svg" alt="" class="icon">
                                 </div>
                             </div>
@@ -172,14 +197,29 @@ height: 400px; width: 100%;
 
                                 <div class="carousel-inner">
                                     <div class="carousel-item active" data-bs-interval="10000">
-                                        <h6>Hasta luego</h6>
+                                        <h6>Banquete</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Adios</h6>
+                                        <h6>Barra de snacks</h6>
 
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Bye</h6>
+                                        <h6>Musica</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Catering</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Mobiliario y decoración</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Barra de bebidas</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Ambientación</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Equipo audiovisual</h6>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
@@ -209,11 +249,11 @@ height: 400px; width: 100%;
                             class="card-img-top" alt="" />
                         <div class="capacidad-label">
                             <div class="cl-flex w-clearfix">
-                                <div class="cl-txt">10,000</div>
+                                <div class="cl-txt">10,000 + serv. </div>
                                 <div class="icon w-clearfix">
                                     <img src="img/icono_m.svg" alt="" class="icon">
                                 </div>
-                                <div class="cl-txt">200 a 350</div>
+                                <div class="cl-txt">150 a 250</div>
                                 <div class="icon w-clearfix"><img src="img/icono_mh.svg" alt="" class="icon">
                                 </div>
                             </div>
@@ -231,14 +271,25 @@ height: 400px; width: 100%;
 
                                 <div class="carousel-inner">
                                     <div class="carousel-item active" data-bs-interval="10000">
-                                        <h6>Hasta luego</h6>
+                                        <h6>Barra de snack</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Adios</h6>
-
+                                        <h6>Barra de bebidas</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Bye</h6>
+                                        <h6>Ambientación</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Musica</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Ambientación</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Equipo Audiovisula</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Fotografia</h6>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
@@ -264,15 +315,15 @@ height: 400px; width: 100%;
             <div class="col">
                 <div class="card h-100">
                     <div class="sc-hdr">
-                        <img src="http://elsauceeventos.com/wp-content/uploads/2018/01/empresariales-.jpg"
+                        <img src="https://cdn0.bodas.com.mx/vendor/3709/3_2/960/jpg/luissy-xv-anos-12_5_193709-161220917412012.jpeg"
                             class="card-img-top" alt="" />
                         <div class="capacidad-label">
                             <div class="cl-flex w-clearfix">
-                                <div class="cl-txt">10,000</div>
+                                <div class="cl-txt">10,000 + serv.</div>
                                 <div class="icon w-clearfix">
                                     <img src="img/icono_m.svg" alt="" class="icon">
                                 </div>
-                                <div class="cl-txt">200 a 350</div>
+                                <div class="cl-txt">150 a 200</div>
                                 <div class="icon w-clearfix"><img src="img/icono_mh.svg" alt="" class="icon">
                                 </div>
                             </div>
@@ -280,7 +331,7 @@ height: 400px; width: 100%;
                     </div>
                     <div class="card-body" style="background-color: #fff9f9">
                         <div>
-                            <h5 class="card-title">Eventos empresariales</h5>
+                            <h5 class="card-title">XV años</h5>
                         </div>
                         <br>
                         <br>
@@ -290,14 +341,23 @@ height: 400px; width: 100%;
 
                                 <div class="carousel-inner">
                                     <div class="carousel-item active" data-bs-interval="10000">
-                                        <h6>Hasta luego</h6>
+                                        <h6>Musica</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Adios</h6>
+                                        <h6>Ambientación</h6>
 
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Bye</h6>
+                                        <h6>Banquete</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Barra de bebidas</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Barra de snacks</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Mobiliario y decoración</h6>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExa"
