@@ -6,24 +6,30 @@ use Illuminate\Http\Request;
 
 class SistemaController extends Controller
 {
-    public function principal() {
+    public function principal()
+    {
         return view('principal');
     }
 
-    public function login() {
+    public function login()
+    {
         return view('login');
     }
-
-    public function facceder(Request $acceso) {
+    public function registro()
+    {
+        return view('registro');
+    }
+    public function facceder(Request $acceso)
+    {
         $usuario = $acceso->input('usuario');
         $password = $acceso->input('password');
-        if ($usuario==$password && ($usuario=='Cliente' || $usuario=='Gerente' || $usuario=='Empleado')) {
+        if ($usuario == $password && ($usuario == 'Cliente' || $usuario == 'Gerente' || $usuario == 'Empleado')) {
             switch ($usuario) {
                 case 'Cliente':
-                    return redirect(route("principal"));
+                    return redirect(route("iniCliente"));
                     break;
                 case 'Gerente':
-                    return redirect(route("iniGerente"));
+                    return redirect(route("sistema.gerente"));
                     break;
                 case 'Empleado':
                     return redirect(route("iniEmpleado"));
@@ -32,5 +38,9 @@ class SistemaController extends Controller
         } else {
             return view("error");
         }
+    }
+
+    public function gerente() {
+        return view('Sistema.gerente');
     }
 }

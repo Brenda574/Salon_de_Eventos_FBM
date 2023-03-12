@@ -1,9 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=baskerville');
+
 :root {
     --primary: #808882;
     --secondary: #fdf6f6;
     --tercero: #FEFFFF;
     --cuarto: #867273;
     --quinto: #858b85;
+}
+
+body {
+  font-family: baskerville;
+}
+
+.texto-color {
+  color: #c9aaac;
 }
 
 .btnCotizar{
@@ -23,11 +33,72 @@
     background-color: var(--quinto);
     color: var(--secondary);
 }
+.capacidad-label {
+    position: absolute;
+    left: 0%;
+    top: auto;
+    right: 10%;
+    bottom: 3%;
+    z-index: 40;
+    height: 40px;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 15px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(80, 247, 74, 0.162)), to(#ccd2ce));
+    background-image: linear-gradient(90deg, rgba(241, 244, 240, 0.155), #e9f8ee);
+    font-family: 'Open Sans', sans-serif;
+    color: #1a1c27;
+    line-height: 40px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.sc-hdr {
+    position: relative;
+}
+
+
+.icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+    float: right;
+    padding:3px;
+    margin:auto;
+}
+
+
+.cl-txt {
+    font-size: 15px;
+    padding-right: 8px;
+    float: right;
+    letter-spacing: -0.5px;
+    margin-left: 0%;
+}
+
+@media screen and (max-width: 991px){
+.icon {
+    width: 40px;
+}}
   
 /* EMPLEADO */
 
 .emp_ban {
-    background-image: linear-gradient(180deg, #f7ebeb, #FFFFFF);
+    text-align: left; 
+    font-family: baskerville Black; 
+    font-weight: bold; font-size: 30px; 
+    background: #202020; 
+    -webkit-background-clip: text; 
+    -moz-background-clip: text; 
+    background-clip: text; 
+    color: transparent; 
+    text-shadow: 0px 3px 3px #8E9B91,0px -1px 1px #5d665f;
 }
 
 .emp_button_plus {
@@ -80,11 +151,99 @@
 }
 
 .emp_add {
-	color: #585D58;
+	  color: #585D58;
 }
 
 .emp_add:hover {
-	color: #867273;
+	  color: #867273;
     outline-color: rgba(71, 126, 232, 0);
     outline-offset: 300px;
+}
+
+/* GALERIA */
+
+.container_galery {
+    margin: 1% auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  
+.lightbox-gallery div > img {
+    max-width: 100%;
+    display: block;
+}
+  
+.lightbox-gallery div {
+    margin: 10px;
+    flex-basis: 180px;
+}
+  
+@media only screen and (max-width: 480px) {
+    .lightbox-gallery {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .lightbox > div {
+      margin-bottom: 10px;
+    }
+}
+  
+/*Lighbox CSS*/
+  
+.lightbox {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    padding-top: 30px;
+    box-sizing: border-box;
+}
+  
+.lightbox img {
+    display: block;
+    margin: auto;
+}
+  
+.lightbox .caption {
+    margin: 15px auto;
+    width: 50%;
+    text-align: center;
+    font-size: 1em;
+    line-height: 1.5;
+    font-weight: 700;
+    color: #eee;
+}
+  
+.github-link {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+}
+  
+.github-link:hover,
+.github-link:active,
+.github-link:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+/*Gerente*/
+
+.plegable:focus { 
+    box-shadow: none;
 }
