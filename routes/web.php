@@ -6,7 +6,8 @@ use App\Http\Controllers\GerenteController;
 use App\Http\Controllers\PaqueteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SistemaController;
-
+use Illuminate\Routing\Route as RoutingRoute;
+use Monolog\Handler\RotatingFileHandler;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,4 @@ Route::get('/Gerente', [GerenteController::class, 'inicio'])->name('iniGerente')
 Route::get('/Paquete/Crear', [PaqueteController::class, 'create'])->name('paquete.create');
 Route::get('/Paquete/Detalles', [PaqueteController::class, 'show'])->name('paquete.show');
 Route::get('/Paquete/Editar', [PaqueteController::class, 'edit'])->name('paquete.edit');
+Route::get('/registrar', [SistemaController::class, 'registro'])->name('registro');
