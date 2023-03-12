@@ -175,7 +175,7 @@ height: 400px; width: 100%;
                             class="card-img-top " alt="" />
                         <div class="capacidad-label">
                             <div class="cl-flex w-clearfix">
-                                <div class="cl-txt">10,100 + serv.</div>
+                                <div class="cl-txt">10,000 + serv.</div>
                                 <div class="icon w-clearfix">
                                     <img src="img/icono_m.svg" alt="" class="icon">
                                 </div>
@@ -249,7 +249,7 @@ height: 400px; width: 100%;
                             class="card-img-top" alt="" />
                         <div class="capacidad-label">
                             <div class="cl-flex w-clearfix">
-                                <div class="cl-txt">10,000 + serv. </div>
+                                <div class="cl-txt">10,200 + serv. </div>
                                 <div class="icon w-clearfix">
                                     <img src="img/icono_m.svg" alt="" class="icon">
                                 </div>
@@ -268,7 +268,6 @@ height: 400px; width: 100%;
                         <div class="d-flex justify-content-center align-items-center">
                             <div id="carousel" class="carousel carousel-dark slide"
                                 style="width: 60vh; text-align: center">
-
                                 <div class="carousel-inner">
                                     <div class="carousel-item active" data-bs-interval="10000">
                                         <h6>Barra de snack</h6>
@@ -286,7 +285,7 @@ height: 400px; width: 100%;
                                         <h6>Ambientación</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
-                                        <h6>Equipo Audiovisula</h6>
+                                        <h6>Equipo audiovisual</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
                                         <h6>Fotografia</h6>
@@ -345,7 +344,6 @@ height: 400px; width: 100%;
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
                                         <h6>Ambientación</h6>
-
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
                                         <h6>Banquete</h6>
@@ -358,6 +356,12 @@ height: 400px; width: 100%;
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
                                         <h6>Mobiliario y decoración</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Fotografia</h6>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <h6>Catering</h6>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExa"

@@ -62,16 +62,6 @@ body {
 .sc-hdr {
     position: relative;
 }
-<<<<<<< HEAD
-
-.w-clearfix:before, .w-clearfix:after {
-    content: " ";
-    display: table;
-    grid-column-start: 1;
-    grid-row-start: 1;
-    grid-column-end: 2;
-    grid-row-end: 2;
-=======
 #ventana-emergente {
   display: none;
   position: fixed;
@@ -82,7 +72,6 @@ body {
   padding: 20px;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
->>>>>>> 661cd25 (correcion7 commit)
 }
 
 /* Mostrar la ventana emergente cuando se hace clic en el botón */
