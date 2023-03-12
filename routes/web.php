@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\EmpleadoController;
-use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EventoController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\ServicioController;
 use Illuminate\Support\Facades\Route;
@@ -23,19 +22,18 @@ use Monolog\Handler\RotatingFileHandler;
 Route::get('/', [SistemaController::class, 'principal'])->name('principal');
 Route::get('/Login', [SistemaController::class, 'login'])->name('login');
 Route::post('/Acceder', [SistemaController::class, 'facceder'])->name('acceder');
+Route::get('/Registrar', [SistemaController::class, 'registro'])->name('registro');
 
-Route::get('/Empleado', [EmpleadoController::class, 'inicio'])->name('iniEmpleado');
-Route::get('/Empleado/Detalles', [EmpleadoController::class, 'detalles'])->name('detEmpleado');
-
-Route::get('/Cliente', [ClienteController::class, 'inicioCliente'])->name('iniCliente');
-
+Route::get('/Empleado', [SistemaController::class, 'empleado'])->name('sistema.empleado');
 Route::get('/Gerente', [SistemaController::class, 'gerente'])->name('sistema.gerente');
+Route::get('/Cliente', [SistemaController::class, 'cliente'])->name('sistema.cliente');
+
+Route::get('/Evento/Detalles', [EventoController::class, 'show'])->name('evento.show');
+Route::get('/Evento/Editar', [EventoController::class, 'edit'])->name('evento.edit');
 
 Route::get('/Paquete/Crear', [PaqueteController::class, 'create'])->name('paquete.create');
 Route::get('/Paquete/Detalles', [PaqueteController::class, 'show'])->name('paquete.show');
 Route::get('/Paquete/Editar', [PaqueteController::class, 'edit'])->name('paquete.edit');
-
-Route::get('/registrar', [SistemaController::class, 'registro'])->name('registro');
 
 Route::get('/Servicio/Crear', [ServicioController::class, 'create'])->name('servicio.create');
 Route::get('/Servicio/Detalles', [ServicioController::class, 'show'])->name('servicio.show');

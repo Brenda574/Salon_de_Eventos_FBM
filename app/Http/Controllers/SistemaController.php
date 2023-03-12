@@ -15,10 +15,12 @@ class SistemaController extends Controller
     {
         return view('login');
     }
+
     public function registro()
     {
         return view('registro');
     }
+
     public function facceder(Request $acceso)
     {
         $usuario = $acceso->input('usuario');
@@ -26,13 +28,13 @@ class SistemaController extends Controller
         if ($usuario == $password && ($usuario == 'Cliente' || $usuario == 'Gerente' || $usuario == 'Empleado')) {
             switch ($usuario) {
                 case 'Cliente':
-                    return redirect(route("iniCliente"));
+                    return redirect(route("sistema.cliente"));
                     break;
                 case 'Gerente':
                     return redirect(route("sistema.gerente"));
                     break;
                 case 'Empleado':
-                    return redirect(route("iniEmpleado"));
+                    return redirect(route("sistema.empleado"));
                     break;
             }
         } else {
@@ -42,5 +44,13 @@ class SistemaController extends Controller
 
     public function gerente() {
         return view('Sistema.gerente');
+    }
+
+    public function empleado() {
+        return view('Sistema.empleado');
+    }
+
+    public function cliente() {
+        return view('Sistema.cliente');
     }
 }

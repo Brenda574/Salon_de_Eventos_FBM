@@ -2,7 +2,7 @@
 
 @section('usuario')
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Empleado</a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> Empleado</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('principal') }}">Salir</a></li>
         </ul>
@@ -22,7 +22,7 @@
                     <th scope="col">Evento</th>
                     <th scope="col">Cliente</th>
                     <th scope="col">Fecha</th>
-                    <th scope="col">Confirmado</th>
+                    <th scope="col">Confirmación</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,7 +33,7 @@
                     <td>Cliente 1</td>
                     <td>20/03/2023</td>
                     <td><input class="form-check-input" type="checkbox" value="" checked disabled></td>
-                    <td><a href="{{ route('detEmpleado') }}" class="btn emp_button_plus"><i class="bi bi-three-dots-vertical"></i></a></td>
+                    <td><a href="{{ route('evento.show') }}" class="btn emp_button_plus"><i class="bi bi-three-dots-vertical"></i></a></td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
@@ -41,7 +41,7 @@
                     <td>Cliente 2</td>
                     <td>08/09/2023</td>
                     <td><input class="form-check-input" type="checkbox" value="" disabled></td>
-                    <td><a href="{{ route('detEmpleado') }}" class="btn emp_button_plus"><i class="bi bi-three-dots-vertical"></i></a></td>
+                    <td><a href="{{ route('evento.show') }}" class="btn emp_button_plus"><i class="bi bi-three-dots-vertical"></i></a></td>
                 </tr>
             </tbody>
         </table>

@@ -1,9 +1,9 @@
 @extends('plantilla.layout')
 
 @section('usuario')
-    <li><a class="nav-link" href="{{ route('sistema.gerente') }}">Inicio</a></li>
+    <li><a class="nav-link" href="{{ route('sistema.cliente') }}">Inicio</a></li>
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> Gerente</a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> nombre_cliente</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('principal') }}">Salir</a></li>
         </ul>
@@ -14,27 +14,46 @@
     <div class="container">
         <br>
         <div class="row container_galery">
-            <h3 class="label fw-bold" style="color: #af9495">Editar Paquete</h3>
+            <h3 class="label fw-bold" style="color: #af9495">Editar Evento</h3>
         </div>
         <hr>
-        <form action="{{ route('sistema.gerente') }}">
+        <form action="{{ route('sistema.cliente') }}">
             <div>
                 <div class="row container_galery">
-                    <div class="mb-3">
-                        <small>TITULO</small>
-                        <input type="text" class="form-control" value="Boda">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <small>EVENTO</small>
+                            <input type="text" class="form-control" value="Graduación">
+                        </div>
+                        <div class="col mb-3">
+                            <small>PAQUETE</small>
+                            <select class="form-select">
+                                <option></option>
+                                <option value="1">Boda ($10,000)</option>
+                                <option value="2">Eventos Empresariales ($8,000)</option>
+                                <option value="3">Eventos Especiales ($10,000)</option>
+                                <option value="4" selected>Graduaciones ($10,200)</option>
+                                <option value="5">XV Años ($10,000)</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <small>CAPACIDAD</small>
-                        <input type="text" class="form-control" value="150 a 200">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <small>FECHA</small>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="col mb-3">
+                            <small>HORA INICIO</small>
+                            <input type="time" class="form-control">
+                        </div>
+                        <div class="col mb-3">
+                            <small>HORA FIN</small>
+                            <input type="time" class="form-control">
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <small>COSTO</small>
-                        <input type="text" class="form-control" value="$10,000">
-                    </div>
-                    <div class="mb-3">
-                        <small>DESCRIPCIÓN</small>
-                        <textarea class="form-control" rows="3">Paquete para bodas, con servicios completos.</textarea>
+                    <div class="col mb-3">
+                        <small>INVITADOS CONTEMPLADOS</small>
+                        <input type="text" class="form-control" value="">
                     </div>
                 </div>
             </div>
@@ -45,43 +64,13 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Musica</td>
-                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Banquete</td>
-                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Jardin y capilla</td>
-                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
                                 <td>Mobiliario y decoración</td>
+                                <td>$</td>
                                 <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
                             </tr>
                             <tr>
-                                <th scope="row">5</th>
-                                <td>Organización</td>
-                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Catering</td>
-                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">7</th>
                                 <td>Fotografia</td>
-                                <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">8</th>
-                                <td>Ambientación</td>
+                                <td>$</td>
                                 <td><a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a></td>
                             </tr>
                         </tbody>
@@ -94,7 +83,13 @@
             <hr>
             <div>
                 <div class="row container_galery">
-                    <button type="submit" class="btn emp_button">Guardar</button>
+                    <div class="col">
+                        <h4><b>Total: </b>$10,200</h4>
+                    </div>
+                    <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn emp_button_c">Confirmar Evento</button>
+                        <button type="submit" class="btn emp_button">Guardar</button>
+                    </div>
                 </div>
             </div>
         </form>
