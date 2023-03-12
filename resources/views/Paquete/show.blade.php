@@ -1,9 +1,9 @@
 @extends('plantilla.layout')
 
 @section('usuario')
-    <li><a class="nav-link" href="{{ route('iniEmpleado') }}">Inicio</a></li>
+    <li><a class="nav-link" href="{{ route('iniGerente') }}">Inicio</a></li>
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Empleado</a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gerente</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('principal') }}">Salir</a></li>
         </ul>
@@ -19,8 +19,8 @@
                 <h3 class="label fw-bold">1</h3>
             </div>
             <div class="col">
-                <small>EVENTO</small>
-                <h3 class="label fw-bold" style="color: #af9495">Boda Premium</h3>
+                <small>Titulo</small>
+                <h3 class="label fw-bold" style="color: #af9495">Boda</h3>
             </div>
         </div>
         <hr>
@@ -34,15 +34,15 @@
                 </p>
                 <div class="row">
                     <div class="col text-center">
-                        <small>PAQUETE</small>
+                        <small>Capacidad</small>
                         <p class="label fw-bold">Boda</p>
                     </div>
                     <div class="col text-center">
-                        <small>CLIENTE</small>
+                        <small>Costo</small>
                         <p class="label fw-bold">Cliente 1</p>
                     </div>
                     <div class="col text-center">
-                        <small>Fecha</small>
+                        <small>Descripción</small>
                         <p class="label fw-bold">20/03/2023</p>
                     </div>
                     <div class="col text-center">
