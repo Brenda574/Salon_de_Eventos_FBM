@@ -13,7 +13,7 @@ class EventoController extends Controller
 
     public function create()
     {
-        //
+        return view('Eventos.create');
     }
 
     public function store(Request $request)

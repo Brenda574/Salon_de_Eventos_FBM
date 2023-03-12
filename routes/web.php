@@ -30,6 +30,7 @@ Route::get('/Cliente', [SistemaController::class, 'cliente'])->name('sistema.cli
 
 Route::get('/Evento/Detalles', [EventoController::class, 'show'])->name('evento.show');
 Route::get('/Evento/Editar', [EventoController::class, 'edit'])->name('evento.edit');
+Route::get('/Evento/Crear', [EventoController::class, 'create'])->name('evento.create');
 
 Route::get('/Paquete/Crear', [PaqueteController::class, 'create'])->name('paquete.create');
 Route::get('/Paquete/Detalles', [PaqueteController::class, 'show'])->name('paquete.show');
