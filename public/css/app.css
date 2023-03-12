@@ -12,6 +12,10 @@ body {
   font-family: baskerville;
 }
 
+.texto-color {
+  color: #c9aaac;
+}
+
 .btnCotizar{
     border: 0;
     background-color: var(--secondary);
@@ -59,7 +63,6 @@ body {
     position: relative;
 }
 
-
 .w-clearfix:before, .w-clearfix:after {
     content: " ";
     display: table;
@@ -90,6 +93,7 @@ body {
     padding:3px;
     margin:auto;
 }
+
 .cl-txt {
     font-size: 15px;
     padding-right: 8px;
@@ -167,11 +171,11 @@ body {
 }
 
 .emp_add {
-	color: #585D58;
+	  color: #585D58;
 }
 
 .emp_add:hover {
-	color: #867273;
+	  color: #867273;
     outline-color: rgba(71, 126, 232, 0);
     outline-offset: 300px;
 }
@@ -186,26 +190,26 @@ body {
     overflow: hidden;
     box-sizing: border-box;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-  }
+}
 
 .lightbox-gallery {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-  }
+}
   
-  .lightbox-gallery div > img {
+.lightbox-gallery div > img {
     max-width: 100%;
     display: block;
-  }
+}
   
-  .lightbox-gallery div {
+.lightbox-gallery div {
     margin: 10px;
     flex-basis: 180px;
-  }
+}
   
-  @media only screen and (max-width: 480px) {
+@media only screen and (max-width: 480px) {
     .lightbox-gallery {
       flex-direction: column;
       align-items: center;
@@ -214,11 +218,11 @@ body {
     .lightbox > div {
       margin-bottom: 10px;
     }
-  }
+}
   
-  /*Lighbox CSS*/
+/*Lighbox CSS*/
   
-  .lightbox {
+.lightbox {
     display: none;
     width: 100%;
     height: 100%;
@@ -229,14 +233,14 @@ body {
     z-index: 20;
     padding-top: 30px;
     box-sizing: border-box;
-  }
+}
   
-  .lightbox img {
+.lightbox img {
     display: block;
     margin: auto;
-  }
+}
   
-  .lightbox .caption {
+.lightbox .caption {
     margin: 15px auto;
     width: 50%;
     text-align: center;
@@ -244,16 +248,22 @@ body {
     line-height: 1.5;
     font-weight: 700;
     color: #eee;
-  }
+}
   
-  .github-link {
+.github-link {
     font-size: 18px;
     color: rgba(255, 255, 255, 0.7);
-  }
+}
   
-  .github-link:hover,
-  .github-link:active,
-  .github-link:visited {
+.github-link:hover,
+.github-link:active,
+.github-link:visited {
     color: #fff;
     text-decoration: none;
-  }
+}
+
+/*Gerente*/
+
+.plegable:focus { 
+    box-shadow: none;
+}
