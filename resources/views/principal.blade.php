@@ -93,7 +93,7 @@ height: 400px; width: 100%;
                         <br>
                     </div>
                     <div class="card-footer text-center" style="background-color:#d3ded4">
-                        <div><a class="btn btnCotizar">Cotizar</a>
+                        <div><a href="{{ route('login') }}" class="btn btnCotizar">Cotizar</a>
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@ height: 400px; width: 100%;
                         <br>
                     </div>
                     <div class="card-footer text-center" style="background-color:#d3ded4">
-                        <div><a class="btn btnCotizar">Cotizar</a>
+                        <div><a href="{{ route('login') }}" class="btn btnCotizar">Cotizar</a>
                         </div>
                     </div>
                 </div>
@@ -237,7 +237,7 @@ height: 400px; width: 100%;
                         <br>
                     </div>
                     <div class="card-footer text-center" style="background-color:#d3ded4">
-                        <div><a class="btn btnCotizar">Cotizar</a>
+                        <div><a href="{{ route('login') }}" class="btn btnCotizar">Cotizar</a>
                         </div>
                     </div>
                 </div>
@@ -270,7 +270,7 @@ height: 400px; width: 100%;
                                 style="width: 60vh; text-align: center">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active" data-bs-interval="10000">
-                                        <h6>Barra de snack</h6>
+                                        <h6>Barra de snacks</h6>
                                     </div>
                                     <div class="carousel-item" data-bs-interval="2000">
                                         <h6>Barra de bebidas</h6>
@@ -306,7 +306,7 @@ height: 400px; width: 100%;
                         <br>
                     </div>
                     <div class="card-footer text-center" style="background-color:#d3ded4">
-                        <div><a class="btn btnCotizar">Cotizar</a>
+                        <div><a href="{{ route('login') }}" class="btn btnCotizar">Cotizar</a>
                         </div>
                     </div>
                 </div>
@@ -379,7 +379,7 @@ height: 400px; width: 100%;
                         <br>
                     </div>
                     <div class="card-footer text-center" style="background-color:#d3ded4">
-                        <div><a class="btn btnCotizar">Cotizar</a>
+                        <div><a href="{{ route('login') }}" class="btn btnCotizar">Cotizar</a>
                         </div>
                     </div>
                 </div>
