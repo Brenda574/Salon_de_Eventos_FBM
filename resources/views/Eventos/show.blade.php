@@ -1,9 +1,9 @@
 @extends('plantilla.layout')
 
 @section('usuario')
-    <li><a class="nav-link" href="{{ route('iniEmpleado') }}">Inicio</a></li>
+    <li><a class="nav-link" href="{{ route('sistema.empleado') }}">Inicio</a></li>
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Empleado</a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> Empleado</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('principal') }}">Salir</a></li>
         </ul>
@@ -20,7 +20,7 @@
             </div>
             <div class="col">
                 <small>EVENTO</small>
-                <h3 class="label fw-bold" style="color: #af9495">Boda Premium</h3>
+                <h3 class="label fw-bold" style="color: #af9495">Boda E&A</h3>
             </div>
         </div>
         <hr>

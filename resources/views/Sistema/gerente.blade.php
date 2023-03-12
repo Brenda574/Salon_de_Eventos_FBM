@@ -2,7 +2,7 @@
 
 @section('usuario')
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gerente</a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> Gerente</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('principal') }}">Salir</a></li>
         </ul>
@@ -35,7 +35,7 @@
                                     <th scope="col">Usuario</th>
                                     <th scope="col">Contraseña</th>
                                     <th scope="col">Rol</th>
-                                    <th scope="col">Acciones</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,7 +90,7 @@
                                     <th scope="col">Capacidad</th>
                                     <th scope="col">Costo</th>
                                     <th scope="col">Descripcion</th>
-                                    <th scope="col">Acciones</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -177,7 +177,7 @@
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Costo</th>
                                     <th scope="col">Descripcion</th>
-                                    <th scope="col">Acciones</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
