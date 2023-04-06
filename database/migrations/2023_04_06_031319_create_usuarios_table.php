@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Unique;
 
 return new class extends Migration
 {
@@ -14,9 +15,9 @@ return new class extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('usuario');
+            $table->string('usuario')->Unique();
             $table->string('clave');
-            $table->enum('rol',['Cliente','Gerente','Empleado'])->default('Cliente');
+            $table->enum('rol', ['Cliente', 'Gerente', 'Empleado'])->default('Cliente');
             $table->timestamps();
         });
     }

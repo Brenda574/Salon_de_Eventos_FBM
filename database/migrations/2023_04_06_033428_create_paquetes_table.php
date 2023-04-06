@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double('costo');
             $table->text('descripcion');
             $table->timestamps();
+            $table->text('ruta_imagen');
         });
     }
 
