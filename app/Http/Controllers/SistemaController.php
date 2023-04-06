@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class SistemaController extends Controller
 {
@@ -25,21 +29,36 @@ class SistemaController extends Controller
     {
         $usuario = $acceso->input('usuario');
         $password = $acceso->input('password');
-        if ($usuario == $password && ($usuario == 'Cliente' || $usuario == 'Gerente' || $usuario == 'Empleado')) {
-            switch ($usuario) {
-                case 'Cliente':
-                    return redirect(route("sistema.cliente"));
-                    break;
-                case 'Gerente':
-                    return redirect(route("sistema.gerente"));
-                    break;
-                case 'Empleado':
-                    return redirect(route("sistema.empleado"));
-                    break;
-            }
-        } else {
+
+        $encontrado = Usuario::where('usuario',$usuario)->first();
+
+        if (is_null($encontrado)) {
             return view("error");
+        } else {
+            $password_bd = $encontrado->clave;
+            $coincide = Hash::check($password,$password_bd);
+
+            if ($coincide) {
+                $rol_bd = $encontrado->rol;
+                switch ($rol_bd) {
+                    case 'Cliente':
+                        return redirect(route("sistema.cliente"));
+                        break;
+                    case 'Gerente':
+                        return redirect(route("sistema.gerente"));
+                        break;
+                    case 'Empleado':
+                        return redirect(route("sistema.empleado"));
+                        break;
+                }
+            } else {
+                return view("error");
+            }
         }
+    }
+    
+    public function cerrar_sesion() {
+        
     }
 
     public function gerente()

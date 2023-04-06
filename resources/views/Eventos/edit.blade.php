@@ -2,12 +2,6 @@
 
 @section('usuario')
     <li><a class="nav-link" href="{{ route('sistema.cliente') }}">Inicio</a></li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> nombre_cliente</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('principal') }}">Salir</a></li>
-        </ul>
-    </li>
 @endsection
 
 @section('contenido')

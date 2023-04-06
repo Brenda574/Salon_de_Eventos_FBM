@@ -19,7 +19,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('Usuarios.create');
+        //return view('Usuarios.create');
     }
 
     /**
@@ -33,17 +33,17 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(/*string $id*/)
+    public function show(string $id)
     {
-        return view('Usuarios.show');
+        //return view('Usuarios.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(/*string $id*/)
+    public function edit(string $id)
     {
-        return view('Usuarios.edit');
+        //return view('Usuarios.edit');
     }
 
     /**
