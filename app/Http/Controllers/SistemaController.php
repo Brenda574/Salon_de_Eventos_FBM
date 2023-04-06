@@ -58,7 +58,7 @@ class SistemaController extends Controller
     }
     
     public function cerrar_sesion() {
-        
+        return redirect('principal');
     }
 
     public function gerente()

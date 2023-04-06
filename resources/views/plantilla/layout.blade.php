@@ -34,7 +34,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
                             </ul>
                         </li>
                     </ul>
