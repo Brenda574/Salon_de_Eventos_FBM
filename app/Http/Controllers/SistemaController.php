@@ -39,6 +39,7 @@ class SistemaController extends Controller
             $coincide = Hash::check($password,$password_bd);
 
             if ($coincide) {
+                Auth::login($encontrado);
                 $rol_bd = $encontrado->rol;
                 switch ($rol_bd) {
                     case 'Cliente':
@@ -57,8 +58,9 @@ class SistemaController extends Controller
         }
     }
     
-    public function cerrar_sesion() {
-        return redirect('principal');
+    public function logout(Request $solicitud) {
+        Auth::logout();
+        return redirect('/');
     }
 
     public function gerente()
