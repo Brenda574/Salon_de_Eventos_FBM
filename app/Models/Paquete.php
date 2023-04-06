@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Paquete extends Model
 {
     use HasFactory;
+
+    public function eventos()
+    {
+        return $this->hasMany('App\Models\Evento');
+    }
 }

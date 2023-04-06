@@ -18,8 +18,13 @@ return new class extends Migration
             $table->time('hora_inicio');
             $table->time('hora_final');
             $table->double('costo');
-            $table->enum('estatus',['Confirmado','SinConfirmar'])->default('SinConfirmar');
+            $table->enum('estatus', ['Confirmado', 'SinConfirmar'])->default('SinConfirmar');
             $table->timestamps();
+            $table->unsignedBigInteger('usuario_id');
+            $table->unsignedBigInteger('paquete_id');
+
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('paquete_id')->references('id')->on('paquetes');
         });
     }
 

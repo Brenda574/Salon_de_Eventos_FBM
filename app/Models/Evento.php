@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Evento extends Model
 {
     use HasFactory;
+
+    public function usuario()
+    {
+        return $this->belongsTo('App\Models\Usuario');
+    }
+
+    public function paquete()
+    {
+        return $this->belongsTo('App\Models\Paquete');
+    }
 }
