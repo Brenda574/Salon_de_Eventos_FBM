@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Session;
 
 class SistemaController extends Controller
 {
-    public function principal()
-    {
-        return view('principal');
-    }
-
     public function login()
     {
         return view('login');

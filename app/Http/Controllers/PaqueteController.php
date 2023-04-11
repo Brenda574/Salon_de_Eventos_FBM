@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Paquete;
 
 class PaqueteController extends Controller
 {
     public function index()
     {
-        //
+        $paquetes = Paquete::all();
+        return view('principal', compact('paquetes'));
     }
 
     public function create()

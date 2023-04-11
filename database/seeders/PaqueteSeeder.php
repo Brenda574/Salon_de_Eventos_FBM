@@ -34,7 +34,7 @@ class PaqueteSeeder extends Seeder
         $paquete->capacidad = "150 a 200";
         $paquete->costo = "10000";
         $paquete->descripcion = "Paquete de fiestas infantiles con servicios incluidos.";
-        $paquete->ruta_imagen = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.craftologia.com%2Ftips%2Ftips-de-fiestas%2Fdecoracion-para-fiestas%2Fideas-para-fiesta-de-dia-del-nino&psig=AOvVaw02CRLfLHz_5GYhHrfDPEEL&ust=1680843027635000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKijzq66lP4CFQAAAAAdAAAAABAE";
+        $paquete->ruta_imagen = "https://i.pinimg.com/564x/3f/1c/44/3f1c4449ff7e11746975075aac9b3e85.jpg";
         $paquete->save();
 
         $paquete = new Paquete();
@@ -42,7 +42,7 @@ class PaqueteSeeder extends Seeder
         $paquete->capacidad = "150 a 200";
         $paquete->costo = "10000";
         $paquete->descripcion = "Paquete de bautizo con servicios incluidos.";
-        $paquete->ruta_imagen = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tinaeventplanner.com%2Fcomo-organizar-un-bautizo-6-pasos-a-seguir%2F&psig=AOvVaw0yqTd91aln3iaCpu06jYh2&ust=1680842939754000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIiB0IS6lP4CFQAAAAAdAAAAABAE";
+        $paquete->ruta_imagen = "https://www.tinaeventplanner.com/wp-content/uploads/2021/03/bautizo.jpeg";
         $paquete->save();
 
         $paquete = new Paquete();

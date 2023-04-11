@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('capacidad');
             $table->double('costo');
             $table->text('descripcion');
-            $table->timestamps();
             $table->text('ruta_imagen');
+            $table->enum('estatus', ['Activo', 'Inactivo'])->default('Inactivo');
+            $table->timestamps();
         });
     }
 

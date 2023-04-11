@@ -20,7 +20,7 @@ use Monolog\Handler\RotatingFileHandler;
 |
 */
 
-Route::get('/', [SistemaController::class, 'principal'])->name('principal');
+Route::get('/', [PaqueteController::class, 'index'])->name('principal');
 Route::get('/Login', [SistemaController::class, 'login'])->name('login');
 Route::get('/Logout', [SistemaController::class, 'logout'])->name('logout');
 Route::post('/Acceder', [SistemaController::class, 'facceder'])->name('acceder');
