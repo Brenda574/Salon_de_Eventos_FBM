@@ -10,7 +10,7 @@ class Usuario extends Authenticatable
 {
     use HasFactory;
 
-    public function eventos()
+    public function eventosHasMany()
     {
         return $this->hasMany('App\Models\Evento');
     }

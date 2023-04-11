@@ -9,7 +9,7 @@ class Paquete extends Model
 {
     use HasFactory;
 
-    public function eventos()
+    public function eventosHasMany()
     {
         return $this->hasMany('App\Models\Evento');
     }
