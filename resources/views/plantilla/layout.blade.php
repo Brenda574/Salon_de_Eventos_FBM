@@ -32,12 +32,7 @@
                     <ul class="navbar-nav ms-auto">
                         @yield('usuario')
                         @unless (!Auth::check())
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> {{Auth::user()->nombre}}</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
-                                </ul>
-                            </li>
+                            @yield('authenticacion')
                         @endunless
                     </ul>
                 </div>

@@ -1,8 +1,17 @@
 @extends('plantilla.layout')
 
+@section('authenticacion')
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> {{Auth::user()->nombre}}</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
+        </ul>
+    </li>
+@endsection
+
 @section('contenido')
     <div class="p-5 text-center emp_ban" style="margin-top: 60px;">
-        <h1 class="mb-3">Bienvenido (nombre_cliente)</h1>
+        <h1 class="mb-3">Bienvenido {{Auth::user()->nombre}}</h1>
     </div>
     <div class="container">
         <div class="container_galery">
