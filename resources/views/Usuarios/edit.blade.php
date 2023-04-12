@@ -34,8 +34,8 @@
                         <div class="row">
                             <div class="col">
                                 <small>CONTRASEÑA</small>
-                                <input type="password" class="form-control"
-                                    value="{{ Hash::defaultAliases($usuario->clave) }}" name="clave" id="clave">
+                                <input type="text" class="form-control" value="{{ $usuario->clave }}" name="clave"
+                                    id="clave">
                             </div>
                             <div class="col">
                                 <div class="mb-3">
