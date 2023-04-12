@@ -79,9 +79,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($paquetes as $item)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Boda</td>
+                                    <th scope="row">{{ $item['id'] }}</th>
+                                    <td>{{ $item['nombre'] }}</td>
                                     <td>150 a 200</td>
                                     <td>$10,000</td>
                                     <td>Paquete para bodas, con servicios completos.</td>
@@ -91,6 +92,7 @@
                                         <a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -118,8 +120,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($servicios as $item)
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{ $item['id'] }}</th>
                                     <td>Musica</td>
                                     <td>$</td>
                                     <td>Servicio de musica a elección del usuario.</td>
@@ -129,6 +132,7 @@
                                         <a href="" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
