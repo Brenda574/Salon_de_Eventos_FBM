@@ -4,6 +4,16 @@
     <li><a class="nav-link" href="{{ route('sistema.gerente') }}">Inicio</a></li>
 @endsection
 
+@section('authenticacion')
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i
+            class="bi bi-person-circle"></i> {{ Auth::user()->nombre }}</a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
+    </ul>
+</li>
+@endsection
+
 @section('contenido')
     <div class="container">
         <br>
@@ -23,7 +33,11 @@
                                 <input type="text" class="form-control" value="{{ $usuario->nombre }}" name="nombre"
                                     id="nombre">
                             </div>
-                            <div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
                                 <small>USUARIO</small>
                                 <input type="text" class="form-control" value="{{ $usuario->usuario }}" name="usuario"
                                     id="usuario">
@@ -32,11 +46,6 @@
                     </div>
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col">
-                                <small>CONTRASEÑA</small>
-                                <input type="password" class="form-control"
-                                    value="{{ Hash::defaultAliases($usuario->clave) }}" name="clave" id="clave">
-                            </div>
                             <div class="col">
                                 <div class="mb-3">
                                     <small>ROL</small>
@@ -48,6 +57,20 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col">
+                                <br>
+                                <a class="btn emp_button_c" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Cambiar Clave
+                                </a>
+                                <br>
+                                <br>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <small>CONTRASEÑA</small>
+                                        <input type="password" class="form-control" value="" name="clave" id="clave">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -56,6 +79,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </form>
     </div>
 @endsection

@@ -4,6 +4,16 @@
     <li><a class="nav-link" href="{{ route('sistema.gerente') }}">Inicio</a></li>
 @endsection
 
+@section('authenticacion')
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i
+            class="bi bi-person-circle"></i> {{ Auth::user()->nombre }}</a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
+    </ul>
+</li>
+@endsection
+
 @section('contenido')
     <div class="container">
         <br>
