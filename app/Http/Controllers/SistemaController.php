@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paquete;
+use App\Models\Servicio;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Exception;
@@ -21,19 +23,26 @@ class SistemaController extends Controller
         return view('registro');
     }
 
+    public function indexGerente()
+    {
+        $paquetes = Paquete::all();
+        $usuarios = Usuario::all();
+        $servicios = Servicio::all();
+        return view('Sistema.gerente', compact('usuarios', 'paquetes', 'servicios'));
+    }
+
     public function facceder(Request $acceso)
     {
         $usuario = $acceso->input('usuario');
         $password = $acceso->input('password');
 
-        $encontrado = Usuario::where('usuario',$usuario)->first();
+        $encontrado = Usuario::where('usuario', $usuario)->first();
 
         if (is_null($encontrado)) {
             return view("error");
         } else {
             $password_bd = $encontrado->clave;
-            $coincide = Hash::check($password,$password_bd);
-
+            $coincide = Hash::check($password, $password_bd);
             if ($coincide) {
                 Auth::login($encontrado);
                 $rol_bd = $encontrado->rol;
@@ -53,16 +62,13 @@ class SistemaController extends Controller
             }
         }
     }
-    
-    public function logout(Request $solicitud) {
+
+    public function logout(Request $solicitud)
+    {
         Auth::logout();
         return redirect('/');
     }
 
-    public function gerente()
-    {
-        return view('Sistema.gerente');
-    }
 
     public function empleado()
     {

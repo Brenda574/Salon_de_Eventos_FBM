@@ -27,7 +27,7 @@ Route::post('/Acceder', [SistemaController::class, 'facceder'])->name('acceder')
 Route::get('/Registrar', [SistemaController::class, 'registro'])->name('registro');
 
 Route::get('/Empleado', [SistemaController::class, 'empleado'])->name('sistema.empleado')->middleware('auth');
-Route::get('/Gerente', [SistemaController::class, 'gerente'])->name('sistema.gerente')->middleware('auth');
+Route::get('/Gerente', [SistemaController::class, 'indexGerente'])->name('sistema.gerente')->middleware('auth');
 Route::get('/Cliente', [SistemaController::class, 'cliente'])->name('sistema.cliente')->middleware('auth');
 
 Route::get('/Evento/Detalles', [EventoController::class, 'show'])->name('evento.show')->middleware('auth');
@@ -44,4 +44,6 @@ Route::get('/Servicio/Editar', [ServicioController::class, 'edit'])->name('servi
 
 Route::get('/Usuario/Crear', [UsuarioController::class, 'create'])->name('usuario.create')->middleware('auth');
 Route::get('/Usuario/Detalles', [UsuarioController::class, 'show'])->name('usuario.show')->middleware('auth');
-Route::get('/Usuario/Editar', [UsuarioController::class, 'edit'])->name('usuario.edit')->middleware('auth');
+Route::get('/Usuario/Editar/{cual?}', [UsuarioController::class, 'edit'])->name('usuario.edit')->middleware('auth');
+Route::put('/Usuario/Editar/{cual?}', [UsuarioController::class, 'update'])->name('usuario.update')->middleware('auth');
+Route::post('Usuario/Guardar', [UsuarioController::class, 'store'])->name('usuario.store');

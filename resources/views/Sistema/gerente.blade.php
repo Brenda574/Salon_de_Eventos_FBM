@@ -1,13 +1,14 @@
  @extends('plantilla.layout')
 
  @section('authenticacion')
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> {{Auth::user()->nombre}}</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
-        </ul>
-    </li>
-@endsection
+     <li class="nav-item dropdown">
+         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i
+                 class="bi bi-person-circle"></i> {{ Auth::user()->nombre }}</a>
+         <ul class="dropdown-menu">
+             <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
+         </ul>
+     </li>
+ @endsection
 
  @section('contenido')
      <div class="p-5 text-center emp_ban">
@@ -33,46 +34,29 @@
                                  <tr>
                                      <th scope="col">#</th>
                                      <th scope="col">Nombre(s)</th>
-                                     <th scope="col">Apellio(s)</th>
                                      <th scope="col">Usuario</th>
-                                     <th scope="col">Contraseña</th>
                                      <th scope="col">Rol</th>
                                      <th scope="col"></th>
                                  </tr>
                              </thead>
                              <tbody>
-                                 <tr>
-                                     <th scope="row">1</th>
-                                     <td>Maria</td>
-                                     <td>López</td>
-                                     <td>Cliente1</td>
-                                     <td>Cliente</td>
-                                     <td>Cliente</td>
-                                     <td>
-                                         <a href="{{ route('usuario.show') }}" class="text-decoration-none texto-color"
-                                             title="Detalles"><i class="bi bi-card-heading"></i></a>
-                                         <a href="{{ route('usuario.edit') }}" class="text-decoration-none texto-color"
-                                             title="Editar"><i class="bi bi-pencil-square"></i></a>
-                                         <a href="" class="text-decoration-none texto-color" title="Eliminar"><i
-                                                 class="bi bi-trash3-fill"></i></a>
-                                     </td>
-                                 </tr>
-                                 <tr>
-                                     <th scope="row">2</th>
-                                     <td>Jorge</td>
-                                     <td>Cruz</td>
-                                     <td>Empleado1</td>
-                                     <td>Empleado</td>
-                                     <td>Empleado</td>
-                                     <td>
-                                         <a href="#" class="text-decoration-none texto-color" title="Detalles"><i
-                                                 class="bi bi-card-heading"></i></a>
-                                         <a href="#" class="text-decoration-none texto-color" title="Editar"><i
-                                                 class="bi bi-pencil-square"></i></a>
-                                         <a href="#" class="text-decoration-none texto-color" title="Eliminar"><i
-                                                 class="bi bi-trash3-fill"></i></a>
-                                     </td>
-                                 </tr>
+                                 @foreach ($usuarios as $item)
+                                     <tr>
+                                         <th scope="row">{{ $item['id'] }}</th>
+                                         <td>{{ $item['nombre'] }}</td>
+                                         <td>{{ $item['usuario'] }}</td>
+                                         <td>{{ $item['rol'] }}</td>
+                                         <td>
+                                             <a href="{{ route('usuario.show') }}" class="text-decoration-none texto-color"
+                                                 title="Detalles"><i class="bi bi-card-heading"></i></a>
+                                             <a href="{{ route('usuario.edit', $item) }}"
+                                                 class="text-decoration-none texto-color" title="Editar"><i
+                                                     class="bi bi-pencil-square"></i></a>
+                                             <a href="" class="text-decoration-none texto-color" title="Eliminar"><i
+                                                     class="bi bi-trash3-fill"></i></a>
+                                         </td>
+                                     </tr>
+                                 @endforeach
                              </tbody>
                          </table>
                      </div>
