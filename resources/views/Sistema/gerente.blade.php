@@ -75,6 +75,7 @@
                                     <th scope="col">Capacidad</th>
                                     <th scope="col">Costo</th>
                                     <th scope="col">Descripcion</th>
+                                    <th scope="col">Estatus</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -83,9 +84,16 @@
                                 <tr>
                                     <th scope="row">{{ $item['id'] }}</th>
                                     <td>{{ $item['nombre'] }}</td>
-                                    <td>150 a 200</td>
-                                    <td>$10,000</td>
-                                    <td>Paquete para bodas, con servicios completos.</td>
+                                    <td>{{ $item['capacidad'] }}</td>
+                                    <td>{{ $item['costo'] }}</td>
+                                    <td>{{ $item['descripcion'] }}</td>
+                                    <td>
+                                        @if ($item['estatus']=="Activo")
+                                            <input class="form-check-input" type="checkbox" value="" checked disabled>
+                                        @else
+                                            <input class="form-check-input" type="checkbox" value="" disabled>
+                                        @endif
+                                    </td>
                                     <td>
                                         <a href="{{ route('paquete.show') }}" class="text-decoration-none texto-color" title="Detalles"><i class="bi bi-card-heading"></i></a>
                                         <a href="{{ route('paquete.edit') }}" class="text-decoration-none texto-color" title="Editar"><i class="bi bi-pencil-square"></i></a>
