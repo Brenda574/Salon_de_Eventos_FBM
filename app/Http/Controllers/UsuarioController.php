@@ -64,7 +64,9 @@ class UsuarioController extends Controller
         $usuario = Usuario::find($id);
         $usuario->nombre = $request->input('nombre');
         $usuario->usuario = $request->input('usuario');
-        $usuario->clave = Hash::make($request->input('clave'));
+        if ($request->input('clave')) {
+            $usuario->clave = Hash::make($request->input('clave'));
+        }
         $usuario->rol = $request->input('rol');
         $usuario->save();
         return redirect(route('sistema.gerente'));
