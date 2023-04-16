@@ -11,11 +11,24 @@ class Evento extends Model
 
     public function usuario()
     {
-        return $this->belongsTo('App\Models\Usuario');
+        return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
     public function paquete()
     {
         return $this->belongsTo('App\Models\Paquete');
+    }
+
+    public function abonos()
+    {
+        return $this->hasMany('App\Models\Paquete');
+    }
+
+    protected $fillable = ['usuario_id', 'paquete_id'];
+
+    public function servicios()
+    {
+        return $this->belongsToMany('App\Models\Servicio', 'eventos_servicios')
+            ->withPivot('usuario_id', 'paquete_id')->withTimestamps();
     }
 }

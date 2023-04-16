@@ -19,11 +19,13 @@
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h3 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button plegable collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    <button class="accordion-button plegable collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                         <H3>Usuarios</H3>
                     </button>
                 </h3>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href={{ route('usuario.create') }} type="submit" class="btn emp_button_c">Nuevo</a>
@@ -46,8 +48,11 @@
                                         <td>{{ $item['usuario'] }}</td>
                                         <td>{{ $item['rol'] }}</td>
                                         <td>
-                                            <a href="{{ route('usuario.edit', $item) }}" class="text-decoration-none texto-color" title="Editar"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a>
+                                            <a href="{{ route('usuario.edit', $item) }}"
+                                                class="text-decoration-none texto-color" title="Editar"><i
+                                                    class="bi bi-pencil-square"></i></a>
+                                            <a href="" class="text-decoration-none texto-color" title="Eliminar"><i
+                                                    class="bi bi-trash3-fill"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -58,11 +63,13 @@
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingTwo">
-                    <button class="accordion-button plegable collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    <button class="accordion-button plegable collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                         <H3>Paquetes</H3>
                     </button>
                 </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                    data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href="{{ route('paquete.create') }}" class="btn emp_button_c">Nuevo</a>
@@ -81,25 +88,29 @@
                             </thead>
                             <tbody>
                                 @foreach ($paquetes as $item)
-                                <tr>
-                                    <th scope="row">{{ $item['id'] }}</th>
-                                    <td>{{ $item['nombre'] }}</td>
-                                    <td>{{ $item['capacidad'] }}</td>
-                                    <td>{{ $item['costo'] }}</td>
-                                    <td>{{ $item['descripcion'] }}</td>
-                                    <td>
-                                        @if ($item['estatus']=="Activo")
-                                            <input class="form-check-input" type="checkbox" value="" checked disabled>
-                                        @else
-                                            <input class="form-check-input" type="checkbox" value="" disabled>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('paquete.show') }}" class="text-decoration-none texto-color" title="Detalles"><i class="bi bi-card-heading"></i></a>
-                                        <a href="{{ route('paquete.edit') }}" class="text-decoration-none texto-color" title="Editar"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="#" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <th scope="row">{{ $item['id'] }}</th>
+                                        <td>{{ $item['nombre'] }}</td>
+                                        <td>{{ $item['capacidad'] }}</td>
+                                        <td>{{ $item['costo'] }}</td>
+                                        <td>{{ $item['descripcion'] }}</td>
+                                        <td>
+                                            @if ($item['estatus'] == 'Activo')
+                                                <input class="form-check-input" type="checkbox" value="" checked
+                                                    disabled>
+                                            @else
+                                                <input class="form-check-input" type="checkbox" value="" disabled>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('paquete.show') }}" class="text-decoration-none texto-color"
+                                                title="Detalles"><i class="bi bi-card-heading"></i></a>
+                                            <a href="{{ route('paquete.edit') }}" class="text-decoration-none texto-color"
+                                                title="Editar"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="#" class="text-decoration-none texto-color" title="Eliminar"><i
+                                                    class="bi bi-trash3-fill"></i></a>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -108,11 +119,13 @@
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingThree">
-                    <button class="accordion-button plegable collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    <button class="accordion-button plegable collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                         <H3>Servicios</H3>
                     </button>
                 </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                    data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href="{{ route('servicio.create') }}" class="btn emp_button_c">Nuevo</a>
@@ -129,17 +142,22 @@
                             </thead>
                             <tbody>
                                 @foreach ($servicios as $item)
-                                <tr>
-                                    <th scope="row">{{ $item['id'] }}</th>
-                                    <td>Musica</td>
-                                    <td>$</td>
-                                    <td>Servicio de musica a elección del usuario.</td>
-                                    <td>
-                                        <a href="{{ route('servicio.show') }}" class="text-decoration-none texto-color" title="Detalles"><i class="bi bi-card-heading"></i></a>
-                                        <a href="{{ route('servicio.edit') }}" class="text-decoration-none texto-color" title="Editar"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="" class="text-decoration-none texto-color" title="Eliminar"><i class="bi bi-trash3-fill"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <th scope="row">{{ $item['id'] }}</th>
+                                        <td>Musica</td>
+                                        <td>$</td>
+                                        <td>Servicio de musica a elección del usuario.</td>
+                                        <td>
+                                            <a href="{{ route('servicio.show') }}"
+                                                class="text-decoration-none texto-color" title="Detalles"><i
+                                                    class="bi bi-card-heading"></i></a>
+                                            <a href="{{ route('servicio.edit') }}"
+                                                class="text-decoration-none texto-color" title="Editar"><i
+                                                    class="bi bi-pencil-square"></i></a>
+                                            <a href="" class="text-decoration-none texto-color"
+                                                title="Eliminar"><i class="bi bi-trash3-fill"></i></a>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

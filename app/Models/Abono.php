@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Abono extends Model
 {
     use HasFactory;
+
+    public function evento()
+    {
+        return $this->belongsTo('App\Models\Evento');
+    }
 }

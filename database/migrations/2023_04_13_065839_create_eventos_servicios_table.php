@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('abonos', function (Blueprint $table) {
-            $table->id();
-            $table->double('monto');
-            $table->enum('tipo_pago', ['Efectivo', 'Credito', 'Debito'])->default('Efectivo');
+        Schema::create('eventos_servicios', function (Blueprint $table) {
             $table->unsignedBigInteger('evento_id');
+            $table->unsignedBigInteger('servicio_id');
+            $table->unsignedBigInteger('usuario_id');
+            $table->unsignedBigInteger('paquete_id');
+            // Agregar otros atributos necesarios
             $table->timestamps();
 
             $table->foreign('evento_id')->references('id')->on('eventos');
+            $table->foreign('servicio_id')->references('id')->on('servicios');
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('abonos');
+        Schema::dropIfExists('eventos_servicios');
     }
 };

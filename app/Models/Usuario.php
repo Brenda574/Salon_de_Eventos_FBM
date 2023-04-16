@@ -12,6 +12,6 @@ class Usuario extends Authenticatable
 
     public function eventosHasMany()
     {
-        return $this->hasMany('App\Models\Evento');
+        return $this->hasMany(Evento::class);
     }
 }
