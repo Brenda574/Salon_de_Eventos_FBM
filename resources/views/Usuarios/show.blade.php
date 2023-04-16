@@ -20,15 +20,11 @@
         <div class="row container_galery">
             <div class="col-1">
                 <small>ID</small>
-                <h3 class="label fw-bold">1</h3>
+                <h3 class="label fw-bold">{{ $usuario->id }}</h3>
             </div>
             <div class="col-1">
                 <small>Nombre</small>
-                <h3 class="label fw-bold" style="color: #af9495">Maria</h3>
-            </div>
-            <div class="col">
-                <small>Apellidos</small>
-                <h3 class="label fw-bold" style="color: #af9495">López</h3>
+                <h3 class="label fw-bold" style="color: #af9495">{{ $usuario->nombre }}</h3>
             </div>
         </div>
         <hr>
@@ -46,19 +42,11 @@
                 <div class="row">
                     <div class="col text-center">
                         <small>Usuario</small>
-                        <p class="label fw-bold">Cliente1</p>
-                    </div>
-                    <div class="col text-center">
-                        <small>Contraseña</small>
-                        <p class="label fw-bold">Cliente</p>
+                        <p class="label fw-bold">{{ $usuario->usuario }}</p>
                     </div>
                     <div class="col text-center">
                         <small>Rol</small>
-                        <p class="label fw-bold">Cliente</p>
-                    </div>
-                    <div class="col text-center">
-                        <small>Fecha de nacimiento</small>
-                        <p class="label fw-bold">02/09/2001</p>
+                        <p class="label fw-bold">{{ $usuario->rol }}</p>
                     </div>
                 </div>
             </div>

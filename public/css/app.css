@@ -16,6 +16,18 @@ body {
   color: #c9aaac;
 }
 
+.estatus_ac {
+    color: #000000;
+    background-color: #e9f8ee;
+    font-weight: bold;
+}
+
+.estatus_ac:hover {
+    color: #858b85;
+    background-color: #e9f8ee;
+    font-weight: bold;
+}
+
 .btnCotizar{
     border: 0;
     background-color: var(--secondary);
@@ -86,7 +98,7 @@ body {
 .icon {
     width: 40px;
 }}
-  
+
 /* EMPLEADO */
 
 .emp_ban {

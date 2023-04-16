@@ -48,11 +48,20 @@
                                         <td>{{ $item['usuario'] }}</td>
                                         <td>{{ $item['rol'] }}</td>
                                         <td>
-                                            <a href="{{ route('usuario.edit', $item) }}"
-                                                class="text-decoration-none texto-color" title="Editar"><i
-                                                    class="bi bi-pencil-square"></i></a>
-                                            <a href="" class="text-decoration-none texto-color" title="Eliminar"><i
-                                                    class="bi bi-trash3-fill"></i></a>
+                                            <form action="{{ route('usuario.destroy', $item) }}" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <a href="{{ route('usuario.show', $item) }}"
+                                                    class="btn text-decoration-none texto-color" title="Detalles"><i
+                                                        class="bi bi-card-heading"></i></a>
+                                                <a href="{{ route('usuario.edit', $item) }}"
+                                                    class="btn text-decoration-none texto-color" title="Editar"><i
+                                                        class="bi bi-pencil-square"></i></a>
+                                                <button type="submit" class="btn btn-link text-decoration-none texto-color"
+                                                    title="Eliminar">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -92,7 +101,7 @@
                                         <th scope="row">{{ $item['id'] }}</th>
                                         <td>{{ $item['nombre'] }}</td>
                                         <td>{{ $item['capacidad'] }}</td>
-                                        <td>{{ $item['costo'] }}</td>
+                                        <td>${{ $item['costo'] }}</td>
                                         <td>{{ $item['descripcion'] }}</td>
                                         <td>
                                             @if ($item['estatus'] == 'Activo')
@@ -103,12 +112,20 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('paquete.show') }}" class="text-decoration-none texto-color"
-                                                title="Detalles"><i class="bi bi-card-heading"></i></a>
-                                            <a href="{{ route('paquete.edit') }}" class="text-decoration-none texto-color"
-                                                title="Editar"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="#" class="text-decoration-none texto-color" title="Eliminar"><i
-                                                    class="bi bi-trash3-fill"></i></a>
+                                            <form action="{{ route('paquete.destroy', $item) }}" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <a href="{{ route('paquete.show', $item) }}"
+                                                    class="btn text-decoration-none texto-color" title="Detalles"><i
+                                                        class="bi bi-card-heading"></i></a>
+                                                <a href="{{ route('paquete.edit', $item) }}"
+                                                    class="btn text-decoration-none texto-color" title="Editar"><i
+                                                        class="bi bi-pencil-square"></i></a>
+                                                <button type="submit" class="btn btn-link text-decoration-none texto-color"
+                                                    title="Eliminar">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -144,18 +161,25 @@
                                 @foreach ($servicios as $item)
                                     <tr>
                                         <th scope="row">{{ $item['id'] }}</th>
-                                        <td>Musica</td>
-                                        <td>$</td>
-                                        <td>Servicio de musica a elección del usuario.</td>
+                                        <td>{{ $item['nombre'] }}</td>
+                                        <td>${{ $item['costo'] }}</td>
+                                        <td>{{ $item['descripcion'] }}</td>
                                         <td>
-                                            <a href="{{ route('servicio.show') }}"
-                                                class="text-decoration-none texto-color" title="Detalles"><i
-                                                    class="bi bi-card-heading"></i></a>
-                                            <a href="{{ route('servicio.edit') }}"
-                                                class="text-decoration-none texto-color" title="Editar"><i
-                                                    class="bi bi-pencil-square"></i></a>
-                                            <a href="" class="text-decoration-none texto-color"
-                                                title="Eliminar"><i class="bi bi-trash3-fill"></i></a>
+                                            <form action="{{ route('servicio.destroy', $item) }}" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <a href="{{ route('servicio.show', $item) }}"
+                                                    class="btn text-decoration-none texto-color" title="Detalles"><i
+                                                        class="bi bi-card-heading"></i></a>
+                                                <a href="{{ route('servicio.edit', $item) }}"
+                                                    class="btn text-decoration-none texto-color" title="Editar"><i
+                                                        class="bi bi-pencil-square"></i></a>
+                                                <button type="submit"
+                                                    class="btn btn-link text-decoration-none texto-color"
+                                                    title="Eliminar">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

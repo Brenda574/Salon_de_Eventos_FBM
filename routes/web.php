@@ -35,15 +35,22 @@ Route::get('/Evento/Editar', [EventoController::class, 'edit'])->name('evento.ed
 Route::get('/Evento/Crear', [EventoController::class, 'create'])->name('evento.create')->middleware('auth');
 
 Route::get('/Paquete/Crear', [PaqueteController::class, 'create'])->name('paquete.create')->middleware('auth');
-Route::get('/Paquete/Detalles', [PaqueteController::class, 'show'])->name('paquete.show')->middleware('auth');
-Route::get('/Paquete/Editar', [PaqueteController::class, 'edit'])->name('paquete.edit')->middleware('auth');
+Route::get('/Paquete/Detalles/{cual?}', [PaqueteController::class, 'show'])->name('paquete.show')->middleware('auth');
+Route::get('/Paquete/Editar/{cual?}', [PaqueteController::class, 'edit'])->name('paquete.edit')->middleware('auth');
+Route::put('/Paquete/Editar/{cual?}', [PaqueteController::class, 'update'])->name('paquete.update');
+Route::post('Paquete/Guardar', [PaqueteController::class, 'store'])->name('paquete.store');
+Route::delete('Paquete/Borrar/{cual?}',[PaqueteController::class, 'destroy'])->name('paquete.destroy');
 
 Route::get('/Servicio/Crear', [ServicioController::class, 'create'])->name('servicio.create')->middleware('auth');
-Route::get('/Servicio/Detalles', [ServicioController::class, 'show'])->name('servicio.show')->middleware('auth');
-Route::get('/Servicio/Editar', [ServicioController::class, 'edit'])->name('servicio.edit')->middleware('auth');
+Route::get('/Servicio/Detalles/{cual?}', [ServicioController::class, 'show'])->name('servicio.show')->middleware('auth');
+Route::get('/Servicio/Editar/{cual?}', [ServicioController::class, 'edit'])->name('servicio.edit')->middleware('auth');
+Route::put('/Servicio/Editar/{cual?}', [ServicioController::class, 'update'])->name('servicio.update');
+Route::post('Servicio/Guardar', [ServicioController::class, 'store'])->name('servicio.store');
+Route::delete('Servicio/Borrar/{cual?}',[ServicioController::class, 'destroy'])->name('servicio.destroy');
 
 Route::get('/Usuario/Crear', [UsuarioController::class, 'create'])->name('usuario.create')->middleware('auth');
-Route::get('/Usuario/Detalles', [UsuarioController::class, 'show'])->name('usuario.show')->middleware('auth');
+Route::get('/Usuario/Detalles/{cual?}', [UsuarioController::class, 'show'])->name('usuario.show')->middleware('auth');
 Route::get('/Usuario/Editar/{cual?}', [UsuarioController::class, 'edit'])->name('usuario.edit')->middleware('auth');
-Route::put('/Usuario/Editar/{cual?}', [UsuarioController::class, 'update'])->name('usuario.update')->middleware('auth');
+Route::put('/Usuario/Editar/{cual?}', [UsuarioController::class, 'update'])->name('usuario.update');
 Route::post('Usuario/Guardar', [UsuarioController::class, 'store'])->name('usuario.store');
+Route::delete('Usuario/Borrar/{cual?}',[UsuarioController::class, 'destroy'])->name('usuario.destroy');

@@ -9,25 +9,16 @@ use Illuminate\Support\Facades\Crypt;
 
 class UsuarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('Usuarios.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $nuevo = new Usuario();
@@ -39,26 +30,18 @@ class UsuarioController extends Controller
         return redirect(route('sistema.gerente'));
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //return view('Usuarios.show');
+        $usuario = Usuario::find($id);
+        return view('Usuarios.show', compact('usuario'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $usuario = Usuario::find($id);
         return view('Usuarios.edit', compact('usuario'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $usuario = Usuario::find($id);
@@ -69,14 +52,13 @@ class UsuarioController extends Controller
         }
         $usuario->rol = $request->input('rol');
         $usuario->save();
-        return redirect(route('sistema.gerente'));
+        return redirect(route('usuario.show', $id));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $usuario = Usuario::find($id);
+        $usuario->delete();
+        return redirect(route('sistema.gerente'));
     }
 }

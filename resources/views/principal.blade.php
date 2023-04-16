@@ -25,7 +25,7 @@ height: 400px; width: 100%;
         <br>
         <div class="row row-cols-1 row-cols-md-3 g-4 text-center d-flex justify-content-center align-items-center">
             @foreach ($paquetes as $item)
-            @if ($item['estatus'] == "Inactivo")
+            @if ($item['estatus'] == "Activo")
             <div class="col">
                 <div class="card h-100">
                     <div class="sc-hdr">
