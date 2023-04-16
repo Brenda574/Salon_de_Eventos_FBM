@@ -31,16 +31,16 @@ class PaqueteSeeder extends Seeder
 
         $paquete = new Paquete();
         $paquete->nombre = "Fiesta infantil";
-        $paquete->capacidad_maxima = "200";
-        $paquete->costo = "10000";
+        $paquete->capacidad_maxima = "150";
+        $paquete->costo = "5000";
         $paquete->descripcion = "Paquete de fiestas infantiles con servicios incluidos.";
         $paquete->ruta_imagen = "https://i.pinimg.com/564x/3f/1c/44/3f1c4449ff7e11746975075aac9b3e85.jpg";
         $paquete->save();
 
         $paquete = new Paquete();
         $paquete->nombre = "Bautizo";
-        $paquete->capacidad_maxima = "200";
-        $paquete->costo = "10000";
+        $paquete->capacidad_maxima = "100";
+        $paquete->costo = "4000";
         $paquete->descripcion = "Paquete de bautizo con servicios incluidos.";
         $paquete->ruta_imagen = "https://www.tinaeventplanner.com/wp-content/uploads/2021/03/bautizo.jpeg";
         $paquete->save();
