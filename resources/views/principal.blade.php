@@ -101,5 +101,20 @@ height: 400px; width: 100%;
                 @endif
             @endforeach
         </div>
+        <hr>
+        <div>
+            <div class="fw-bold text-center">
+                <h1 class="mb-3">SERVICIOS</h1>
+                <h5 class="mb-3" style="color: #af9495">Garden Gate tiene estos servicios a tu disposición.</h5>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4 text-center d-flex justify-content-center align-items-center">
+                @foreach ($servicios as $item)
+                <div class="col-sm-5 col-md-6">
+                    <img src="https://www.stanser.com/wp-content/uploads/2020/05/typographic_ornamental_vignettes_5.png" width="50">
+                    <h2>{{ $item['nombre'] }}</h2>
+                </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 @endsection
