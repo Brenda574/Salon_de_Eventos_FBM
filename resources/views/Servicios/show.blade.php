@@ -19,11 +19,11 @@
         <div class="row container_galery">
             <div class="col-1">
                 <small>ID</small>
-                <h3 class="label fw-bold">1</h3>
+                <h3 class="label fw-bold">{{ $servicio->id }}</h3>
             </div>
             <div class="col">
                 <small>Nombre</small>
-                <h3 class="label fw-bold" style="color: #af9495">Musica</h3>
+                <h3 class="label fw-bold" style="color: #af9495">{{ $servicio->nombre }}</h3>
             </div>
         </div>
         <hr>
@@ -38,11 +38,11 @@
                 <div class="row">
                     <div class="col text-center">
                         <small>Costo</small>
-                        <p class="label fw-bold">$</p>
+                        <p class="label fw-bold">${{ $servicio->costo }}</p>
                     </div>
                     <div class="col text-center">
                         <small>Descripción</small>
-                        <p class="label fw-bold">Servicio de musica a elección del usuario.</p>
+                        <p class="label fw-bold">{{ $servicio->descripcion }}</p>
                     </div>
                 </div>
             </div>

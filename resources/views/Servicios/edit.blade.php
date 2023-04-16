@@ -20,20 +20,22 @@
             <h3 class="label fw-bold" style="color: #af9495">Editar Servicio</h3>
         </div>
         <hr>
-        <form action="{{ route('sistema.gerente') }}">
+        <form action="{{ route('servicio.update', $servicio->id) }}" method="POST">
+            @method('PUT')
+            @csrf
             <div>
                 <div class="row container_galery">
                     <div class="mb-3">
                         <small>NOMBRE</small>
-                        <input type="text" class="form-control" value="Musica">
+                        <input type="text" class="form-control" value="{{ $servicio->nombre }}" name="nombre" id="nombre">
                     </div>
                     <div class="mb-3">
                         <small>COSTO</small>
-                        <input type="text" class="form-control" value="$">
+                        <input type="text" class="form-control" value="{{ $servicio->costo }}" name="costo" id="costo">
                     </div>
                     <div class="mb-3">
                         <small>DESCRIPCIÓN</small>
-                        <textarea class="form-control" rows="3">Servicio de musica a elección del usuario.</textarea>
+                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion">{{ $servicio->descripcion }}</textarea>
                     </div>
                 </div>
             </div>

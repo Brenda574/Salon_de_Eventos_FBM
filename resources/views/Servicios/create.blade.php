@@ -20,20 +20,21 @@
             <h3 class="label fw-bold" style="color: #af9495">Nuevo Servicio</h3>
         </div>
         <hr>
-        <form action="{{ route('sistema.gerente') }}">
+        <form action="{{ route('servicio.store') }}" method="POST">
+            @csrf
             <div>
                 <div class="row container_galery">
                     <div class="mb-3">
                         <small>NOMBRE</small>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="nombre" id="nombre">
                     </div>
                     <div class="mb-3">
                         <small>COSTO</small>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="costo" id="costo">
                     </div>
                     <div class="mb-3">
                         <small>DESCRIPCIÓN</small>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion"></textarea>
                     </div>
                 </div>
             </div>
