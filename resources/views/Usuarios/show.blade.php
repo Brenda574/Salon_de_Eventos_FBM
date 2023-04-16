@@ -48,6 +48,14 @@
                         <small>Rol</small>
                         <p class="label fw-bold">{{ $usuario->rol }}</p>
                     </div>
+                    <div class="col text-center">
+                        <small>Creación</small>
+                        <p class="label fw-bold">{{ $usuario->created_at }}</p>
+                    </div>
+                    <div class="col text-center">
+                        <small>Ultima Actualizacion</small>
+                        <p class="label fw-bold">{{ $usuario->updated_at }}</p>
+                    </div>
                 </div>
             </div>
         </div>

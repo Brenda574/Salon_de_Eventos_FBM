@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Paquete;
+use App\Models\Servicio;
 
 class PaqueteController extends Controller
 {
     public function index()
     {
         $paquetes = Paquete::all();
-        return view('principal', compact('paquetes'));
+        $servicios = Servicio::all();
+        return view('principal', compact('paquetes','servicios'));
     }
 
     public function create()

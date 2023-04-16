@@ -53,4 +53,5 @@ Route::get('/Usuario/Detalles/{cual?}', [UsuarioController::class, 'show'])->nam
 Route::get('/Usuario/Editar/{cual?}', [UsuarioController::class, 'edit'])->name('usuario.edit')->middleware('auth');
 Route::put('/Usuario/Editar/{cual?}', [UsuarioController::class, 'update'])->name('usuario.update');
 Route::post('Usuario/Guardar', [UsuarioController::class, 'store'])->name('usuario.store');
+Route::post('Registrar/Guardar', [UsuarioController::class, 'registrar'])->name('usuario.registrar');
 Route::delete('Usuario/Borrar/{cual?}',[UsuarioController::class, 'destroy'])->name('usuario.destroy');

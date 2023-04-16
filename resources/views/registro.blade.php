@@ -29,36 +29,27 @@
                                         <img src="https://www.aimmedia.com/wp-content/uploads/2022/10/GardenGate_LOGO_FINAL-600x250_554e45.png"
                                             style="width: 185px; " alt="logo">
                                     </div>
-                                    <form action="Acceder" method="post" style="padding-top: 2rem">
+                                    <form action="{{ route('usuario.registrar') }}" method="post" style="padding-top: 2rem">
                                         @csrf
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="names" class="form-control" name="nombre"
+                                            <input type="text" id="nombre" class="form-control" name="nombre"
                                                 placeholder="Nombre(s)" />
-                                        </div>
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="apellido" name="apellido"
-                                                placeholder="Apellido(s)" class="form-control" />
                                         </div>
                                         <div class="form-outline mb-4">
                                             <input type="text" id="usuario" name="usuario" placeholder="Usuario"
                                                 class="form-control" />
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="apellido" name="password"
+                                            <input type="password" id="clave" name="clave"
                                                 placeholder="Contraseña" class="form-control" />
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input type="date" id="nacimiento" name="fnac"
-                                                title="Fecha de nacimiento" class="form-control" />
-                                        </div>
-                                        <div class="form-outline mb-4">
-                                            <input disabled type="text" id="rol" name="rol" value="Cliente"
+                                            <input type="hidden" id="rol" name="rol" value="Cliente"
                                                 class="form-control" />
                                         </div>
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <div><a href="{{ route('login') }}" class="btn boton4 custom-2 mb-3"
-                                                    type="submit"
-                                                    style="background-color: #E1D5D5; transition: all 0.35s;">Registrar</a>
+                                            <div>
+                                                <button type="submit" class="btn boton4 custom-2 mb-3" style="background-color: #E1D5D5; transition: all 0.35s;">Registrar</button>
                                             </div>
                                         </div>
                                     </form>

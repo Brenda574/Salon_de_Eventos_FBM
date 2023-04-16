@@ -37,6 +37,7 @@
                                     <th scope="col">Nombre(s)</th>
                                     <th scope="col">Usuario</th>
                                     <th scope="col">Rol</th>
+                                    <th scope="col">Creación</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                         <td>{{ $item['nombre'] }}</td>
                                         <td>{{ $item['usuario'] }}</td>
                                         <td>{{ $item['rol'] }}</td>
+                                        <td>{{ $item['created_at'] }}</td>
                                         <td>
                                             <form action="{{ route('usuario.destroy', $item) }}" method="post">
                                                 @method('DELETE')

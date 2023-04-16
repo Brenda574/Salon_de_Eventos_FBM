@@ -19,6 +19,17 @@ class UsuarioController extends Controller
         return view('Usuarios.create');
     }
 
+    public function registrar(Request $request)
+    {
+        $nuevo = new Usuario();
+        $nuevo->nombre = $request->input('nombre');
+        $nuevo->usuario = $request->input('usuario');
+        $nuevo->clave = Hash::make($request->input('clave'));
+        $nuevo->rol = $request->input('rol');
+        $nuevo->save();
+        return redirect(route('login'));
+    }
+
     public function store(Request $request)
     {
         $nuevo = new Usuario();
