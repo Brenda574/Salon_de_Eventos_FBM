@@ -101,6 +101,7 @@ height: 400px; width: 100%;
                 @endif
             @endforeach
         </div>
+        <br><br>
         <hr>
         <div>
             <div class="fw-bold text-center">
