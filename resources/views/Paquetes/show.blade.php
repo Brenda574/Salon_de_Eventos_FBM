@@ -37,8 +37,8 @@
                 </p>
                 <div class="row">
                     <div class="col text-center">
-                        <small>Capacidad</small>
-                        <p class="label fw-bold">{{ $paquete->capacidad }}</p>
+                        <small>Capacidad Maxima</small>
+                        <p class="label fw-bold">{{ $paquete->capacidad_maxima }}</p>
                     </div>
                     <div class="col text-center">
                         <small>Costo</small>

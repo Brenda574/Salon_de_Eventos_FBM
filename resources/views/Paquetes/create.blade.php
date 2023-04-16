@@ -29,7 +29,7 @@
                         <input type="text" class="form-control" name="nombre" id="nombre">
                     </div>
                     <div class="mb-3">
-                        <small>CAPACIDAD</small>
+                        <small>CAPACIDAD MAX</small>
                         <input type="text" class="form-control" name="capacidad" id="capacidad">
                     </div>
                     <div class="mb-3">

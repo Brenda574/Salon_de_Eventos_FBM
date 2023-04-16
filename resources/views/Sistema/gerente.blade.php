@@ -90,7 +90,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Titulo</th>
-                                    <th scope="col">Capacidad</th>
+                                    <th scope="col">Capacidad Max</th>
                                     <th scope="col">Costo</th>
                                     <th scope="col">Descripcion</th>
                                     <th scope="col">Estatus</th>
@@ -102,7 +102,7 @@
                                     <tr>
                                         <th scope="row">{{ $item['id'] }}</th>
                                         <td>{{ $item['nombre'] }}</td>
-                                        <td>{{ $item['capacidad'] }}</td>
+                                        <td>{{ $item['capacidad_maxima'] }}</td>
                                         <td>${{ $item['costo'] }}</td>
                                         <td>{{ $item['descripcion'] }}</td>
                                         <td>

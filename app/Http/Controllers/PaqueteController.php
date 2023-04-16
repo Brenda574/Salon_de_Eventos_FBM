@@ -24,7 +24,7 @@ class PaqueteController extends Controller
     {
         $nuevo = new Paquete();
         $nuevo->nombre = $request->input('nombre');
-        $nuevo->capacidad = $request->input('capacidad');
+        $nuevo->capacidad_maxima = $request->input('capacidad');
         $nuevo->costo = $request->input('costo');
         $nuevo->descripcion = $request->input('descripcion');
         $nuevo->ruta_imagen = $request->input('ruta_img');
@@ -49,7 +49,7 @@ class PaqueteController extends Controller
     {
         $paquete = Paquete::find($id);
         $paquete->nombre = $request->input('nombre');
-        $paquete->capacidad = $request->input('capacidad');
+        $paquete->capacidad_maxima = $request->input('capacidad');
         $paquete->costo = $request->input('costo');
         $paquete->descripcion = $request->input('descripcion');
         $paquete->estatus = $request->input('estatus');
