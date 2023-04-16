@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('eventos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_evento');
-            $table->date('fehca');
+            $table->date('fecha');
             $table->time('hora_inicio');
             $table->time('hora_final');
             $table->double('costo');
             $table->enum('estatus', ['Confirmado', 'SinConfirmar'])->default('SinConfirmar');
+            $table->string('proposito');
+            $table->integer('num_invitados')->unsigned();;
             $table->timestamps();
             $table->unsignedBigInteger('usuario_id');
             $table->unsignedBigInteger('paquete_id');

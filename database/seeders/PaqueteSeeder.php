@@ -15,7 +15,7 @@ class PaqueteSeeder extends Seeder
     {
         $paquete = new Paquete();
         $paquete->nombre = "Bodas";
-        $paquete->capacidad = "150 a 200";
+        $paquete->capacidad_maxima = "200";
         $paquete->costo = "10000";
         $paquete->descripcion = "Paquete para bodas, con servicios completos.";
         $paquete->ruta_imagen = "https://cdn0.bodas.com.mx/article-real-wedding/221/3_2/960/jpg/1150609.jpeg";
@@ -23,7 +23,7 @@ class PaqueteSeeder extends Seeder
 
         $paquete = new Paquete();
         $paquete->nombre = "XV años";
-        $paquete->capacidad = "150 a 200";
+        $paquete->capacidad_maxima = "200";
         $paquete->costo = "10000";
         $paquete->descripcion = "Paquete para XV años con servicios incluidos.";
         $paquete->ruta_imagen = "https://cdn0.bodas.com.mx/vendor/2737/3_2/960/jpg/11411948-10155691402620562-8558719571658733083-o_5_252737-1561598289.jpeg";
@@ -31,7 +31,7 @@ class PaqueteSeeder extends Seeder
 
         $paquete = new Paquete();
         $paquete->nombre = "Fiesta infantil";
-        $paquete->capacidad = "150 a 200";
+        $paquete->capacidad_maxima = "200";
         $paquete->costo = "10000";
         $paquete->descripcion = "Paquete de fiestas infantiles con servicios incluidos.";
         $paquete->ruta_imagen = "https://i.pinimg.com/564x/3f/1c/44/3f1c4449ff7e11746975075aac9b3e85.jpg";
@@ -39,7 +39,7 @@ class PaqueteSeeder extends Seeder
 
         $paquete = new Paquete();
         $paquete->nombre = "Bautizo";
-        $paquete->capacidad = "150 a 200";
+        $paquete->capacidad_maxima = "200";
         $paquete->costo = "10000";
         $paquete->descripcion = "Paquete de bautizo con servicios incluidos.";
         $paquete->ruta_imagen = "https://www.tinaeventplanner.com/wp-content/uploads/2021/03/bautizo.jpeg";
@@ -47,7 +47,7 @@ class PaqueteSeeder extends Seeder
 
         $paquete = new Paquete();
         $paquete->nombre = "Eventos empresariales";
-        $paquete->capacidad = "100 a 150";
+        $paquete->capacidad_maxima = "150";
         $paquete->costo = "8000";
         $paquete->descripcion = "Paquete para eventos empresariales con servicios incluidos.";
         $paquete->ruta_imagen = "http://elsauceeventos.com/wp-content/uploads/2018/01/empresariales-.jpg";

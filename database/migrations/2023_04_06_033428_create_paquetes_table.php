@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('paquetes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('capacidad');
+            $table->integer('capacidad_maxima')->unsigned();
             $table->double('costo');
             $table->text('descripcion');
             $table->text('ruta_imagen');
