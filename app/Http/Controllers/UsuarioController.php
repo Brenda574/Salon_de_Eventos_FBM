@@ -78,12 +78,11 @@ class UsuarioController extends Controller
                 break;
             }
         }
-        $message="HOLA";
         if (!$aux) {
             $usuario->delete();
             return redirect(route('sistema.gerente'));
         } else {
-            return redirect()->back() ->with('alert', 'Oh no! No es posible eliminar ya que el usuario tiene eventos activos.');
+            return redirect()->back()->with('alert', 'Oh no! No es posible eliminar ya que el usuario tiene eventos activos.');
         }
     }
 }
