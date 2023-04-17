@@ -77,13 +77,5 @@
                 </div>
             </div>
         </div>
-        <hr>
-        <div>
-            <div class="container_galery">
-                <div>
-                    <img src="{{ $paquete->ruta_imagen }}" class="rounded mx-auto d-block" alt="" />
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
