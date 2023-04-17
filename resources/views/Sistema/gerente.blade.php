@@ -11,6 +11,14 @@
     </li>
 @endsection
 
+<script>
+    var msg = '{{Session::get('alert')}}';
+    var exist = '{{Session::has('alert')}}';
+    if(exist){
+      alert(msg);
+    }
+</script>
+
 @section('contenido')
     <div class="p-5 text-center emp_ban">
         <h1 class="mb-3">PORTAL DE GERENTE</h1>

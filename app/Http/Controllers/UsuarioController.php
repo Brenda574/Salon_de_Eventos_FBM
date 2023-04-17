@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evento;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
@@ -68,8 +69,21 @@ class UsuarioController extends Controller
 
     public function destroy(string $id)
     {
+        $aux = False;
+        $eventos = Evento::all();
         $usuario = Usuario::find($id);
-        $usuario->delete();
-        return redirect(route('sistema.gerente'));
+        foreach ($eventos as $evento) {
+            if  ($evento->usuario_id == $usuario->id) {
+                $aux = True;
+                break;
+            }
+        }
+        $message="HOLA";
+        if (!$aux) {
+            $usuario->delete();
+            return redirect(route('sistema.gerente'));
+        } else {
+            return redirect()->back() ->with('alert', 'Oh no! No es posible eliminar ya que el usuario tiene eventos activos.');
+        }
     }
 }
