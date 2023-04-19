@@ -6,6 +6,7 @@ use App\Models\Paquete;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Evento;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -77,6 +78,9 @@ class SistemaController extends Controller
 
     public function cliente()
     {
-        return view('Sistema.cliente');
+        $eventos = Evento::where('usuario_id', Auth::user()->id)->get();
+        $paquetes = Paquete::all();
+        $servicios = Servicio::all();
+        return view('Sistema.cliente', compact('eventos', 'paquetes', 'servicios'));
     }
 }

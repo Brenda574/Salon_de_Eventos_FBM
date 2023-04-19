@@ -28,41 +28,104 @@
                         <th scope="col">Confirmación</th>
                         <th>Imagenes</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="text-center">
-                        <th scope="row">1</th>
-                        <td>Boda</td>
-                        <td>30/04/2023</td>
-                        <td><input class="form-check-input" type="checkbox" value="" checked disabled></td>
-                        <td>
-                            <a href="#" class="text-decoration-none texto-color">
-                                <i class="bi bi-images" style="font-size:20px;"></i>
-                            </a>
-                        </td>
-                        <td><a class="btn emp_button_plus">Detalles</a></td>
-                    </tr>
-                    <tr class="text-center">
-                        <th scope="row">2</th>
-                        <td>Bautizo</td>
-                        <td>30/05/2023</td>
-                        <td><input class="form-check-input" type="checkbox" value="" checked disabled></td>
-                        <td>
-                            <a class="text-decoration-none texto-color" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                                <i class="bi bi-images" style="font-size:20px;"></i>
-                            </a>
-                        </td>
-                        <td><a class="btn emp_button_plus" data-bs-target="#modalDetallesContrato" data-bs-toggle="modal">Detalles</a></td>
-                    </tr>
-                    <tr class="text-center">
-                        <th scope="row">3</th>
-                        <td>Graduacion</td>
-                        <td>-</td>
-                        <td><input class="form-check-input" type="checkbox" value="" disabled></td>
-                        <td>-</td>
-                        <td> <a href="{{ route('evento.edit') }}" class="btn emp_button_plus">Modificar</a></td>
-                    </tr>
+                    @foreach ($eventos as $evento)
+                        <tr class="text-center">
+                            <th scope="row">{{ $evento['id'] }}</th>
+                            <td>{{ $evento['nombre_evento'] }}</td>
+                            <td>{{ $evento['fecha'] }}</td>
+                            <td>
+                                @if ($evento['estatus']=='Confirmado')
+                                    <input class="form-check-input" type="checkbox" value="" checked disabled>
+                                @else
+                                    <input class="form-check-input" type="checkbox" value="" disabled>
+                                @endif
+                            </td>
+                            <td>
+                                <a class="text-decoration-none texto-color" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                                    <i class="bi bi-images" style="font-size:20px;"></i>
+                                </a>
+                            </td>
+                            <td><a class="btn emp_button_plus">Editar</a></td>
+                            <td><a class="btn emp_button_plus" data-bs-target="#modalDetallesContrato{{ $evento['id'] }}" data-bs-toggle="modal">Contrato</a></td>
+                        </tr>
+                        <div class="modal fade" id="modalDetallesContrato{{ $evento['id'] }}" aria-hidden="true" aria-labelledby="modalDetallesContratoLabel" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5 text-success" id="modalDetallesContratoLabel">{{ $evento['nombre_evento'] }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <dl class="row">
+                                            <p><strong>Fecha programada: </strong>{{ $evento['fecha'] }}</p>
+                                            <p><strong>Evento: </strong>{{ $evento['nombre_evento'] }}</p>
+                                            <p><strong>Proposito: </strong> {{ $evento['proposito'] }}</p>
+                                            <hr>
+                                            @foreach ($paquetes as $paquete)
+                                                @if ($evento['paquete_id'] == $paquete->id)
+                                                    <p><strong>Paquete: </strong>{{ $paquete['nombre'] }}</p>
+                                                @endif
+                                            @endforeach
+                                            <div class="col-sm-6">
+                                                <p><strong> Hora inicial: </strong>{{ $evento['hora_inicio'] }}</p>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p><strong>Hora final: </strong>{{ $evento['hora_final'] }}</p>
+                                            </div>
+                                            <p><strong>Invitados contemplados: </strong> {{ $evento['num_invitados'] }}</p>
+                                            <div class="col-sm-6">
+                                                <p><strong>Servicios: </strong></p>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <ul>
+                                                    @foreach ($evento->servicios as $serv)
+                                                        @foreach ($servicios as $servicio)
+                                                            @if ($serv->pivot->servicio_id == $servicio->id)
+                                                                <li>{{ $servicio->nombre }}</li>
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <br>
+                                            <p><strong>Estado de cuenta:</strong></p>
+                                        </dl>
+                                        <p class="text-end">$0/<strong class="text-success">${{ $evento['costo'] }}</strong></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn emp_button_c" data-bs-target="#modalDetallesContrato2{{ $evento['id'] }}" data-bs-toggle="modal">Cancelar Evento</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modalDetallesContrato2{{ $evento['id'] }}" aria-hidden="true" aria-labelledby="modalDetallesContratoLabel2" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5 text-center" id="modalDetallesContratoLabel2">
+                                            <i class="bi bi-exclamation-octagon-fill text-warning" style="font-size: 26px"></i> Confirmar Cancelación
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h1 class="display-6 text-center">Estimado Cliente</h1>
+                                        <p><em>Le informamos que nuestra politica de devoluciones establace que no se aceptan devoluciones de
+                                                pago para eventos que ya han sido programados y organizados. <br> Esto se debe a que hemos
+                                                reservado el tiempo y los recursos necesarios para su evento. Nosotros nos hemos comprometido a
+                                                cumplir con nuestros servicios según lo acordado.</em></p>
+                                        <p class="text-center"><em>Gracias por su preferencia.</em></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-danger" aria-label="Close" data-bs-toggle="modal">Confirmar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -88,70 +151,6 @@
                         </div>
                     </div>
                 </form> 
-            </div>
-        </div>
-    </div>
-
-    <!--modales-->
-    <div class="modal fade" id="modalDetallesContrato" aria-hidden="true" aria-labelledby="modalDetallesContratoLabel"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-success" id="modalDetallesContratoLabel">Bautizo</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <dl class="row">
-                        <p><strong>Fecha programada: </strong>30/04/2023</p>
-                        <p><strong>Evento: </strong>Bautizo</p>
-                        <p><strong>Paquete: </strong>Eventos Especiales</p>
-                        <div class="col-sm-6">
-                            <p><strong> Hora inicial: </strong>13:00 pm</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p><strong>Hora final: </strong>17:00 pm</p>
-                        </div>
-                        <p><strong>Invitados contemplados: </strong> 300</p>
-                        <div class="col-sm-6">
-                            <p><strong>Servicio: </strong></p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p>Catering, Fotografia, Banquete, Ambientación</p>
-                        </div>
-                        <br>
-                        <p><strong>Estado de cuenta:</strong></p>
-                    </dl>
-                    <p class="text-end">$10,500/<strong class="text-success">$15,000</strong></p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn emp_button_c" data-bs-target="#modalDetallesContrato2" data-bs-toggle="modal">Cancelar Evento</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalDetallesContrato2" aria-hidden="true" aria-labelledby="modalDetallesContratoLabel2"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-center" id="modalDetallesContratoLabel2">
-                        <i class="bi bi-exclamation-octagon-fill text-warning" style="font-size: 26px"></i> Confirmar Cancelación
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h1 class="display-6 text-center">Estimado Cliente</h1>
-                    <p><em>Le informamos que nuestra politica de devoluciones establace que no se aceptan devoluciones de
-                            pago para eventos que ya han sido programados y organizados. <br> Esto se debe a que hemos
-                            reservado el tiempo y los recursos necesarios para su evento. Nosotros nos hemos comprometido a
-                            cumplir con nuestros servicios según lo acordado.</em></p>
-                    <p class="text-center"><em>Gracias por su preferencia.</em></p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger" aria-label="Close" data-bs-toggle="modal">Confirmar</button>
-                </div>
             </div>
         </div>
     </div>
