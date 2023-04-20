@@ -34,7 +34,12 @@
                             <select class="form-select" name="paquete_id" id="paquete_id" onchange="ShowSelected();">
                                 <option value="0" selected data-costo="0"></option>
                                 @foreach ($paquetes as $paquete)
+<<<<<<< HEAD
+                                    <option value="{{ $paquete->id }}" data-costo="{{ $paquete->costo }}">
+                                        {{ $paquete['nombre'] }} →
+=======
                                     <option value="{{ $paquete->id }}" data-costo="{{ $paquete->costo }}">{{ $paquete['nombre'] }} →
+>>>>>>> 3464244 (event servicios)
                                         ${{ $paquete['costo'] }}
                                     </option>
                                 @endforeach
@@ -128,7 +133,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         var serviciosSeleccionados = {};
