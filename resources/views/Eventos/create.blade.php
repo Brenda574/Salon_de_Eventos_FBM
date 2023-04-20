@@ -34,12 +34,7 @@
                             <select class="form-select" name="paquete_id" id="paquete_id" onchange="ShowSelected();">
                                 <option value="0" selected data-costo="0"></option>
                                 @foreach ($paquetes as $paquete)
-<<<<<<< HEAD
-                                    <option value="{{ $paquete->id }}" data-costo="{{ $paquete->costo }}">
-                                        {{ $paquete['nombre'] }} →
-=======
                                     <option value="{{ $paquete->id }}" data-costo="{{ $paquete->costo }}">{{ $paquete['nombre'] }} →
->>>>>>> 3464244 (event servicios)
                                         ${{ $paquete['costo'] }}
                                     </option>
                                 @endforeach
