@@ -154,6 +154,7 @@
                 document.getElementById('tabla-servicios').appendChild(row);
                 checkbox.dataset.agregado = 'true';
             });
+            document.querySelector('#lbl').innerText = total;
             cerrarModal();
         }
 
@@ -165,6 +166,7 @@
             var tabla = document.getElementById('tabla-servicios');
             tabla.innerHTML = '<td>#</td> <td>Servicio</td> <td>Costo</td> <td></td>';
             serviciosSeleccionados = {};
+            document.querySelector('#lbl').innerText = 0 + aux;
         }
 
         function eliminarUno(btn) {
