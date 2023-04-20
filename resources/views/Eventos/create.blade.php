@@ -71,12 +71,16 @@
                                 <td>#</td>
                                 <td>Servicio</td>
                                 <td>Costo</td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <a class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarServicio"><i
                                 class="bi bi-plus-lg"></i></i></a>
+                    </div>
+                    <div class="col d-grid gap-2 d-md-flex">
+                        <button type="button" onclick="borrarServicios()" class="btn emp_button_c">Borrar todo</button>
                     </div>
                 </div>
             </div>
@@ -110,7 +114,8 @@
                                 <tr>
                                     <th scope="row"><input class="form-check-input" type="checkbox" name="servicio"
                                             value="{{ $servicio->id }}" data-id="{{ $servicio->id }}"
-                                            data-costo="{{ $servicio->costo }}" data-nombre="{{ $servicio->nombre }}"></th>
+                                            data-costo="{{ $servicio->costo }}" data-nombre="{{ $servicio->nombre }}"
+                                            data-agregado="false"></th>
                                     <td>{{ $servicio['nombre'] }} (${{ $servicio['costo'] }})</td>
                                 </tr>
                             @endforeach
@@ -123,17 +128,47 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        var serviciosSeleccionados = {};
+
         function agregarServicios() {
             var checkboxes = document.querySelectorAll('input[name="servicio"]:checked')
             checkboxes.forEach(function(checkbox) {
                 var id = checkbox.dataset.id;
                 var nombre = checkbox.dataset.nombre;
                 var costo = checkbox.dataset.costo;
+                if (serviciosSeleccionados[id]) {
+                    return;
+                }
+                serviciosSeleccionados[id] = true;
                 var row = document.createElement('tr');
-                row.innerHTML = '<td>' + id + '<td>' + nombre + '</td> $' + costo + '</td>';
+                row.innerHTML = '<td>' + id + '<td>' + nombre + '</td> $' + costo +
+                    '<td> <button type="button" class="btn btn-link text-decoration-none texto-color" title="Eliminar" onclick="eliminarUno(this)"> <i class="bi bi-trash3-fill"></i> </button> </td>';
                 document.getElementById('tabla-servicios').appendChild(row);
+                checkbox.dataset.agregado = 'true';
             });
+            cerrarModal();
+        }
+    </script>
+    <script>
+        function cerrarModal() {
+            $('#agregarServicio').modal('hide');
+        }
+    </script>
+    <script>
+        function borrarServicios() {
+            var tabla = document.getElementById('tabla-servicios');
+            tabla.innerHTML = '<td>#</td> <td>Servicio</td> <td>Costo</td> <td></td>';
+            serviciosSeleccionados = {};
+        }
+    </script>
+    <script>
+        function eliminarUno(btn) {
+            var fila = btn.parentNode.parentNode;
+            var id = fila.firstChild.innerHTML;
+            serviciosSeleccionados[id] = false;
+            fila.parentNode.removeChild(fila);
         }
     </script>
 @endsection
