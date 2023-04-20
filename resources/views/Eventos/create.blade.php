@@ -31,10 +31,10 @@
                         </div>
                         <div class="col mb-3">
                             <small>PAQUETE</small>
-                            <select class="form-select" name="paquete_id" id="paquete_id">
-                                <option selected></option>
+                            <select class="form-select" name="paquete_id" id="paquete_id" onchange="ShowSelected();">
+                                <option value="0" selected data-costo="0"></option>
                                 @foreach ($paquetes as $paquete)
-                                    <option value="{{ $paquete->id }}">{{ $paquete['nombre'] }} →
+                                    <option value="{{ $paquete->id }}" data-costo="{{ $paquete->costo }}">{{ $paquete['nombre'] }} →
                                         ${{ $paquete['costo'] }}
                                     </option>
                                 @endforeach
@@ -88,7 +88,7 @@
             <div>
                 <div class="row container_galery">
                     <div class="col">
-                        <h4><b>Total: </b> $</h4>
+                        <h4><b>Total: </b> $<label name="lbl" id="lbl">0</label></h4>
                     </div>
                     <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
                         <button type="button" class="btn emp_button_c">Confirmar Evento</button>
@@ -128,12 +128,16 @@
             </div>
         </div>
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    <script type="text/javascript">
         var serviciosSeleccionados = {};
+        var aux = 0;
 
         function agregarServicios() {
             var checkboxes = document.querySelectorAll('input[name="servicio"]:checked')
+            var textoT = document.getElementById('lbl').innerText;
+            var total = Number(textoT);
             checkboxes.forEach(function(checkbox) {
                 var id = checkbox.dataset.id;
                 var nombre = checkbox.dataset.nombre;
@@ -145,30 +149,42 @@
                 var row = document.createElement('tr');
                 row.innerHTML = '<td>' + id + '<td>' + nombre + '</td> $' + costo +
                     '<td> <button type="button" class="btn btn-link text-decoration-none texto-color" title="Eliminar" onclick="eliminarUno(this)"> <i class="bi bi-trash3-fill"></i> </button> </td>';
+                total += Number(costo);
                 document.getElementById('tabla-servicios').appendChild(row);
                 checkbox.dataset.agregado = 'true';
             });
             cerrarModal();
         }
-    </script>
-    <script>
+        
         function cerrarModal() {
             $('#agregarServicio').modal('hide');
         }
-    </script>
-    <script>
+        
         function borrarServicios() {
             var tabla = document.getElementById('tabla-servicios');
             tabla.innerHTML = '<td>#</td> <td>Servicio</td> <td>Costo</td> <td></td>';
             serviciosSeleccionados = {};
         }
-    </script>
-    <script>
+        
         function eliminarUno(btn) {
             var fila = btn.parentNode.parentNode;
             var id = fila.firstChild.innerHTML;
             serviciosSeleccionados[id] = false;
             fila.parentNode.removeChild(fila);
+            document.querySelector('#lbl').innerText = total;
+        }
+
+        function ShowSelected() {
+            var combo = document.getElementById("paquete_id");
+            var selected = combo.options[combo.selectedIndex].value;
+            var costo = combo.options[combo.selectedIndex].dataset.costo;
+            var total = Number(document.querySelector('#lbl').innerText); 
+            for (var paquete of combo.options) {
+                if (selected == paquete.value) {
+                    document.querySelector('#lbl').innerText = total + Number(paquete.dataset.costo) - aux;
+                    aux = Number(paquete.dataset.costo);
+                }
+            }
         }
     </script>
 @endsection
