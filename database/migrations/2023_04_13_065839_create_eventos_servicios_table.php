@@ -21,6 +21,8 @@ return new class extends Migration
 
             $table->foreign('evento_id')->references('id')->on('eventos');
             $table->foreign('servicio_id')->references('id')->on('servicios');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('paquete_id')->references('id')->on('paquetes');
         });
     }
 

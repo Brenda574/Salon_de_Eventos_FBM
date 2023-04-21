@@ -21,7 +21,8 @@
             <h3 class="label fw-bold" style="color: #af9495">Nuevo Evento</h3>
         </div>
         <hr>
-        <form method="post" action="{{ route('evento.store') }}">
+        <form id="evento" method="post" action="{{ route('evento.store') }}">
+            @csrf
             <div>
                 <div class="row container_galery">
                     <div class="row">
@@ -55,10 +56,24 @@
                             <small>HORA FIN</small>
                             <input type="time" class="form-control" name="hora_final" id="hora_final">
                         </div>
+                        <div class="col mb-3">
+                            <small>INVITADOS CONTEMPLADOS</small>
+                            <input type="text" class="form-control" name="num_invitados" id="num_invitados">
+                        </div>
                     </div>
                     <div class="col mb-3">
-                        <small>INVITADOS CONTEMPLADOS</small>
-                        <input type="text" class="form-control" name="num_invitados" id="num_invitados">
+                        <small>DESCRIPCION</small>
+                        <input type="text" class="form-control" name="proposito" id="proposito">
+                    </div>
+                    <div class="col mb-3">
+                        <small>ESTATUS</small>
+                        <div class="d-grid gap-2">
+                            <select class="form-select estatus_ac" aria-label="Default select example" id="estatus"
+                                name="estatus">
+                                <option selected>Confirmado</option>
+                                <option value="1">SinConfirmar</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,7 +81,7 @@
             <div>
                 <div class="row container_galery">
                     <H5>Servicios</H5>
-                    <table id="tabla-servicios" class="table table-hover">
+                    <table id="tabla-servicios" class="table table-hover" name="servicios">
                         <tbody>
                             <tr>
                                 <td>#</td>
@@ -89,11 +104,14 @@
             <div>
                 <div class="row container_galery">
                     <div class="col">
+                        <input type="hidden" name="costo" id="costo" value="">
                         <h4><b>Total: </b> $<label name="lbl" id="lbl">0</label></h4>
+
                     </div>
                     <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
                         <button type="button" class="btn emp_button_c">Confirmar Evento</button>
-                        <button type="submit" class="btn emp_button">Guardar</button>
+                        <input type="hidden" name="servicios_id" id="servicios_id" value="">
+                        <button type="submit" class="btn emp_button" form="evento">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -123,7 +141,7 @@
                         </tbody>
                     </table>
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <button type="submit" class="btn emp_button" onclick="agregarServicios()">Agregar</button>
+                        <button type="button" class="btn emp_button" onclick="agregarServicios()">Agregar</button>
                     </div>
                 </div>
             </div>
@@ -139,6 +157,7 @@
             var checkboxes = document.querySelectorAll('input[name="servicio"]:checked')
             var textoT = document.getElementById('lbl').innerText;
             var total = Number(textoT);
+            var serviciosIdsSeleccionados = [];
             checkboxes.forEach(function(checkbox) {
                 var id = checkbox.dataset.id;
                 var nombre = checkbox.dataset.nombre;
@@ -147,6 +166,7 @@
                     return;
                 }
                 serviciosSeleccionados[id] = true;
+                serviciosIdsSeleccionados.push(id);
                 var row = document.createElement('tr');
                 row.innerHTML = '<td>' + id + '<td>' + nombre + '</td> $' + costo +
                     '<td> <button type="button" class="btn btn-link text-decoration-none texto-color" title="Eliminar" onclick="eliminarUno(this)"> <i class="bi bi-trash3-fill"></i> </button> </td>';
@@ -155,6 +175,7 @@
                 checkbox.dataset.agregado = 'true';
             });
             document.querySelector('#lbl').innerText = total;
+            document.querySelector('#servicios_id').value = JSON.stringify(serviciosIdsSeleccionados);
             cerrarModal();
         }
 
@@ -176,6 +197,7 @@
             fila.parentNode.removeChild(fila);
             document.querySelector('#lbl').innerText = total;
         }
+        var costo = 0;
 
         function ShowSelected() {
             var combo = document.getElementById("paquete_id");
@@ -184,7 +206,10 @@
             var total = Number(document.querySelector('#lbl').innerText);
             for (var paquete of combo.options) {
                 if (selected == paquete.value) {
-                    document.querySelector('#lbl').innerText = total + Number(paquete.dataset.costo) - aux;
+                    var nuevoTotal = total + Number(paquete.dataset.costo) - aux;
+                    document.querySelector('#lbl').innerText = nuevoTotal;
+                    costo = nuevoTotal; // Almacenar el costo total en la variable global
+                    document.querySelector('#costo').value = nuevoTotal;
                     aux = Number(paquete.dataset.costo);
                 }
             }
