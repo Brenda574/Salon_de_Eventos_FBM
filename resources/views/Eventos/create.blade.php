@@ -108,7 +108,7 @@
                         <div class="col" style="padding: 0; margin-left: -4px;"><input type="text" readonly class="form-control-plaintext" id="total" name="total" value="0"></div>
                     </div>
                     <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="button" class="btn emp_button_c">Confirmar Evento</button>
+                        <a class="btn emp_button_c" style="padding: 10px;">Confirmar Evento</a>
                         <input type="hidden" name="servicios_id" id="servicios_id" value="">
                         <button type="submit" class="btn emp_button" form="evento">Guardar</button>
                     </div>
