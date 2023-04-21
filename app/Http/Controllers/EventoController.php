@@ -34,7 +34,7 @@ class EventoController extends Controller
         $nuevo->fecha = $request->input('fecha');
         $nuevo->hora_inicio = $request->input('hora_inicio');
         $nuevo->hora_final = $request->input('hora_final');
-        $nuevo->costo = $request->input('costo');
+        $nuevo->costo = $request->input('total');
         $nuevo->proposito = $request->input('proposito');
         $nuevo->num_invitados = $request->input('num_invitados');
         $nuevo->estatus = $request->input('estatus');

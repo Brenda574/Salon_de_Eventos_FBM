@@ -103,10 +103,9 @@
             <hr>
             <div>
                 <div class="row container_galery">
-                    <div class="col">
-                        <input type="hidden" name="costo" id="costo" value="">
-                        <h4><b>Total: </b> $<label name="lbl" id="lbl">0</label></h4>
-
+                    <div class="col row fs-3" style="margin-block: -5px; padding: -5px;">
+                        <label for="total" class="col-sm-3 col-form-label text-end"><b>Total: </b> $</label>
+                        <div class="col" style="padding: 0; margin-left: -4px;"><input type="text" readonly class="form-control-plaintext" id="total" name="total" value="0"></div>
                     </div>
                     <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
                         <button type="button" class="btn emp_button_c">Confirmar Evento</button>
@@ -155,7 +154,7 @@
 
         function agregarServicios() {
             var checkboxes = document.querySelectorAll('input[name="servicio"]:checked')
-            var textoT = document.getElementById('lbl').innerText;
+            var textoT = document.getElementById('total').value;
             var total = Number(textoT);
             var serviciosIdsSeleccionados = [];
             checkboxes.forEach(function(checkbox) {
@@ -174,7 +173,7 @@
                 document.getElementById('tabla-servicios').appendChild(row);
                 checkbox.dataset.agregado = 'true';
             });
-            document.querySelector('#lbl').innerText = total;
+            document.querySelector('#total').value = total;
             document.querySelector('#servicios_id').value = JSON.stringify(serviciosIdsSeleccionados);
             cerrarModal();
         }
@@ -187,7 +186,7 @@
             var tabla = document.getElementById('tabla-servicios');
             tabla.innerHTML = '<td>#</td> <td>Servicio</td> <td>Costo</td> <td></td>';
             serviciosSeleccionados = {};
-            document.querySelector('#lbl').innerText = 0 + aux;
+            document.querySelector('#total').value = 0 + aux;
         }
 
         function eliminarUno(btn) {
@@ -195,7 +194,7 @@
             var id = fila.firstChild.innerHTML;
             serviciosSeleccionados[id] = false;
             fila.parentNode.removeChild(fila);
-            document.querySelector('#lbl').innerText = total;
+            document.querySelector('#total').value = total;
         }
         var costo = 0;
 
@@ -203,13 +202,12 @@
             var combo = document.getElementById("paquete_id");
             var selected = combo.options[combo.selectedIndex].value;
             var costo = combo.options[combo.selectedIndex].dataset.costo;
-            var total = Number(document.querySelector('#lbl').innerText);
+            var total = Number(document.querySelector('#total').value);
             for (var paquete of combo.options) {
                 if (selected == paquete.value) {
                     var nuevoTotal = total + Number(paquete.dataset.costo) - aux;
-                    document.querySelector('#lbl').innerText = nuevoTotal;
+                    document.querySelector('#total').value = nuevoTotal;
                     costo = nuevoTotal; // Almacenar el costo total en la variable global
-                    document.querySelector('#costo').value = nuevoTotal;
                     aux = Number(paquete.dataset.costo);
                 }
             }
