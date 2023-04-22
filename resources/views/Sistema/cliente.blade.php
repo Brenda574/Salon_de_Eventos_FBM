@@ -49,8 +49,20 @@
                                     <i class="bi bi-images" style="font-size:20px;"></i>
                                 </a>
                             </td>
-                            <td><a href="{{ route('evento.edit', $evento) }}" class="btn emp_button_plus">Editar</a></td>
-                            <td><a class="btn emp_button_plus" data-bs-target="#modalDetallesContrato{{ $evento['id'] }}" data-bs-toggle="modal">Contrato</a></td>
+                            <td>
+                                @if ($evento->estatus == "Confirmado")
+                                    <a href="{{ route('evento.showCliente', $evento) }}" class="btn emp_button_plus">Datos</a>
+                                @else
+                                    <a href="{{ route('evento.edit', $evento) }}" class="btn emp_button_plus">Editar</a>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($evento->estatus == "Confirmado")
+                                    <a class="btn emp_button_plus" data-bs-target="#modalDetallesContrato{{ $evento['id'] }}" data-bs-toggle="modal">Contrato</a>
+                                @else
+                                    <a class="btn emp_button_plus" data-bs-target="#modalDetallesContrato{{ $evento['id'] }}" data-bs-toggle="modal">Eliminar</a>
+                                @endif
+                            </td>
                         </tr>
                         <div class="modal fade" id="modalDetallesContrato{{ $evento['id'] }}" aria-hidden="true" aria-labelledby="modalDetallesContratoLabel" tabindex="-1">
                             <div class="modal-dialog modal-dialog-centered">

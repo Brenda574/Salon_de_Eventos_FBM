@@ -61,7 +61,7 @@
                             <input type="text" class="form-control" name="num_invitados" id="num_invitados">
                         </div>
                     </div>
-                    <div class="col mb-3">
+                    <div class="col mb-3 ">
                         <small>PROPOSITO</small>
                         <input type="text" class="form-control" name="proposito" id="proposito">
                     </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Evento;
 use App\Models\Servicio;
 use App\Models\Paquete;
+use App\Models\Abono;
 use Illuminate\Support\Facades\Auth;
 
 class EventoController extends Controller
@@ -54,6 +55,15 @@ class EventoController extends Controller
     public function show(string $id)
     {
         return view('Eventos.show');
+    }
+
+    public function showCliente(string $id)
+    {
+        $evento = Evento::find($id);
+        $paquetes = Paquete::all();
+        $servicios = Servicio::all();
+        $abonos = Abono::all();
+        return view('Eventos.showCliente', compact('evento', 'paquetes', 'servicios', 'abonos'));
     }
 
     public function edit(string $id)
