@@ -61,19 +61,9 @@
                             <input type="text" class="form-control" name="num_invitados" id="num_invitados">
                         </div>
                     </div>
-                    <div class="col mb-3">
-                        <small>DESCRIPCION</small>
+                    <div class="col mb-3 ">
+                        <small>PROPOSITO</small>
                         <input type="text" class="form-control" name="proposito" id="proposito">
-                    </div>
-                    <div class="col mb-3">
-                        <small>ESTATUS</small>
-                        <div class="d-grid gap-2">
-                            <select class="form-select estatus_ac" aria-label="Default select example" id="estatus"
-                                name="estatus">
-                                <option selected>Confirmado</option>
-                                <option value="1">SinConfirmar</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
             </div>
