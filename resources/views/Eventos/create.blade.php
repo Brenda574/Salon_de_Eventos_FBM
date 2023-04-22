@@ -86,7 +86,7 @@
                             <tr>
                                 <td>#</td>
                                 <td>Servicio</td>
-                                <td>Costo</td>
+                                <td>Costo ($)</td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -168,7 +168,7 @@
                 serviciosSeleccionados[id] = true;
                 serviciosIdsSeleccionados.push(id);
                 var row = document.createElement('tr');
-                row.innerHTML = '<td>' + id + '<td>' + nombre + '</td> $' + costo +
+                row.innerHTML = '<td>' + id + '</td><td>' + nombre + '</td>' + '<td>' + costo + '</td>' +
                     '<td> <button type="button" class="btn btn-link text-decoration-none texto-color" title="Eliminar" onclick="eliminarUno(this)"> <i class="bi bi-trash3-fill"></i> </button> </td>';
                 total += Number(costo);
                 document.getElementById('tabla-servicios').appendChild(row);
@@ -195,8 +195,11 @@
             var id = fila.firstChild.innerHTML;
             serviciosSeleccionados[id] = false;
             fila.parentNode.removeChild(fila);
-            document.querySelector('#lbl').innerText = total;
+            var ahora = Number(document.querySelector('#total').value);
+            var resta = Number(fila.lastChild.previousSibling.innerHTML);
+            document.querySelector('#total').value = ahora - resta;
         }
+
         var costo = 0;
 
         function ShowSelected() {
