@@ -62,8 +62,18 @@
                         </div>
                     </div>
                     <div class="col mb-3">
-                        <small>PROPOSITO</small>
+                        <small>DESCRIPCION</small>
                         <input type="text" class="form-control" name="proposito" id="proposito">
+                    </div>
+                    <div class="col mb-3">
+                        <small>ESTATUS</small>
+                        <div class="d-grid gap-2">
+                            <select class="form-select estatus_ac" aria-label="Default select example" id="estatus"
+                                name="estatus">
+                                <option selected>Confirmado</option>
+                                <option value="1">SinConfirmar</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,15 +103,15 @@
             <hr>
             <div>
                 <div class="row container_galery">
-                    <div class="col row fs-3" style="margin-block: -5px; padding: -5px;">
-                        <label for="total" class="col-sm-3 col-form-label text-end"><b>Total: </b> $</label>
-                        <div class="col" style="padding: 0; margin-left: -4px;"><input type="text" readonly class="form-control-plaintext" id="total" name="total" value="0"></div>
+                    <div class="col">
+                        <input type="hidden" name="costo" id="costo" value="">
+                        <h4><b>Total: </b> $<label name="lbl" id="lbl">0</label></h4>
+
                     </div>
                     <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-                        <input type="hidden" name="estatus" id="estatus" value="SinConfirmar">
-                        <button type="submit" id="confirmar" class="btn emp_button_c" onclick="confirmar_estatus()" form="evento">Guardar y Confirmar Evento</button>
+                        <button type="button" class="btn emp_button_c">Confirmar Evento</button>
                         <input type="hidden" name="servicios_id" id="servicios_id" value="">
-                        <button type="submit" class="btn emp_button" form="evento">Guardar Evento</button>
+                        <button type="submit" class="btn emp_button" form="evento">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -145,7 +155,7 @@
 
         function agregarServicios() {
             var checkboxes = document.querySelectorAll('input[name="servicio"]:checked')
-            var textoT = document.getElementById('total').value;
+            var textoT = document.getElementById('lbl').innerText;
             var total = Number(textoT);
             var serviciosIdsSeleccionados = [];
             checkboxes.forEach(function(checkbox) {
@@ -164,7 +174,7 @@
                 document.getElementById('tabla-servicios').appendChild(row);
                 checkbox.dataset.agregado = 'true';
             });
-            document.querySelector('#total').value = total;
+            document.querySelector('#lbl').innerText = total;
             document.querySelector('#servicios_id').value = JSON.stringify(serviciosIdsSeleccionados);
             cerrarModal();
         }
@@ -177,7 +187,7 @@
             var tabla = document.getElementById('tabla-servicios');
             tabla.innerHTML = '<td>#</td> <td>Servicio</td> <td>Costo</td> <td></td>';
             serviciosSeleccionados = {};
-            document.querySelector('#total').value = 0 + aux;
+            document.querySelector('#lbl').innerText = 0 + aux;
         }
 
         function eliminarUno(btn) {
@@ -185,7 +195,7 @@
             var id = fila.firstChild.innerHTML;
             serviciosSeleccionados[id] = false;
             fila.parentNode.removeChild(fila);
-            document.querySelector('#total').value = total;
+            document.querySelector('#lbl').innerText = total;
         }
         var costo = 0;
 
@@ -193,19 +203,16 @@
             var combo = document.getElementById("paquete_id");
             var selected = combo.options[combo.selectedIndex].value;
             var costo = combo.options[combo.selectedIndex].dataset.costo;
-            var total = Number(document.querySelector('#total').value);
+            var total = Number(document.querySelector('#lbl').innerText);
             for (var paquete of combo.options) {
                 if (selected == paquete.value) {
                     var nuevoTotal = total + Number(paquete.dataset.costo) - aux;
-                    document.querySelector('#total').value = nuevoTotal;
+                    document.querySelector('#lbl').innerText = nuevoTotal;
                     costo = nuevoTotal; // Almacenar el costo total en la variable global
+                    document.querySelector('#costo').value = nuevoTotal;
                     aux = Number(paquete.dataset.costo);
                 }
             }
-        }
-
-        function confirmar_estatus() {
-            document.querySelector('#estatus').value = "Confirmado";
         }
     </script>
 @endsection
