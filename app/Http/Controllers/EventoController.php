@@ -51,16 +51,17 @@ class EventoController extends Controller
         return redirect()->route('sistema.cliente');
     }
 
-    // show(string $id)
-    public function show()
+    public function show(string $id)
     {
         return view('Eventos.show');
     }
 
-    // edit(string $id)
-    public function edit()
+    public function edit(string $id)
     {
-        return view('Eventos.edit');
+        $evento = Evento::find($id);
+        $paquetes = Paquete::all();
+        $servicios = Servicio::all();
+        return view('Eventos.edit', compact('evento', 'paquetes', 'servicios'));
     }
 
     public function update(Request $request, string $id)

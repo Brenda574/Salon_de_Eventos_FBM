@@ -31,7 +31,8 @@ Route::get('/Gerente', [SistemaController::class, 'indexGerente'])->name('sistem
 Route::get('/Cliente', [SistemaController::class, 'cliente'])->name('sistema.cliente')->middleware('auth');
 
 Route::get('/Evento/Detalles', [EventoController::class, 'show'])->name('evento.show')->middleware('auth');
-Route::get('/Evento/Editar', [EventoController::class, 'edit'])->name('evento.edit')->middleware('auth');
+Route::get('/Evento/Editar/{cual?}', [EventoController::class, 'edit'])->name('evento.edit')->middleware('auth');
+Route::put('/Evento/Editar/{cual?}', [EventoController::class, 'update'])->name('evento.update');
 Route::get('/Evento/Crear', [EventoController::class, 'create'])->name('evento.create')->middleware('auth');
 Route::post('Evento/Guardar', [EventoController::class, 'store'])->name('evento.store');
 

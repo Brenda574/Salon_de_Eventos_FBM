@@ -62,18 +62,8 @@
                         </div>
                     </div>
                     <div class="col mb-3">
-                        <small>DESCRIPCION</small>
+                        <small>PROPOSITO</small>
                         <input type="text" class="form-control" name="proposito" id="proposito">
-                    </div>
-                    <div class="col mb-3">
-                        <small>ESTATUS</small>
-                        <div class="d-grid gap-2">
-                            <select class="form-select estatus_ac" aria-label="Default select example" id="estatus"
-                                name="estatus">
-                                <option selected>Confirmado</option>
-                                <option value="1">SinConfirmar</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -108,9 +98,10 @@
                         <div class="col" style="padding: 0; margin-left: -4px;"><input type="text" readonly class="form-control-plaintext" id="total" name="total" value="0"></div>
                     </div>
                     <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a class="btn emp_button_c" style="padding: 10px;">Confirmar Evento</a>
+                        <input type="hidden" name="estatus" id="estatus" value="SinConfirmar">
+                        <button type="submit" id="confirmar" class="btn emp_button_c" onclick="confirmar_estatus()" form="evento">Guardar y Confirmar Evento</button>
                         <input type="hidden" name="servicios_id" id="servicios_id" value="">
-                        <button type="submit" class="btn emp_button" form="evento">Guardar</button>
+                        <button type="submit" class="btn emp_button" form="evento">Guardar Evento</button>
                     </div>
                 </div>
             </div>
@@ -211,6 +202,10 @@
                     aux = Number(paquete.dataset.costo);
                 }
             }
+        }
+
+        function confirmar_estatus() {
+            document.querySelector('#estatus').value = "Confirmado";
         }
     </script>
 @endsection
