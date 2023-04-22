@@ -6,7 +6,8 @@
 
 @section('authenticacion')
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> {{Auth::user()->nombre}}</a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i
+                class="bi bi-person-circle"></i> {{ Auth::user()->nombre }}</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
         </ul>
@@ -20,7 +21,7 @@
             <h3 class="label fw-bold" style="color: #af9495">Nuevo Evento</h3>
         </div>
         <hr>
-        <form id="evento" method="post" action="{{ route('evento.update'), $evento->id }}">
+        <form id="evento" method="post" action="{{ route('evento.update', $evento->id) }}">
             @method('PUT')
             @csrf
             <div>
@@ -28,7 +29,8 @@
                     <div class="row">
                         <div class="col mb-3">
                             <small>EVENTO</small>
-                            <input type="text" class="form-control" name="nombre_evento" id="nombre_evento" value="{{ $evento->nombre_evento }}">
+                            <input type="text" class="form-control" name="nombre_evento" id="nombre_evento"
+                                value="{{ $evento->nombre_evento }}">
                         </div>
                         <div class="col mb-3">
                             <small>PAQUETE</small>
@@ -52,24 +54,29 @@
                     <div class="row">
                         <div class="col mb-3">
                             <small>FECHA</small>
-                            <input type="date" class="form-control" name="fecha" id="fecha" value="{{ $evento->fecha }}">
+                            <input type="date" class="form-control" name="fecha" id="fecha"
+                                value="{{ $evento->fecha }}">
                         </div>
                         <div class="col mb-3">
                             <small>HORA INICIO</small>
-                            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" value="{{ $evento->hora_inicio }}">
+                            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio"
+                                value="{{ $evento->hora_inicio }}">
                         </div>
                         <div class="col mb-3">
                             <small>HORA FIN</small>
-                            <input type="time" class="form-control" name="hora_final" id="hora_final" value="{{ $evento->hora_final }}">
+                            <input type="time" class="form-control" name="hora_final" id="hora_final"
+                                value="{{ $evento->hora_final }}">
                         </div>
                         <div class="col mb-3">
                             <small>INVITADOS CONTEMPLADOS</small>
-                            <input type="text" class="form-control" name="num_invitados" id="num_invitados" value="{{ $evento->num_invitados }}">
+                            <input type="text" class="form-control" name="num_invitados" id="num_invitados"
+                                value="{{ $evento->num_invitados }}">
                         </div>
                     </div>
                     <div class="col mb-3">
                         <small>PROPOSITO</small>
-                        <input type="text" class="form-control" name="proposito" id="proposito" value="{{ $evento->proposito }}">
+                        <input type="text" class="form-control" name="proposito" id="proposito"
+                            value="{{ $evento->proposito }}">
                     </div>
                 </div>
             </div>
@@ -92,9 +99,11 @@
                                     <tr>
                                         <td>{{ $servicio->id }}</td>
                                         <td>{{ $servicio->nombre }}</td>
-                                        <td id="td{{$servicio->id}}">{{ $servicio->costo }}</td>
+                                        <td id="td{{ $servicio->id }}">{{ $servicio->costo }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-link text-decoration-none texto-color" title="Eliminar" onclick="eliminarUno(this)"><i class="bi bi-trash3-fill"></i></button>
+                                            <button type="button" class="btn btn-link text-decoration-none texto-color"
+                                                title="Eliminar" onclick="eliminarUno(this)"><i
+                                                    class="bi bi-trash3-fill"></i></button>
                                         </td>
                                     </tr>
                                 @endif
@@ -115,11 +124,14 @@
                 <div class="row container_galery">
                     <div class="col row fs-3" style="margin-block: -5px; padding: -5px;">
                         <label for="total" class="col-sm-4 col-form-label text-end"><b>Total: </b> $</label>
-                        <div class="col" style="padding: 0; margin-left: -4px;"><input type="text" readonly class="form-control-plaintext" id="total" name="total" value="{{ $evento->costo }}"></div>
+                        <div class="col" style="padding: 0; margin-left: -4px;"><input type="text" readonly
+                                class="form-control-plaintext" id="total" name="total" value="{{ $evento->costo }}">
+                        </div>
                     </div>
                     <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
                         <input type="hidden" name="estatus" id="estatus" value="SinConfirmar">
-                        <button type="submit" id="confirmar" class="btn emp_button_c" onclick="confirmar_estatus()" form="evento">Guardar y Confirmar Evento</button>
+                        <button type="submit" id="confirmar" class="btn emp_button_c" onclick="confirmar_estatus()"
+                            form="evento">Guardar y Confirmar Evento</button>
                         <input type="hidden" name="servicios_id" id="servicios_id" value="">
                         <button type="submit" class="btn emp_button" form="evento">Guardar Evento</button>
                     </div>
@@ -161,7 +173,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         var serviciosSeleccionados = {};
-        var aux = document.getElementById("paquete_id").options[document.getElementById("paquete_id").selectedIndex].dataset.costo;;
+        var aux = document.getElementById("paquete_id").options[document.getElementById("paquete_id").selectedIndex].dataset
+            .costo;;
 
         function agregarServicios() {
             var checkboxes = document.querySelectorAll('input[name="servicio"]:checked')
