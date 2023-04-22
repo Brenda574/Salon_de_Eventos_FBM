@@ -31,7 +31,7 @@ class EventoController extends Controller
         $servicios = Servicio::whereIn('id', $serviciosIds)->get();
         $usuario = Auth::user();
         $paquete = Paquete::find($request->input('paquete_id'));
-        
+
         $nuevo = new Evento();
         $nuevo->nombre_evento = $request->input('nombre_evento');
         $nuevo->fecha = $request->input('fecha');
@@ -43,6 +43,11 @@ class EventoController extends Controller
         $nuevo->estatus = $request->input('estatus');
         $nuevo->usuario_id = $usuario->id;
         $nuevo->paquete_id = $paquete->id;
+
+        if ($nuevo->num_invitados > $paquete->capacidad_maxima) {
+            $nuevo->num_invitados = $paquete->capacidad_maxima;
+        }
+
         $nuevo->save();
 
         // Crear la relación entre el evento y los servicios
@@ -71,12 +76,42 @@ class EventoController extends Controller
         $evento = Evento::find($id);
         $paquetes = Paquete::all();
         $servicios = Servicio::all();
-        return view('Eventos.edit', compact('evento', 'paquetes', 'servicios'));
+        $serviciosSeleccionados = $evento->servicios->pluck('id')->toArray();
+        return view('Eventos.edit', compact('evento', 'paquetes', 'servicios', 'serviciosSeleccionados'));
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        $usuario = Auth::user();
+        $paquete = Paquete::find($request->input('paquete_id'));
+        
+        $evento = Evento::find($id);
+        $evento->nombre_evento = $request->input('nombre_evento');
+        $evento->fecha = $request->input('fecha');
+        $evento->hora_inicio = $request->input('hora_inicio');
+        $evento->hora_final = $request->input('hora_final');
+        $evento->costo = $request->input('total');
+        $evento->proposito = $request->input('proposito');
+        $evento->num_invitados = $request->input('num_invitados');
+        $evento->estatus = $request->input('estatus');
+        $evento->usuario_id = $usuario->id;
+        $evento->paquete_id = $paquete->id;
+
+        if ($evento->num_invitados > $paquete->capacidad_maxima) {
+            $evento->num_invitados = $paquete->capacidad_maxima;
+        }
+
+        $evento->save();
+
+        if (is_null(json_decode($request->input('servicios_id')))) {
+        } else {
+            $serviciosIds = json_decode($request->input('servicios_id'));
+            $servicios = Servicio::whereIn('id', $serviciosIds)->get();
+            $evento->servicios()->detach();
+            $evento->servicios()->attach($servicios, ['usuario_id' => $usuario->id, 'paquete_id' => $paquete->id]);
+        }
+        
+        return redirect()->route('sistema.cliente');
     }
 
     public function destroy(string $id)

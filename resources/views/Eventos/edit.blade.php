@@ -99,23 +99,22 @@
                                     <tr>
                                         <td>{{ $servicio->id }}</td>
                                         <td>{{ $servicio->nombre }}</td>
-                                        <td id="td{{ $servicio->id }}">{{ $servicio->costo }}</td>
+                                        <td>{{ $servicio->costo }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-link text-decoration-none texto-color"
-                                                title="Eliminar" onclick="eliminarUno(this)"><i
-                                                    class="bi bi-trash3-fill"></i></button>
                                         </td>
                                     </tr>
                                 @endif
                             @endforeach
                         @endforeach
                     </table>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarServicio"><i
-                                class="bi bi-plus-lg"></i></i></a>
-                    </div>
-                    <div class="col d-grid gap-2 d-md-flex">
-                        <button type="button" onclick="borrarServicios()" class="btn emp_button_c">Borrar todo</button>
+                    <div class="row">
+                        <div class="col d-grid gap-2 d-md-flex">
+                            <button type="button" onclick="borrarServicios()" class="btn emp_button_c">Borrar todo</button>
+                        </div>
+                        <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarServicio"><i
+                                    class="bi bi-plus-lg"></i></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,15 +154,15 @@
                                 <tr>
                                     <th scope="row"><input class="form-check-input" type="checkbox" name="servicio"
                                             value="{{ $servicio->id }}" data-id="{{ $servicio->id }}"
-                                            data-costo="{{ $servicio->costo }}" data-nombre="{{ $servicio->nombre }}"
-                                            data-agregado="false"></th>
+                                            data-costo="{{ $servicio->costo }}" data-nombre="{{ $servicio->nombre }}" 
+                                            {{ in_array($servicio->id, $serviciosSeleccionados) ? 'checked':'' }}></th>
                                     <td>{{ $servicio['nombre'] }} (${{ $servicio['costo'] }})</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <button type="button" class="btn emp_button" onclick="agregarServicios()">Agregar</button>
+                        <button type="button" class="btn emp_button" onclick="agregarServicios()">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -177,6 +176,7 @@
             .costo;;
 
         function agregarServicios() {
+            borrarServicios();
             var checkboxes = document.querySelectorAll('input[name="servicio"]:checked')
             var textoT = document.getElementById('total').value;
             var total = Number(textoT);
