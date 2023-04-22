@@ -57,11 +57,15 @@
                                 @endif
                             </td>
                             <td>
-                                @if ($evento->estatus == "Confirmado")
-                                    <a class="btn emp_button_plus" data-bs-target="#modalDetallesContrato{{ $evento['id'] }}" data-bs-toggle="modal">Contrato</a>
-                                @else
-                                    <a class="btn emp_button_plus" data-bs-target="#modalDetallesContrato{{ $evento['id'] }}" data-bs-toggle="modal">Eliminar</a>
-                                @endif
+                                <form action="{{ route('evento.destroy', $evento) }}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    @if ($evento->estatus == "Confirmado")
+                                        <a class="btn emp_button_plus" data-bs-target="#modalDetallesContrato{{ $evento['id'] }}" data-bs-toggle="modal">Contrato</a>
+                                    @else
+                                        <button type="submit" class="btn emp_button_plus" title="Eliminar">Eliminar</button>
+                                    @endif
+                                </form>
                             </td>
                         </tr>
                         <div class="modal fade" id="modalDetallesContrato{{ $evento['id'] }}" aria-hidden="true" aria-labelledby="modalDetallesContratoLabel" tabindex="-1">

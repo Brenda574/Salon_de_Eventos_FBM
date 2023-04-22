@@ -219,7 +219,8 @@
             serviciosSeleccionados[id] = false;
             fila.parentNode.removeChild(fila);
             var ahora = Number(document.querySelector('#total').value);
-            document.querySelector('#total').value = ahora;
+            var resta = Number(fila.lastChild.previousSibling.innerHTML);
+            document.querySelector('#total').value = ahora - resta;
         }
 
         var costo = document.querySelector('#total').value;

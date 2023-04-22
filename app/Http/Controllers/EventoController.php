@@ -26,10 +26,12 @@ class EventoController extends Controller
     public function store(Request $request)
     {
         $serviciosIds = json_decode($request->input('servicios_id'));
+
         // Buscar los servicios en la base de datos
         $servicios = Servicio::whereIn('id', $serviciosIds)->get();
         $usuario = Auth::user();
         $paquete = Paquete::find($request->input('paquete_id'));
+        
         $nuevo = new Evento();
         $nuevo->nombre_evento = $request->input('nombre_evento');
         $nuevo->fecha = $request->input('fecha');
@@ -43,9 +45,7 @@ class EventoController extends Controller
         $nuevo->paquete_id = $paquete->id;
         $nuevo->save();
 
-
         // Crear la relación entre el evento y los servicios
-
         $nuevo->servicios()->attach($servicios, ['usuario_id' => $usuario->id, 'paquete_id' => $paquete->id]);
 
         // Redireccionar a la página del evento creado
@@ -81,6 +81,9 @@ class EventoController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        $evento = Evento::find($id);
+        $evento->servicios()->detach();
+        $evento->delete();
+        return redirect(route('sistema.cliente'));
     }
 }
