@@ -18,7 +18,7 @@
     <div class="container">
         <br>
         <div class="row container_galery">
-            <h3 class="label fw-bold" style="color: #af9495">Nuevo Evento</h3>
+            <h3 class="label fw-bold" style="color: #af9495">Editar Evento</h3>
         </div>
         <hr>
         <form id="evento" method="post" action="{{ route('evento.update', $evento->id) }}">
