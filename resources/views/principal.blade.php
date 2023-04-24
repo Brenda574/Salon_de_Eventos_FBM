@@ -47,9 +47,7 @@ height: 400px; width: 100%;
                                 <div>
                                     <h5 class="card-title">{{ $item['nombre'] }}</h5>
                                 </div>
-                                <br>
-                                <br>
-                                <div class="d-flex justify-content-center align-items-center">
+                                <!--<div class="d-flex justify-content-center align-items-center">
                                     <div id="carouselExampleDar{{ $item['id'] }}" class="carousel carousel-dark slide"
                                         style="width: 60vh; text-align: center">
                                         <div class="carousel-inner">
@@ -89,8 +87,7 @@ height: 400px; width: 100%;
                                             <span class="visually-hidden">Next</span>
                                         </button>
                                     </div>
-                                </div>
-                                <br>
+                                </div>-->
                             </div>
                             <div class="card-footer text-center" style="background-color:#d3ded4">
                                 <div><a href="{{ route('login') }}" class="btn btnCotizar">Cotizar</a>
