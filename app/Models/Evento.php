@@ -31,4 +31,9 @@ class Evento extends Model
         return $this->belongsToMany('App\Models\Servicio', 'eventos_servicios')
             ->withPivot('usuario_id', 'paquete_id')->withTimestamps();
     }
+
+    public function imagenes()
+    {
+        return $this->hasMany(Imagen::class);
+    }
 }

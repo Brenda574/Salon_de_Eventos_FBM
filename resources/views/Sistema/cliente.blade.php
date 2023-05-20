@@ -2,7 +2,8 @@
 
 @section('authenticacion')
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i> {{Auth::user()->nombre}}</a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i
+                class="bi bi-person-circle"></i> {{ Auth::user()->nombre }}</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
         </ul>
@@ -11,7 +12,7 @@
 
 @section('contenido')
     <div class="p-5 text-center emp_ban" style="margin-top: 60px;">
-        <h1 class="mb-3">Bienvenido {{Auth::user()->nombre}}</h1>
+        <h1 class="mb-3">Bienvenido {{ Auth::user()->nombre }}</h1>
     </div>
     <div class="container">
         <div class="container_galery">
@@ -38,20 +39,23 @@
                             <td>{{ $evento['nombre_evento'] }}</td>
                             <td>{{ $evento['fecha'] }}</td>
                             <td>
-                                @if ($evento['estatus']=='Confirmado')
+                                @if ($evento['estatus'] == 'Confirmado')
                                     <input class="form-check-input" type="checkbox" value="" checked disabled>
                                 @else
                                     <input class="form-check-input" type="checkbox" value="" disabled>
                                 @endif
                             </td>
                             <td>
-                                <a class="text-decoration-none texto-color" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                                <a class="text-decoration-none texto-color" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseWidthExample" aria-expanded="false"
+                                    aria-controls="collapseWidthExample">
                                     <i class="bi bi-images" style="font-size:20px;"></i>
                                 </a>
                             </td>
                             <td>
-                                @if ($evento->estatus == "Confirmado")
-                                    <a href="{{ route('evento.showCliente', $evento) }}" class="btn emp_button_plus">Datos</a>
+                                @if ($evento->estatus == 'Confirmado')
+                                    <a href="{{ route('evento.showCliente', $evento) }}"
+                                        class="btn emp_button_plus">Datos</a>
                                 @else
                                     <a href="{{ route('evento.edit', $evento) }}" class="btn emp_button_plus">Editar</a>
                                 @endif
@@ -60,20 +64,26 @@
                                 <form action="{{ route('evento.destroy', $evento) }}" method="post">
                                     @method('DELETE')
                                     @csrf
-                                    @if ($evento->estatus == "Confirmado")
-                                        <a class="btn emp_button_plus" data-bs-target="#modalDetallesContrato{{ $evento['id'] }}" data-bs-toggle="modal">Contrato</a>
+                                    @if ($evento->estatus == 'Confirmado')
+                                        <a class="btn emp_button_plus"
+                                            data-bs-target="#modalDetallesContrato{{ $evento['id'] }}"
+                                            data-bs-toggle="modal">Contrato</a>
                                     @else
-                                        <button type="submit" class="btn emp_button_plus" title="Eliminar">Eliminar</button>
+                                        <button type="submit" class="btn emp_button_plus"
+                                            title="Eliminar">Eliminar</button>
                                     @endif
                                 </form>
                             </td>
                         </tr>
-                        <div class="modal fade" id="modalDetallesContrato{{ $evento['id'] }}" aria-hidden="true" aria-labelledby="modalDetallesContratoLabel" tabindex="-1">
+                        <div class="modal fade" id="modalDetallesContrato{{ $evento['id'] }}" aria-hidden="true"
+                            aria-labelledby="modalDetallesContratoLabel" tabindex="-1">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5 text-success" id="modalDetallesContratoLabel">{{ $evento['nombre_evento'] }}</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h1 class="modal-title fs-5 text-success" id="modalDetallesContratoLabel">
+                                            {{ $evento['nombre_evento'] }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <dl class="row">
@@ -110,33 +120,43 @@
                                             <br>
                                             <p><strong>Estado de cuenta:</strong></p>
                                         </dl>
-                                        <p class="text-end">$0/<strong class="text-success">${{ $evento['costo'] }}</strong></p>
+                                        <p class="text-end">$0/<strong
+                                                class="text-success">${{ $evento['costo'] }}</strong></p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn emp_button_c" data-bs-target="#modalDetallesContrato2{{ $evento['id'] }}" data-bs-toggle="modal">Cancelar Evento</button>
+                                        <button class="btn emp_button_c"
+                                            data-bs-target="#modalDetallesContrato2{{ $evento['id'] }}"
+                                            data-bs-toggle="modal">Cancelar Evento</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="modalDetallesContrato2{{ $evento['id'] }}" aria-hidden="true" aria-labelledby="modalDetallesContratoLabel2" tabindex="-1">
+                        <div class="modal fade" id="modalDetallesContrato2{{ $evento['id'] }}" aria-hidden="true"
+                            aria-labelledby="modalDetallesContratoLabel2" tabindex="-1">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5 text-center" id="modalDetallesContratoLabel2">
-                                            <i class="bi bi-exclamation-octagon-fill text-warning" style="font-size: 26px"></i> Confirmar Cancelación
+                                            <i class="bi bi-exclamation-octagon-fill text-warning"
+                                                style="font-size: 26px"></i> Confirmar Cancelación
                                         </h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <h1 class="display-6 text-center">Estimado Cliente</h1>
-                                        <p><em>Le informamos que nuestra politica de devoluciones establace que no se aceptan devoluciones de
-                                                pago para eventos que ya han sido programados y organizados. <br> Esto se debe a que hemos
-                                                reservado el tiempo y los recursos necesarios para su evento. Nosotros nos hemos comprometido a
+                                        <p><em>Le informamos que nuestra politica de devoluciones establace que no se
+                                                aceptan devoluciones de
+                                                pago para eventos que ya han sido programados y organizados. <br> Esto se
+                                                debe a que hemos
+                                                reservado el tiempo y los recursos necesarios para su evento. Nosotros nos
+                                                hemos comprometido a
                                                 cumplir con nuestros servicios según lo acordado.</em></p>
                                         <p class="text-center"><em>Gracias por su preferencia.</em></p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-danger" aria-label="Close" data-bs-toggle="modal">Confirmar</button>
+                                        <button class="btn btn-danger" aria-label="Close"
+                                            data-bs-toggle="modal">Confirmar</button>
                                     </div>
                                 </div>
                             </div>
@@ -149,25 +169,13 @@
         <div class="container_galery">
             <h4>Galeria</h4>
             <div class="collapse" id="collapseWidthExample">
-                <form action="sube.php" method="post" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col">
-                            <input class="form-control" type="file" name="archivo">
-                        </div>
-                        <div class="col">
-                            <button class="btn emp_button">Subir</button>
-                        </div>
+                <form action="">
+
+                    <div class="lightbox-gallery">
                     </div>
-                    <div class="row">
-                        <div class="lightbox-gallery">
-                            <div><img src="https://i.pinimg.com/564x/79/43/42/794342ce554262c8fdeeed2893127deb.jpg"></div>
-                            <div><img src="https://i.pinimg.com/564x/0b/09/84/0b098416d0d5269522c4ce26c5a951cb.jpg"></div>
-                            <div><img src="https://i.pinimg.com/564x/a3/55/ad/a355ad2d99c3c027f30def41b5543ee1.jpg"></div>
-                            <div><img src="https://i.pinimg.com/564x/68/03/b2/6803b24d6f941fd22b17b0febbd40656.jpg"></div>
-                        </div>
-                    </div>
-                </form> 
             </div>
+            </form>
         </div>
+    </div>
     </div>
 @endsection

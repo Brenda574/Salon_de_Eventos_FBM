@@ -30,16 +30,18 @@ return [
 
     'disks' => [
 
-        'local' => [
+        'publico' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => public_path('imagenes'),
+            'url' => env('APP_URL') . '/imagenes',
+            'visibility' => 'public',
             'throw' => false,
         ],
 
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],

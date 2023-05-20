@@ -259,3 +259,42 @@ body {
 .plegable:focus { 
     box-shadow: none;
 }
+
+
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: auto;
+  }
+
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.56);
+    transition: opacity 0.3s ease;
+  }
+  
+  .image-container:hover .overlay {
+    opacity: 1;
+  }
+
+
+  
+
+.btn.emp_button_plus {
+    position: relative;
+    z-index: 9999; /* Establece un nivel de apilamiento alto para el botón */
+}
+
+
+

@@ -7,7 +7,9 @@ use App\Models\Evento;
 use App\Models\Servicio;
 use App\Models\Paquete;
 use App\Models\Abono;
+use App\Models\Imagen;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
 {
@@ -84,7 +86,7 @@ class EventoController extends Controller
     {
         $usuario = Auth::user();
         $paquete = Paquete::find($request->input('paquete_id'));
-        
+
         $evento = Evento::find($id);
         $evento->nombre_evento = $request->input('nombre_evento');
         $evento->fecha = $request->input('fecha');
@@ -110,7 +112,7 @@ class EventoController extends Controller
             $evento->servicios()->detach();
             $evento->servicios()->attach($servicios, ['usuario_id' => $usuario->id, 'paquete_id' => $paquete->id]);
         }
-        
+
         return redirect()->route('sistema.cliente');
     }
 
@@ -120,5 +122,25 @@ class EventoController extends Controller
         $evento->servicios()->detach();
         $evento->delete();
         return redirect(route('sistema.cliente'));
+    }
+
+    public function subirImagen(Request $request, $idEvento)
+    {
+
+        $evento = Evento::findOrFail($idEvento);
+
+        // Subir la imagen al disco público
+        $imagen = $request->file('archivo');
+        $nombreArchivo = $imagen->getClientOriginalName();
+        $rutaImagen = $imagen->store('imagenes', 'publico');
+
+        // Crear una nueva imagen asociada al evento
+        $nuevaImagen = new Imagen();
+        $nuevaImagen->ruta_imagen = $rutaImagen;
+        $nuevaImagen->nombre = $nombreArchivo;
+
+        $evento->imagenes()->save($nuevaImagen);
+
+        return redirect(route('evento.showCliente', ['cual' => $idEvento]));
     }
 }
