@@ -15,7 +15,7 @@
     var msg = '{{Session::get('alert')}}';
     var exist = '{{Session::has('alert')}}';
     if(exist){
-      alert(msg);
+        alert(msg);
     }
 </script>
 
@@ -131,10 +131,12 @@
                                                 <a href="{{ route('paquete.edit', $item) }}"
                                                     class="btn text-decoration-none texto-color" title="Editar"><i
                                                         class="bi bi-pencil-square"></i></a>
-                                                <button type="submit" class="btn btn-link text-decoration-none texto-color"
-                                                    title="Eliminar">
-                                                    <i class="bi bi-trash3-fill"></i>
-                                                </button>
+                                                @can('delete', $item)
+                                                    <button type="submit" class="btn btn-link text-decoration-none texto-color"
+                                                        title="Eliminar">
+                                                        <i class="bi bi-trash3-fill"></i>
+                                                    </button>
+                                                @endcan
                                             </form>
                                         </td>
                                     </tr>

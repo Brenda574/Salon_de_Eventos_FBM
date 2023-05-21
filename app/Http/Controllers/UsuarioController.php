@@ -26,7 +26,6 @@ class UsuarioController extends Controller
         $nuevo->nombre = $request->input('nombre');
         $nuevo->usuario = $request->input('usuario');
         $nuevo->clave = Hash::make($request->input('clave'));
-        $nuevo->rol = $request->input('rol');
         $nuevo->save();
         return redirect(route('login'));
     }

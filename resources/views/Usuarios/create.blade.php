@@ -49,9 +49,9 @@
                                     <select class="form-select" aria-label="Default select example" aria-placeholder="ROL"
                                         id="rol" name="rol">
                                         <option selected></option>
-                                        <option value="1">Cliente</option>
-                                        <option value="2">Empleado</option>
-                                        <option value="3">Gerente</option>
+                                        <option value="Cliente">Cliente</option>
+                                        <option value="Empleado">Empleado</option>
+                                        <option value="Gerente">Gerente</option>
                                     </select>
                                 </div>
                             </div>
