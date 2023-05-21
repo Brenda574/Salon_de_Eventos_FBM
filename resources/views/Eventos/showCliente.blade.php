@@ -139,8 +139,12 @@
                                 <div><img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
                                         alt="{{ $imagen->nombre }}">
                                     <div class="overlay">
-                                        <button class="btn btn-link text-decoration-none texto-color" title="Eliminar">
-                                            <i class="bi bi-trash3-fill"></i></button>
+                                        <form action="{{ route('eliminar_imagen', $imagen->id) }}" method="post"
+                                            class="eliminar_imagen-form">
+                                            @csrf
+                                            <button class="btn btn-link text-decoration-none texto-color" title="Eliminar">
+                                                <i class="bi bi-trash3-fill"></i></button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

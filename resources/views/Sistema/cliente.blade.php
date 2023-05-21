@@ -46,9 +46,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a class="text-decoration-none texto-color" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseWidthExample" aria-expanded="false"
-                                    aria-controls="collapseWidthExample">
+                                <a class="text-decoration-none texto-color" onclick="mostrarGaleria({{ $evento->id }})">
                                     <i class="bi bi-images" style="font-size:20px;"></i>
                                 </a>
                             </td>
@@ -168,14 +166,66 @@
         <hr>
         <div class="container_galery">
             <h4>Galeria</h4>
-            <div class="collapse" id="collapseWidthExample">
-                <form action="">
-
-                    <div class="lightbox-gallery">
-                    </div>
-            </div>
-            </form>
+            <div id="galeriaContenido" class="image-container"></div>
         </div>
     </div>
     </div>
 @endsection
+
+<script>
+    function mostrarGaleria(eventoId) {
+        var contenedorId = "galeriaContenido_" + eventoId;
+        var galeriaContenedor = document.getElementById("galeriaContenido");
+
+        // Verificar si el evento actual ya está abierto
+        var isEventoAbierto = galeriaContenedor.dataset.eventoId === eventoId.toString();
+
+        if (isEventoAbierto) {
+            // Si el evento actual ya está abierto, contraerlo
+            galeriaContenedor.style.display = "none";
+            galeriaContenedor.innerHTML = "";
+            galeriaContenedor.removeAttribute("data-evento-id");
+        } else {
+            // Si el evento actual no está abierto, mostrar su contenido
+            galeriaContenedor.style.display = "block";
+            galeriaContenedor.innerHTML = "";
+            galeriaContenedor.setAttribute("data-evento-id", eventoId);
+
+            @foreach ($imagenesEvento as $imagen)
+                if ({{ $imagen->evento_id }} === eventoId) {
+                    var imagenHTML = document.createElement("div");
+                    imagenHTML.classList.add("image-container");
+
+                    var imagenElement = document.createElement("img");
+                    imagenElement.src = "{{ asset('imagenes/') }}/{{ $imagen->ruta_imagen }}";
+                    imagenElement.alt = "{{ $imagen->nombre }}";
+                    imagenElement.style.maxWidth = "300px";
+                    imagenElement.style.height = "auto";
+                    imagenElement.style.margin = "10px";
+                    galeriaContenedor.style.display = "grid";
+                    galeriaContenedor.style.gridTemplateColumns = "repeat(auto-fit, minmax(300px, 1fr))";
+                    galeriaContenedor.style.gridGap = "10px";
+                    galeriaContenedor.style.justifyItems = "center";
+
+                    imagenHTML.appendChild(imagenElement);
+                    galeriaContenedor.appendChild(imagenHTML);
+                }
+            @endforeach
+        }
+    }
+</script>
+
+<style>
+    #galeriaContenido {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #galeriaContenido img {
+        max-width: 300px;
+        height: auto;
+        display: block;
+        margin: auto;
+    }
+</style>

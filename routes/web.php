@@ -38,6 +38,8 @@ Route::get('/Evento/Crear', [EventoController::class, 'create'])->name('evento.c
 Route::post('Evento/Guardar', [EventoController::class, 'store'])->name('evento.store');
 Route::delete('Evento/Borrar/{cual?}', [EventoController::class, 'destroy'])->name('evento.destroy');
 Route::post('evento/{idEvento}/subir-imagen', [EventoController::class, 'subirImagen'])->name('subir_imagen');
+Route::post('/eliminar-imagen/{id}', [EventoController::class, 'eliminar'])->name('eliminar_imagen');
+
 
 Route::get('/Paquete/Crear', [PaqueteController::class, 'create'])->name('paquete.create')->middleware('auth');
 Route::get('/Paquete/Detalles/{cual?}', [PaqueteController::class, 'show'])->name('paquete.show')->middleware('auth');

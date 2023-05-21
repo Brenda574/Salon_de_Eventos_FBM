@@ -7,6 +7,7 @@ use App\Models\Servicio;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Evento;
+use App\Models\Imagen;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -81,6 +82,7 @@ class SistemaController extends Controller
         $eventos = Evento::where('usuario_id', Auth::user()->id)->get();
         $paquetes = Paquete::all();
         $servicios = Servicio::all();
-        return view('Sistema.cliente', compact('eventos', 'paquetes', 'servicios'));
+        $imagenesEvento = Imagen::all();
+        return view('Sistema.cliente', compact('eventos', 'paquetes', 'servicios', 'imagenesEvento'));
     }
 }

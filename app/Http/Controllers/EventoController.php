@@ -143,4 +143,22 @@ class EventoController extends Controller
 
         return redirect(route('evento.showCliente', ['cual' => $idEvento]));
     }
+
+    public function eliminar($id)
+    {
+        $imagen = Imagen::findOrFail($id);
+
+        // Elimina la imagen de la base de datos
+        $imagen->delete();
+
+        // Elimina la imagen del disco público
+        Storage::disk('publico')->delete($imagen->ruta_imagen);
+
+        return redirect()->back();
+    }
+
+    public function mostrarGaleria($idEvento)
+    {
+        return redirect(route("sistema.cliente"));
+    }
 }

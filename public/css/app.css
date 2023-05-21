@@ -296,5 +296,20 @@ body {
     z-index: 9999; /* Establece un nivel de apilamiento alto para el botón */
 }
 
+.galeria-imagen ¿{
+    max-width: 100%; /* Establecer el ancho máximo */
+    height: auto; /* Ajustar la altura automáticamente */
+}
 
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+    justify-items: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
 
