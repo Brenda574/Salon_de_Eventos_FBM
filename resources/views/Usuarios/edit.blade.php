@@ -51,9 +51,9 @@
                                     <small>ROL</small>
                                     <select class="form-select" aria-label="Default select example" aria-placeholder="ROL"
                                         value="{{ $usuario->rol }}" name="rol" id="rol">
-                                        <option selected value="1">Cliente</option>
-                                        <option value="2">Empleado</option>
-                                        <option value="3">Gerente</option>
+                                        <option value="Cliente">Cliente</option>
+                                        <option value="Empleado">Empleado</option>
+                                        <option value="Gerente">Gerente</option>
                                     </select>
                                 </div>
                             </div>
