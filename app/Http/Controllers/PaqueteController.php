@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Paquete;
 use App\Models\Servicio;
-use App\Models\Evento;
 
 class PaqueteController extends Controller
 {
@@ -42,20 +41,9 @@ class PaqueteController extends Controller
 
     public function edit(string $id)
     {
-        $aux = False;
-        $eventos = Evento::all();
         $paquete = Paquete::find($id);
-        foreach ($eventos as $evento) {
-            if  ($evento->paquete_id == $paquete->id && $evento->estatus == "SinConfirmar") {
-                $aux = True;
-                break;
-            }
-        }
-        if ($aux) {
-            return redirect()->back()->with('alert', 'Oh no! No es posible editar el paquete.');
-        } else {
-            return view('Paquetes.edit', compact('paquete'));
-        }
+        //return redirect()->back()->with('alert', 'Oh no! No es posible editar el paquete.');
+        return view('Paquetes.edit', compact('paquete'));
     }
 
     public function update(Request $request, string $id)
@@ -72,20 +60,9 @@ class PaqueteController extends Controller
 
     public function destroy(string $id)
     {
-        $aux = False;
-        $eventos = Evento::all();
         $paquete = Paquete::find($id);
-        foreach ($eventos as $evento) {
-            if  ($evento->paquete_id == $paquete->id) {
-                $aux = True;
-                break;
-            }
-        }
-        if ($aux) {
-            return redirect()->back()->with('alert', 'Oh no! No es posible eliminar el paquete ya que se encunetra en un evento activo.');
-        } else {
-            $paquete->delete();
-            return redirect(route('sistema.gerente'));
-        }
+        $paquete->delete();
+        return redirect(route('sistema.gerente'));
+        //return redirect()->back()->with('alert', 'Oh no! No es posible eliminar el paquete ya que se encunetra en un evento activo.');
     }
 }

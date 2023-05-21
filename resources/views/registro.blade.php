@@ -43,10 +43,6 @@
                                             <input type="password" id="clave" name="clave"
                                                 placeholder="Contraseña" class="form-control" />
                                         </div>
-                                        <div class="form-outline mb-4">
-                                            <input type="hidden" id="rol" name="rol" value="Cliente"
-                                                class="form-control" />
-                                        </div>
                                         <div class="text-center pt-1 mb-5 pb-1">
                                             <div>
                                                 <button type="submit" class="btn boton4 custom-2 mb-3" style="background-color: #E1D5D5; transition: all 0.35s;">Registrar</button>

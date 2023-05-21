@@ -1,8 +1,10 @@
 @extends('plantilla.layout')
 
+@can('view', $paquete)
 @section('usuario')
     <li><a class="nav-link" href="{{ route('sistema.gerente') }}">Inicio</a></li>
 @endsection
+@endcan
 
 @section('authenticacion')
     <li class="nav-item dropdown">
@@ -13,6 +15,7 @@
     </li>
 @endsection
 
+@can('view', $paquete)
 @section('contenido')
     <div class="container">
         <br>
@@ -79,3 +82,4 @@
         </div>
     </div>
 @endsection
+@endcan
