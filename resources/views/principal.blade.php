@@ -1,8 +1,10 @@
 @extends('plantilla.layout')
 
 @section('usuario')
+    @unless (Auth::check())
     <li><a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a></li>
     <li><a class="nav-link" href="{{ route('registro') }}">Registrarse </a></li>
+    @endunless
 @endsection
 
 @section('contenido')
@@ -90,8 +92,10 @@ height: 400px; width: 100%;
                                 </div>-->
                             </div>
                             <div class="card-footer text-center" style="background-color:#d3ded4">
+                                @unless (Auth::check())
                                 <div><a href="{{ route('login') }}" class="btn btnCotizar">Cotizar</a>
                                 </div>
+                                @endunless
                             </div>
                         </div>
                     </div>

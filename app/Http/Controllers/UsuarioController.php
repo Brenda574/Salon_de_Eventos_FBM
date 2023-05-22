@@ -17,6 +17,7 @@ class UsuarioController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Usuario::class);
         return view('Usuarios.create');
     }
 
@@ -32,6 +33,7 @@ class UsuarioController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('create', Usuario::class);
         $nuevo = new Usuario();
         $nuevo->nombre = $request->input('nombre');
         $nuevo->usuario = $request->input('usuario');
@@ -43,18 +45,21 @@ class UsuarioController extends Controller
 
     public function show(string $id)
     {
+        $this->authorize('view', Usuario::find($id));
         $usuario = Usuario::find($id);
         return view('Usuarios.show', compact('usuario'));
     }
 
     public function edit($id)
     {
+        $this->authorize('update', Usuario::find($id));
         $usuario = Usuario::find($id);
         return view('Usuarios.edit', compact('usuario'));
     }
 
     public function update(Request $request, $id)
     {
+        $this->authorize('update', Usuario::find($id));
         $usuario = Usuario::find($id);
         $usuario->nombre = $request->input('nombre');
         $usuario->usuario = $request->input('usuario');
@@ -68,20 +73,10 @@ class UsuarioController extends Controller
 
     public function destroy(string $id)
     {
-        $aux = False;
-        $eventos = Evento::all();
+        $this->authorize('delete', Usuario::find($id));
         $usuario = Usuario::find($id);
-        foreach ($eventos as $evento) {
-            if  ($evento->usuario_id == $usuario->id) {
-                $aux = True;
-                break;
-            }
-        }
-        if (!$aux) {
-            $usuario->delete();
-            return redirect(route('sistema.gerente'));
-        } else {
-            return redirect()->back()->with('alert', 'Oh no! No es posible eliminar ya que el usuario tiene eventos activos.');
-        }
+        $usuario->delete();
+        return redirect(route('sistema.gerente'));
+        #return redirect()->back()->with('alert', 'Oh no! No es posible eliminar ya que el usuario tiene eventos activos.');
     }
 }

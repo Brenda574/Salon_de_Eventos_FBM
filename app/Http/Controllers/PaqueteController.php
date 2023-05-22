@@ -17,11 +17,13 @@ class PaqueteController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Paquete::class);
         return view('Paquetes.create');
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Paquete::class);
         $nuevo = new Paquete();
         $nuevo->nombre = $request->input('nombre');
         $nuevo->capacidad_maxima = $request->input('capacidad');
@@ -35,12 +37,14 @@ class PaqueteController extends Controller
 
     public function show(string $id)
     {
+        $this->authorize('view', Paquete::find($id));
         $paquete = Paquete::find($id);
         return view('Paquetes.show', compact('paquete'));
     }
 
     public function edit(string $id)
     {
+        $this->authorize('update', Paquete::find($id));
         $paquete = Paquete::find($id);
         //return redirect()->back()->with('alert', 'Oh no! No es posible editar el paquete.');
         return view('Paquetes.edit', compact('paquete'));
@@ -48,6 +52,7 @@ class PaqueteController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $this->authorize('update', Paquete::find($id));
         $paquete = Paquete::find($id);
         $paquete->nombre = $request->input('nombre');
         $paquete->capacidad_maxima = $request->input('capacidad');
@@ -60,6 +65,7 @@ class PaqueteController extends Controller
 
     public function destroy(string $id)
     {
+        $this->authorize('delete', Paquete::find($id));
         $paquete = Paquete::find($id);
         $paquete->delete();
         return redirect(route('sistema.gerente'));

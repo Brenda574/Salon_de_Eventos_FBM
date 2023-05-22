@@ -1,16 +1,5 @@
 @extends('plantilla.layout')
 
-@section('authenticacion')
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-            <i class="bi bi-person-circle"></i> {{ Auth::user()->nombre }}
-        </a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
-        </ul>
-    </li>
-@endsection
-
 <script>
     var msg = '{{Session::get('alert')}}';
     var exist = '{{Session::has('alert')}}';
@@ -61,16 +50,17 @@
                                             <form action="{{ route('usuario.destroy', $item) }}" method="post">
                                                 @method('DELETE')
                                                 @csrf
-                                                <a href="{{ route('usuario.show', $item) }}"
-                                                    class="btn text-decoration-none texto-color" title="Detalles"><i
-                                                        class="bi bi-card-heading"></i></a>
-                                                <a href="{{ route('usuario.edit', $item) }}"
-                                                    class="btn text-decoration-none texto-color" title="Editar"><i
-                                                        class="bi bi-pencil-square"></i></a>
-                                                <button type="submit" class="btn btn-link text-decoration-none texto-color"
-                                                    title="Eliminar">
+                                                <a href="{{ route('usuario.show', $item) }}" class="btn text-decoration-none texto-color" title="Detalles">
+                                                    <i class="bi bi-card-heading"></i>
+                                                </a>
+                                                <a href="{{ route('usuario.edit', $item) }}" class="btn text-decoration-none texto-color" title="Editar">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                                @can('delete', $item)
+                                                <button type="submit" class="btn btn-link text-decoration-none texto-color" title="Eliminar">
                                                     <i class="bi bi-trash3-fill"></i>
                                                 </button>
+                                                @endcan
                                             </form>
                                         </td>
                                     </tr>
@@ -126,11 +116,13 @@
                                                 @method('DELETE')
                                                 @csrf
                                                 <a href="{{ route('paquete.show', $item) }}"
-                                                    class="btn text-decoration-none texto-color" title="Detalles"><i
-                                                        class="bi bi-card-heading"></i></a>
-                                                <a href="{{ route('paquete.edit', $item) }}"
-                                                    class="btn text-decoration-none texto-color" title="Editar"><i
-                                                        class="bi bi-pencil-square"></i></a>
+                                                    class="btn text-decoration-none texto-color" title="Detalles">
+                                                    <i class="bi bi-card-heading"></i></a>
+                                                @can('update', $item)
+                                                    <a href="{{ route('paquete.edit', $item) }}"
+                                                        class="btn text-decoration-none texto-color" title="Editar">
+                                                        <i class="bi bi-pencil-square"></i></a>
+                                                @endcan
                                                 @can('delete', $item)
                                                     <button type="submit" class="btn btn-link text-decoration-none texto-color"
                                                         title="Eliminar">
@@ -181,16 +173,20 @@
                                                 @method('DELETE')
                                                 @csrf
                                                 <a href="{{ route('servicio.show', $item) }}"
-                                                    class="btn text-decoration-none texto-color" title="Detalles"><i
-                                                        class="bi bi-card-heading"></i></a>
-                                                <a href="{{ route('servicio.edit', $item) }}"
-                                                    class="btn text-decoration-none texto-color" title="Editar"><i
-                                                        class="bi bi-pencil-square"></i></a>
-                                                <button type="submit"
-                                                    class="btn btn-link text-decoration-none texto-color"
-                                                    title="Eliminar">
-                                                    <i class="bi bi-trash3-fill"></i>
-                                                </button>
+                                                    class="btn text-decoration-none texto-color" title="Detalles">
+                                                    <i class="bi bi-card-heading"></i></a>
+                                                @can('update', $item)
+                                                    <a href="{{ route('servicio.edit', $item) }}"
+                                                        class="btn text-decoration-none texto-color" title="Editar">
+                                                        <i class="bi bi-pencil-square"></i></a>
+                                                @endcan
+                                                @can('delete', $item)
+                                                    <button type="submit"
+                                                        class="btn btn-link text-decoration-none texto-color"
+                                                        title="Eliminar">
+                                                        <i class="bi bi-trash3-fill"></i>
+                                                    </button>
+                                                @endcan
                                             </form>
                                         </td>
                                     </tr>

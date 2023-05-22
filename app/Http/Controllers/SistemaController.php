@@ -7,6 +7,7 @@ use App\Models\Servicio;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Evento;
+use App\Policies\SistemaPolicy;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -22,14 +23,6 @@ class SistemaController extends Controller
     public function registro()
     {
         return view('registro');
-    }
-
-    public function indexGerente()
-    {
-        $paquetes = Paquete::all();
-        $usuarios = Usuario::all();
-        $servicios = Servicio::all();
-        return view('Sistema.gerente', compact('usuarios', 'paquetes', 'servicios'));
     }
 
     public function facceder(Request $acceso)
@@ -73,11 +66,22 @@ class SistemaController extends Controller
 
     public function empleado()
     {
+        $this->authorize('viewEmpleado', Usuario::class);
         return view('Sistema.empleado');
+    }
+
+    public function gerente()
+    {
+        $this->authorize('viewGerente', Usuario::class);
+        $paquetes = Paquete::all();
+        $usuarios = Usuario::all();
+        $servicios = Servicio::all();
+        return view('Sistema.gerente', compact('usuarios', 'paquetes', 'servicios'));
     }
 
     public function cliente()
     {
+        $this->authorize('viewCliente', Usuario::class);
         $eventos = Evento::where('usuario_id', Auth::user()->id)->get();
         $paquetes = Paquete::all();
         $servicios = Servicio::all();
