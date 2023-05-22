@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Paquete;
 use App\Models\Servicio;
-use App\Models\ImagenPaquete;
-use Illuminate\Support\Facades\Storage;
+
 
 class PaqueteController extends Controller
 {
