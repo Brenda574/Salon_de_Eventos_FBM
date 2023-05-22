@@ -67,7 +67,8 @@ class SistemaController extends Controller
     public function empleado()
     {
         $this->authorize('viewEmpleado', Usuario::class);
-        return view('Sistema.empleado');
+        $eventos = Evento::all();
+        return view('Sistema.empleado', compact('eventos'));
     }
 
     public function gerente()

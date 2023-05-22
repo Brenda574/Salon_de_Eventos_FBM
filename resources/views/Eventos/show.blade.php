@@ -4,19 +4,6 @@
     <li><a class="nav-link" href="{{ route('sistema.empleado') }}">Inicio</a></li>
 @endsection
 
-<<<<<<< HEAD
-@section('authenticacion')
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i
-                class="bi bi-person-circle"></i> {{ Auth::user()->nombre }}</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
-        </ul>
-    </li>
-@endsection
-
-=======
->>>>>>> 8d3b5a8af57ac4e74c9a813dfc5ce3df2b19eed0
 @section('contenido')
     <div class="container">
         <br>
@@ -27,7 +14,7 @@
             </div>
             <div class="col">
                 <small>EVENTO</small>
-                <h3 class="label fw-bold" style="color: #af9495">Boda E&A</h3>
+                <h3 class="label fw-bold" style="color: #af9495">{{ $evento->nombre_evento }}</h3>
             </div>
         </div>
         <hr>
@@ -45,27 +32,37 @@
                 <div class="row">
                     <div class="col text-center">
                         <small>PAQUETE</small>
-                        <p class="label fw-bold">Boda</p>
+                        <p class="label fw-bold">{{ $evento->paquete_id }}</p>
                     </div>
                     <div class="col text-center">
                         <small>CLIENTE</small>
-                        <p class="label fw-bold">Cliente 1</p>
+                        <p class="label fw-bold">{{ $evento->usuario_id }}</p>
                     </div>
                     <div class="col text-center">
                         <small>Fecha</small>
-                        <p class="label fw-bold">20/03/2023</p>
+                        <p class="label fw-bold">{{ $evento->fecha }}</p>
                     </div>
                     <div class="col text-center">
                         <small>Hora Inicio</small>
-                        <p class="label fw-bold">10:00 am</p>
+                        <p class="label fw-bold">{{ $evento->hora_inicio }}</p>
                     </div>
                     <div class="col text-center">
-                        <small>Hora Fin</small>
-                        <p class="label fw-bold">11:00 pm</p>
+                        <small>Hora Final</small>
+                        <p class="label fw-bold">{{ $evento->hora_final }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <small>No. Invitados</small>
+                        <p class="label fw-bold">{{ $evento->num_invitados }}</p>
+                    </div>
+                    <div class="col text-center">
+                        <small>Proposito</small>
+                        <p class="label fw-bold">{{ $evento->proposito }}</p>
                     </div>
                     <div class="col text-center">
                         <small>Costo</small>
-                        <p class="label fw-bold">$15,000.00</p>
+                        <p class="label fw-bold">${{ $evento->costo }}</p>
                     </div>
                 </div>
             </div>

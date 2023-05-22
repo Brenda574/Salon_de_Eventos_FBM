@@ -18,22 +18,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Boda Premium</td>
-                    <td>Cliente 1</td>
-                    <td>20/03/2023</td>
-                    <td><input class="form-check-input" type="checkbox" value="" checked disabled></td>
-                    <td><a href="{{ route('evento.show') }}" class="btn emp_button_plus"><i class="bi bi-three-dots-vertical"></i></a></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Evento Empresarial</td>
-                    <td>Cliente 2</td>
-                    <td>08/09/2023</td>
-                    <td><input class="form-check-input" type="checkbox" value="" disabled></td>
-                    <td><a href="{{ route('evento.show') }}" class="btn emp_button_plus"><i class="bi bi-three-dots-vertical"></i></a></td>
-                </tr>
+                @foreach ($eventos as $evento)
+                    <tr>
+                        <th scope="row">{{ $evento->id }}</th>
+                        <td>{{ $evento->nombre_evento }}</td>
+                        <td>{{ $evento->usuario_id }}</td>
+                        <td>{{ $evento->fecha }}</td>
+                        <td>
+                            @if ($evento['estatus'] == 'Confirmado')
+                                <input class="form-check-input" type="checkbox" value="" checked disabled>
+                            @else
+                                <input class="form-check-input" type="checkbox" value="" disabled>
+                            @endif
+                        </td>
+                        <td><a href="{{ route('evento.show', $evento->id) }}" class="btn emp_button_plus"><i class="bi bi-three-dots-vertical"></i></a></td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
