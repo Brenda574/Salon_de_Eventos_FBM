@@ -23,6 +23,7 @@ class PaqueteController extends Controller
         return view('Paquetes.create');
     }
 
+
     public function store(Request $request)
     {
         $this->authorize('create', Paquete::class);
@@ -71,38 +72,5 @@ class PaqueteController extends Controller
         $paquete->delete();
         return redirect(route('sistema.gerente'));
         //return redirect()->back()->with('alert', 'Oh no! No es posible eliminar el paquete ya que se encunetra en un evento activo.');
-    }
-
-    public function subirImgPaquete(Request $request, $idPaquete)
-    {
-
-        $paquete = Paquete::findOrFail($idPaquete);
-
-        // Subir la imagen al disco público
-        $imagen = $request->file('archivoPaquete');
-        $nombreArchivo = $imagen->getClientOriginalName();
-        $rutaImagen = $imagen->store('imagenes', 'publico');
-
-        // Crear una nueva imagen asociada al evento
-        $nuevaImagen = new ImagenPaquete();
-        $nuevaImagen->ruta_imagen = $rutaImagen;
-        $nuevaImagen->nombre = $nombreArchivo;
-
-        $paquete->imagenes()->save($nuevaImagen);
-
-        return redirect(route('paquete.create', ['cual' => $idPaquete]));
-    }
-
-    public function eliminarImgEliminar($id)
-    {
-        $imagen = ImagenPaquete::findOrFail($id);
-
-        // Elimina la imagen de la base de datos
-        $imagen->delete();
-
-        // Elimina la imagen del disco público
-        Storage::disk('publico')->delete($imagen->ruta_imagen);
-
-        return redirect()->back();
     }
 }

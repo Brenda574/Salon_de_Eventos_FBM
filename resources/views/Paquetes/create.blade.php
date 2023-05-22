@@ -4,6 +4,16 @@
     <li><a class="nav-link" href="{{ route('sistema.gerente') }}">Inicio</a></li>
 @endsection
 
+@section('authenticacion')
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i
+                class="bi bi-person-circle"></i> {{ Auth::user()->nombre }}</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
+        </ul>
+    </li>
+@endsection
+
 @section('contenido')
     <div class="container">
         <br>
@@ -58,22 +68,6 @@
                     </p>
                     <div class="row">
                         <div class="lightbox-gallery">
-                            @foreach ($paquete->imagenesPaquete as $imagenPaquete)
-                                <div class="image-container">
-                                    <div><img src="{{ asset('imagenes/' . $imagenPaquete->ruta) }}"
-                                            alt="{{ $imagenPaquete->nombre }}">
-                                        <div class="overlay">
-                                            <form action="{{ route('eliminar_imagen_paquete', $imagenPaquete->id) }}"
-                                                method="post" class="eliminar_imagen-form">
-                                                @csrf
-                                                <button class="btn btn-link text-decoration-none texto-color"
-                                                    title="Eliminar">
-                                                    <i class="bi bi-trash3-fill"></i></button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-center">
                             <a class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarFoto"><i
@@ -100,16 +94,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('subir_imagen_paquete', ['idPaquete' => $paquete->id]) }}" method="post"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <input class="form-control" type="file" name="archivoPaquete" id="archivPaquete">
-                        </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button type="submit" class="btn emp_button">Aceptar</button>
-                        </div>
-                    </form>
+                    <div class="mb-3">
+                        <input class="form-control" type="file">
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button type="submit" class="btn emp_button">Aceptar</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -13,4 +13,9 @@ class Paquete extends Model
     {
         return $this->hasMany('App\Models\Evento');
     }
+
+    public function ImagenesPaquetesHasMany()
+    {
+        return $this->hasMany(Paquete::class);
+    }
 }
