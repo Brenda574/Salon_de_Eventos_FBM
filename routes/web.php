@@ -27,7 +27,7 @@ Route::post('/Acceder', [SistemaController::class, 'facceder'])->name('acceder')
 Route::get('/Registrar', [SistemaController::class, 'registro'])->name('registro');
 
 Route::get('/Empleado', [SistemaController::class, 'empleado'])->name('sistema.empleado')->middleware('auth');
-Route::get('/Gerente', [SistemaController::class, 'indexGerente'])->name('sistema.gerente')->middleware('auth', 'can:create,App\Models\Paquete');
+Route::get('/Gerente', [SistemaController::class, 'gerente'])->name('sistema.gerente')->middleware('auth');
 Route::get('/Cliente', [SistemaController::class, 'cliente'])->name('sistema.cliente')->middleware('auth');
 
 Route::get('Empleado/Evento/Detalles/{cual?}', [EventoController::class, 'show'])->name('evento.show')->middleware('auth');
@@ -42,8 +42,7 @@ Route::post('evento/{idEvento}/subir-imagen', [EventoController::class, 'subirIm
 Route::post('/eliminar-imagen/{id}', [EventoController::class, 'eliminar'])->name('eliminar_imagen');
 Route::post('Eventos/eliminar-imagen/{id}', [EventoController::class, 'eliminarEmpleado'])->name('eliminar_imagen_empleado');
 
-
-Route::get('/Paquete/Crear', [PaqueteController::class, 'create'])->name('paquete.create')->middleware('auth', 'can:create,App\Models\Paquete');
+Route::get('/Paquete/Crear', [PaqueteController::class, 'create'])->name('paquete.create')->middleware('auth');
 Route::get('/Paquete/Detalles/{cual?}', [PaqueteController::class, 'show'])->name('paquete.show')->middleware('auth');
 Route::get('/Paquete/Editar/{cual?}', [PaqueteController::class, 'edit'])->name('paquete.edit')->middleware('auth');
 Route::put('/Paquete/Editar/{cual?}', [PaqueteController::class, 'update'])->name('paquete.update');

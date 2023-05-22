@@ -15,11 +15,13 @@ class ServicioController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Servicio::class);
         return view('Servicios.create');
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Servicio::class);
         $nuevo = new Servicio();
         $nuevo->nombre = $request->input('nombre');
         $nuevo->costo = $request->input('costo');
@@ -30,37 +32,21 @@ class ServicioController extends Controller
 
     public function show(string $id)
     {
+        $this->authorize('view', Servicio::find($id));
         $servicio = Servicio::find($id);
         return view('Servicios.show', compact('servicio'));
     }
 
     public function edit(string $id)
     {
-        $aux = False;
-        $eventos = Evento::all();
+        $this->authorize('update', Servicio::find($id));
         $servicio = Servicio::find($id);
-
-        foreach ($eventos as $evento) {
-            if ($evento->estatus == "SinConfirmar") {
-                $servicios_eventos = $evento->servicios;
-                foreach ($servicios_eventos as $serv) {
-                    if ($serv->pivot->servicio_id == $servicio->id) {
-                        $aux = true;
-                        break;
-                    }
-                }
-            }
-        }
-
-        if ($aux) {
-            return redirect()->back()->with('alert', 'Oh no! No es posible editar el servicio.');
-        } else {
-            return view('Servicios.edit', compact('servicio'));
-        }
+        return view('Servicios.edit', compact('servicio'));
     }
 
     public function update(Request $request, string $id)
     {
+        $this->authorize('update', Servicio::find($id));
         $servicio = Servicio::find($id);
         $servicio->nombre = $request->input('nombre');
         $servicio->costo = $request->input('costo');
@@ -71,25 +57,8 @@ class ServicioController extends Controller
 
     public function destroy(string $id)
     {
-        $aux = False;
-        $eventos = Evento::all();
         $servicio = Servicio::find($id);
-
-        foreach ($eventos as $evento) {
-            $servicios_eventos = $evento->servicios;
-            foreach ($servicios_eventos as $serv) {
-                if ($serv->pivot->servicio_id == $servicio->id) {
-                    $aux = true;
-                    break;
-                }
-            }
-        }
-
-        if ($aux) {
-            return redirect()->back()->with('alert', 'Oh no! No es posible eliminar el servicio.');
-        } else {
-            $servicio->delete();
-            return redirect(route('sistema.gerente'));
-        }
+        $servicio->delete();
+        return redirect(route('sistema.gerente'));
     }
 }

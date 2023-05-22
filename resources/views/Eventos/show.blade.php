@@ -4,6 +4,7 @@
     <li><a class="nav-link" href="{{ route('sistema.empleado') }}">Inicio</a></li>
 @endsection
 
+<<<<<<< HEAD
 @section('authenticacion')
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i
@@ -14,6 +15,8 @@
     </li>
 @endsection
 
+=======
+>>>>>>> 8d3b5a8af57ac4e74c9a813dfc5ce3df2b19eed0
 @section('contenido')
     <div class="container">
         <br>

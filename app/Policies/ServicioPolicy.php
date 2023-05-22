@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Servicio;
 use App\Models\Usuario;
+use App\Models\Evento;
 use Illuminate\Auth\Access\Response;
 
 class ServicioPolicy
@@ -13,7 +14,7 @@ class ServicioPolicy
      */
     public function viewAny(Usuario $usuario): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +22,11 @@ class ServicioPolicy
      */
     public function view(Usuario $usuario, Servicio $servicio): bool
     {
-        //
+        if ($usuario->rol == "Gerente") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -29,7 +34,11 @@ class ServicioPolicy
      */
     public function create(Usuario $usuario): bool
     {
-        //
+        if ($usuario->rol == "Gerente") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -37,7 +46,22 @@ class ServicioPolicy
      */
     public function update(Usuario $usuario, Servicio $servicio): bool
     {
-        //
+        if ($usuario->rol == "Gerente") {
+            $eventos = Evento::all();
+            foreach ($eventos as $evento) {
+                if ($evento->estatus == "SinConfirmar") {
+                    $servicios_eventos = $evento->servicios;
+                    foreach ($servicios_eventos as $serv) {
+                        if ($serv->pivot->servicio_id == $servicio->id) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -45,7 +69,20 @@ class ServicioPolicy
      */
     public function delete(Usuario $usuario, Servicio $servicio): bool
     {
-        //
+        if ($usuario->rol == "Gerente") {
+            $eventos = Evento::all();
+            foreach ($eventos as $evento) {
+                $servicios_eventos = $evento->servicios;
+                foreach ($servicios_eventos as $serv) {
+                    if ($serv->pivot->servicio_id == $servicio->id) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -53,7 +90,7 @@ class ServicioPolicy
      */
     public function restore(Usuario $usuario, Servicio $servicio): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +98,6 @@ class ServicioPolicy
      */
     public function forceDelete(Usuario $usuario, Servicio $servicio): bool
     {
-        //
+        return true;
     }
 }
