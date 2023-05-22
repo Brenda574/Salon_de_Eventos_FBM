@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Paquete;
 use App\Models\Servicio;
+use App\Models\ImagenPaquete;
+use Illuminate\Support\Facades\Storage;
 
 class PaqueteController extends Controller
 {
@@ -12,7 +14,7 @@ class PaqueteController extends Controller
     {
         $paquetes = Paquete::all();
         $servicios = Servicio::all();
-        return view('principal', compact('paquetes','servicios'));
+        return view('principal', compact('paquetes', 'servicios'));
     }
 
     public function create()
@@ -27,7 +29,6 @@ class PaqueteController extends Controller
         $nuevo->capacidad_maxima = $request->input('capacidad');
         $nuevo->costo = $request->input('costo');
         $nuevo->descripcion = $request->input('descripcion');
-        $nuevo->ruta_imagen = $request->input('ruta_img');
         $nuevo->estatus = $request->input('estatus');
         $nuevo->save();
         return redirect(route('sistema.gerente'));
@@ -64,5 +65,38 @@ class PaqueteController extends Controller
         $paquete->delete();
         return redirect(route('sistema.gerente'));
         //return redirect()->back()->with('alert', 'Oh no! No es posible eliminar el paquete ya que se encunetra en un evento activo.');
+    }
+
+    public function subirImgPaquete(Request $request, $idPaquete)
+    {
+
+        $paquete = Paquete::findOrFail($idPaquete);
+
+        // Subir la imagen al disco público
+        $imagen = $request->file('archivoPaquete');
+        $nombreArchivo = $imagen->getClientOriginalName();
+        $rutaImagen = $imagen->store('imagenes', 'publico');
+
+        // Crear una nueva imagen asociada al evento
+        $nuevaImagen = new ImagenPaquete();
+        $nuevaImagen->ruta_imagen = $rutaImagen;
+        $nuevaImagen->nombre = $nombreArchivo;
+
+        $paquete->imagenes()->save($nuevaImagen);
+
+        return redirect(route('paquete.create', ['cual' => $idPaquete]));
+    }
+
+    public function eliminarImgEliminar($id)
+    {
+        $imagen = ImagenPaquete::findOrFail($id);
+
+        // Elimina la imagen de la base de datos
+        $imagen->delete();
+
+        // Elimina la imagen del disco público
+        Storage::disk('publico')->delete($imagen->ruta_imagen);
+
+        return redirect()->back();
     }
 }

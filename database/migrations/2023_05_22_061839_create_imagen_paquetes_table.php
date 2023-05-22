@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('paquetes', function (Blueprint $table) {
+        Schema::create('imagen_paquetes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('evento_id');
+            $table->foreign('paquete_id')->references('id')->on('paquetes')->onDelete('cascade');
+            $table->string('ruta');
             $table->string('nombre');
-            $table->integer('capacidad_maxima')->unsigned();
-            $table->double('costo');
-            $table->text('descripcion');
-            $table->enum('estatus', ['Activo', 'Inactivo'])->default('Inactivo');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('paquetes');
+        Schema::dropIfExists('imagen_paquetes');
     }
 };

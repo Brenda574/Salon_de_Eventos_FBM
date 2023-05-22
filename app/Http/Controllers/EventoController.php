@@ -61,7 +61,11 @@ class EventoController extends Controller
 
     public function show(string $id)
     {
-        return view('Eventos.show');
+        $evento = Evento::find($id);
+        $paquetes = Paquete::all();
+        $servicios = Servicio::all();
+        $abonos = Abono::all();
+        return view('Eventos.show', compact('evento', 'paquetes', 'servicios', 'abonos'));
     }
 
     public function showCliente(string $id)
@@ -144,7 +148,40 @@ class EventoController extends Controller
         return redirect(route('evento.showCliente', ['cual' => $idEvento]));
     }
 
+    public function subirImagenEmpleado(Request $request, $idEvento)
+    {
+
+        $evento = Evento::findOrFail($idEvento);
+
+        // Subir la imagen al disco público
+        $imagen = $request->file('archivoEmpleado');
+        $nombreArchivo = $imagen->getClientOriginalName();
+        $rutaImagen = $imagen->store('imagenes', 'publico');
+
+        // Crear una nueva imagen asociada al evento
+        $nuevaImagen = new Imagen();
+        $nuevaImagen->ruta_imagen = $rutaImagen;
+        $nuevaImagen->nombre = $nombreArchivo;
+
+        $evento->imagenes()->save($nuevaImagen);
+
+        return redirect(route('evento.show', ['cual' => $idEvento]));
+    }
+
     public function eliminar($id)
+    {
+        $imagen = Imagen::findOrFail($id);
+
+        // Elimina la imagen de la base de datos
+        $imagen->delete();
+
+        // Elimina la imagen del disco público
+        Storage::disk('publico')->delete($imagen->ruta_imagen);
+
+        return redirect()->back();
+    }
+
+    public function eliminarEmpleado($id)
     {
         $imagen = Imagen::findOrFail($id);
 
