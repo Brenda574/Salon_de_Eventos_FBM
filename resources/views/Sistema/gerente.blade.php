@@ -198,4 +198,47 @@
             </div>
         </div>
     </div>
+    <div class="container container_galery">
+        <p class="label fw-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event" viewBox="0 0 16 16">
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
+                <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+            </svg> EVENTOS REGISTRADOS
+        </p>
+        <hr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">#</th>
+                    <th class="text-center" scope="col">Evento</th>
+                    <th class="text-center" scope="col">Cliente</th>
+                    <th class="text-center" scope="col">Fecha</th>
+                    <th class="text-center" scope="col">Confirmación</th>
+                    <th class="text-center" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($eventos as $evento)
+                    <tr>
+                        <th class="text-center" scope="row">{{ $evento->id }}</th>
+                        <td>{{ $evento->nombre_evento }}</td>
+                        <td class="text-center">{{ $evento->usuario_id }}</td>
+                        <td class="text-center">{{ $evento->fecha }}</td>
+                        <td class="text-center">
+                            @if ($evento['estatus'] == 'Confirmado')
+                                <input class="form-check-input" type="checkbox" value="" checked disabled>
+                            @else
+                                @if ($evento['estatus'] == 'Pendiente')
+                                    <p style="color: rgb(156, 156, 42)">Autorización<br>Pendiente</p>
+                                @else
+                                    <input class="form-check-input" type="checkbox" value="" disabled>
+                                @endif
+                            @endif
+                        </td>
+                        <td><a href="{{ route('evento.showGerente', $evento->id) }}" class="btn emp_button_plus"><i class="bi bi-three-dots-vertical"></i></a></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection

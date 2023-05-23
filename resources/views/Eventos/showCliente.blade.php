@@ -32,30 +32,36 @@
                 <div class="row">
                     <div class="col text-center">
                         <small>PAQUETE</small>
-                        @foreach ($paquetes as $paquete)
-                            @if ($evento->paquete_id == $paquete->id)
-                                <p class="label fw-bold">{{ $paquete->nombre }}</p>
-                            @endif
-                        @endforeach
+                        <p class="label fw-bold">{{ $evento->paquete_id }}</p>
                     </div>
                     <div class="col text-center">
                         <small>CLIENTE</small>
-                        <p class="label fw-bold">{{ Auth::user()->nombre }}</p>
+                        <p class="label fw-bold">{{ $evento->usuario_id }}</p>
                     </div>
                     <div class="col text-center">
-                        <small>Fecha</small>
+                        <small>FEHCA</small>
                         <p class="label fw-bold">{{ $evento->fecha }}</p>
                     </div>
                     <div class="col text-center">
-                        <small>Hora Inicio</small>
+                        <small>HORA INICIO</small>
                         <p class="label fw-bold">{{ $evento->hora_inicio }}</p>
                     </div>
                     <div class="col text-center">
-                        <small>Hora Fin</small>
+                        <small>HORA FINAL</small>
                         <p class="label fw-bold">{{ $evento->hora_final }}</p>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col text-center">
-                        <small>Costo</small>
+                        <small>NO. INVITADOS</small>
+                        <p class="label fw-bold">{{ $evento->num_invitados }}</p>
+                    </div>
+                    <div class="col text-center">
+                        <small>PROPOSITO</small>
+                        <p class="label fw-bold">{{ $evento->proposito }}</p>
+                    </div>
+                    <div class="col text-center">
+                        <small>COSTO</small>
                         <p class="label fw-bold">${{ $evento->costo }}</p>
                     </div>
                 </div>
@@ -64,6 +70,7 @@
         <hr>
         <div>
             <div class="row container_galery">
+                @if ($evento->estatus == "Confirmado")
                 <p class="label fw-bold">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-cash-coin" viewBox="0 0 16 16">
@@ -109,8 +116,16 @@
                         <p class="label fw-bold" style="color: orange">${{ $diferencia }}</p>
                     </div>
                 </div>
+                @else
+                <p class="label fw-bold text-center" style="color: rgb(156, 156, 42)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
+                        <path d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
+                    </svg> EN ESPERA DE AUTORIZACIÓN
+                </p>
+                @endif
             </div>
         </div>
+        @if ($evento->estatus == "Confirmado")
         <hr>
         <div>
             <div class="row container_galery">
@@ -147,6 +162,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 
     <div class="modal fade" id="agregarAbono" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
