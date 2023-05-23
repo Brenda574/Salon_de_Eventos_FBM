@@ -32,6 +32,7 @@ Route::get('/Cliente', [SistemaController::class, 'cliente'])->name('sistema.cli
 
 Route::get('Empleado/Evento/Detalles/{cual?}', [EventoController::class, 'show'])->name('evento.show')->middleware('auth');
 Route::get('/Evento/Detalles/{cual?}', [EventoController::class, 'showCliente'])->name('evento.showCliente')->middleware('auth');
+Route::get('Gerente/Evento/Detalles/{cual?}', [EventoController::class, 'showGerente'])->name('evento.showGerente')->middleware('auth');
 Route::get('/Evento/Editar/{cual?}', [EventoController::class, 'edit'])->name('evento.edit')->middleware('auth');
 Route::put('/Evento/Editar/{cual?}', [EventoController::class, 'update'])->name('evento.update');
 Route::get('/Evento/Crear', [EventoController::class, 'create'])->name('evento.create')->middleware('auth');

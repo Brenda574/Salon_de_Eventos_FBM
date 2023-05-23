@@ -1,7 +1,7 @@
 @extends('plantilla.layout')
 
 @section('usuario')
-    <li><a class="nav-link" href="{{ route('sistema.empleado') }}">Inicio</a></li>
+    <li><a class="nav-link" href="{{ route('sistema.gerente') }}">Inicio</a></li>
 @endsection
 
 @section('contenido')
@@ -70,6 +70,7 @@
         <hr>
         <div>
             <div class="row container_galery">
+                @if ($evento->estatus == "Confirmado")
                 <p class="label fw-bold">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-cash-coin" viewBox="0 0 16 16">
@@ -85,23 +86,46 @@
                 <div class="row">
                     <div class="col-2 text-center">
                         <small>#</small>
-                        <p class="label fw-bold">1</p>
+                        @foreach ($abonos as $abono)
+                            @if ($abono->evento_id == $evento->id)
+                                <p class="label fw-bold">{{ $abono->id }}</p>
+                            @endif
+                        @endforeach
                     </div>
                     <div class="col text-center">
                         <small>CANTIDAD</small>
-                        <p class="label fw-bold">$10,500.00</p>
+                        @foreach ($abonos as $abono)
+                            @if ($abono->evento_id == $evento->id)
+                                <p class="label fw-bold">${{ $abono->monto }}</p>
+                            @endif
+                        @endforeach
                     </div>
                     <div class="col text-center">
                         <small>DIFERENCIA</small>
-                        <p class="label fw-bold" style="color: orange">$4,500.00</p>
+                        <?php
+                        $diferencia = 0;
+                        $pagado = 0;
+                        
+                        foreach ($abonos as $abono) {
+                            if ($abono->evento_id == $evento->id) {
+                                $pagado += $abono->monto;
+                            }
+                        }
+                        $diferencia = $evento->costo - $pagado;
+                        ?>
+                        <p class="label fw-bold" style="color: orange">${{ $diferencia }}</p>
                     </div>
                 </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarAbono"><i
-                            class="bi bi-plus-lg"></i></i></button>
-                </div>
+                @else
+                <p class="label fw-bold text-center" style="color: rgb(156, 156, 42)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
+                        <path d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
+                    </svg> EN ESPERA DE AUTORIZACIÓN
+                </p>
+                @endif
             </div>
         </div>
+        @if ($evento->estatus == "Confirmado")
         <hr>
         <div>
             <div class="row container_galery">
@@ -117,9 +141,10 @@
                     <div class="lightbox-gallery">
                         @foreach ($evento->imagenes as $imagen)
                             <div class="image-container">
-                                <div><img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}" alt="{{ $imagen->nombre }}">
+                                <div><img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
+                                        alt="{{ $imagen->nombre }}">
                                     <div class="overlay">
-                                        <form action="{{ route('eliminar_imagen_empleado', $imagen->id) }}" method="post"
+                                        <form action="{{ route('eliminar_imagen', $imagen->id) }}" method="post"
                                             class="eliminar_imagen-form">
                                             @csrf
                                             <button class="btn btn-link text-decoration-none texto-color" title="Eliminar">
@@ -137,6 +162,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 
     <div class="modal fade" id="agregarAbono" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -190,11 +216,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('subir_imagen_empleado', ['idEvento' => $evento->id]) }}" method="post"
+                    <form action="{{ route('subir_imagen', ['idEvento' => $evento->id]) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" type="file" name="archivoEmpleado" id="archivoEmpleado">
+                            <input class="form-control" type="file" name="archivo" id="archivo">
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn emp_button">Aceptar</button>

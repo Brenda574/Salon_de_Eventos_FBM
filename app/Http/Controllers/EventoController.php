@@ -77,6 +77,15 @@ class EventoController extends Controller
         return view('Eventos.showCliente', compact('evento', 'paquetes', 'servicios', 'abonos'));
     }
 
+    public function showGerente(string $id)
+    {
+        $evento = Evento::find($id);
+        $paquetes = Paquete::all();
+        $servicios = Servicio::all();
+        $abonos = Abono::all();
+        return view('Eventos.showGerente', compact('evento', 'paquetes', 'servicios', 'abonos'));
+    }
+
     public function edit(string $id)
     {
         $evento = Evento::find($id);
