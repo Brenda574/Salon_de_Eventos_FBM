@@ -198,4 +198,42 @@ class EventoController extends Controller
     {
         return redirect(route("sistema.cliente"));
     }
+
+
+
+
+
+
+
+
+    public function subirAbono(Request $request, $idEvento)
+    {
+        $evento = Evento::findOrFail($idEvento);
+        // 
+        
+        // Crear una nueva imagen asociada al evento
+        $nuevoAbono = new Abono();
+        $nuevoAbono->monto = $request->input('monto');
+
+        $evento->abonos()->save($nuevoAbono);
+
+        return redirect(route('evento.show', ['cual' => $idEvento]));
+    }
+    public function eliminarAbono($id)
+    {
+        $imagen = Imagen::findOrFail($id);
+
+        // Elimina la imagen de la base de datos
+        $imagen->delete();
+
+        // Elimina la imagen del disco público
+        Storage::disk('publico')->delete($imagen->ruta_imagen);
+
+        return redirect()->back();
+    }
+
+    public function mostrarAbono($idEvento)
+    {
+        return redirect(route("sistema.cliente"));
+    }
 }

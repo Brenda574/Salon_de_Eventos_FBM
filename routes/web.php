@@ -39,6 +39,8 @@ Route::post('Evento/Guardar', [EventoController::class, 'store'])->name('evento.
 Route::delete('Evento/Borrar/{cual?}', [EventoController::class, 'destroy'])->name('evento.destroy');
 Route::post('Empleado/evento/{idEvento}/subir-imagen', [EventoController::class, 'subirImagenEmpleado'])->name('subir_imagen_empleado');
 Route::post('evento/{idEvento}/subir-imagen', [EventoController::class, 'subirImagen'])->name('subir_imagen');
+Route::post('evento/{idEvento}/subir-abono', [EventoController::class, 'subirAbono'])->name('subir_abono');
+
 Route::post('/eliminar-imagen/{id}', [EventoController::class, 'eliminar'])->name('eliminar_imagen');
 Route::post('Eventos/eliminar-imagen/{id}', [EventoController::class, 'eliminarEmpleado'])->name('eliminar_imagen_empleado');
 

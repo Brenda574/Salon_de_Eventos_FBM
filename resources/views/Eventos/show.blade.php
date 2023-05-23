@@ -82,20 +82,22 @@
                         <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
                     </svg> Pagos
                 </p>
+                @foreach($evento->abonos as $abono)
                 <div class="row">
                     <div class="col-2 text-center">
                         <small>#</small>
-                        <p class="label fw-bold">1</p>
+                        <p class="label fw-bold">{{$abono->id}}</p>
                     </div>
                     <div class="col text-center">
                         <small>CANTIDAD</small>
-                        <p class="label fw-bold">$10,500.00</p>
+                        <p class="label fw-bold">$ {{$abono->monto}}</p>
                     </div>
                     <div class="col text-center">
                         <small>DIFERENCIA</small>
-                        <p class="label fw-bold" style="color: orange">$4,500.00</p>
+                        <p class="label fw-bold" style="color: orange"></p>
                     </div>
                 </div>
+                @endforeach
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarAbono"><i
                             class="bi bi-plus-lg"></i></i></button>
@@ -157,19 +159,12 @@
                     </div>
                     <hr>
                     <div>
-                        <form action="#">
+                        <form action="{{ route('subir_abono', ['idEvento' => $evento->id]) }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
                             <div class="mb-3">
                                 <small>Monto</small>
-                                <input class="form-control" type="text">
-                            </div>
-                            <div class="mb-3">
-                                <small>Tipo de Pago</small>
-                                <input class="form-control" list="datalistOptions">
-                                <datalist id="datalistOptions">
-                                    <option value="Credito">
-                                    <option value="Debito">
-                                    <option value="Efectivo">
-                                </datalist>
+                                <input class="form-control" type="text" name="monto">
                             </div>
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <button type="submit" class="btn emp_button">Aceptar</button>
