@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Paquete;
+use App\Models\ImagenPaquete;
 use App\Models\Servicio;
 
 
@@ -33,8 +34,37 @@ class PaqueteController extends Controller
         $nuevo->descripcion = $request->input('descripcion');
         $nuevo->estatus = $request->input('estatus');
         $nuevo->save();
+        $paqueteId = $nuevo->id;
+
+        dump($paqueteId);
+
+        //if ($request->hasFile('archivoPaquete')) {
+        $paquete = Paquete::find($paqueteId); // Obtener el modelo del paquete
+        dump($paquete->nombre);
+        // Subir la imagen al disco público
+        $imagenes = $request->file('archivoPaquete');
+
+        if (is_array($imagenes)) {
+            dump($imagenes);
+            foreach ($imagenes as $imagen) {
+                if ($imagen->isValid()) {
+                    $nombreArchivo = $imagen->getClientOriginalName();
+                    $rutaImagen = $imagen->store('imagenes', 'publico');
+
+                    // Crear una nueva imagen asociada al paquete
+                    $nuevaImagen = new ImagenPaquete();
+                    $nuevaImagen->ruta = $rutaImagen;
+                    $nuevaImagen->nombre = $nombreArchivo;
+
+                    $paquete->imagenesPaquetes()->save($nuevaImagen);
+                }
+            }
+        }
         return redirect(route('sistema.gerente'));
     }
+
+
+
 
     public function show(string $id)
     {

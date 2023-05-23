@@ -21,7 +21,7 @@
             <h3 class="label fw-bold" style="color: #af9495">Nuevo Paquete</h3>
         </div>
         <hr>
-        <form action="{{ route('paquete.store') }}" method="post">
+        <form action="{{ route('paquete.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div>
                 <div class="row container_galery">
@@ -67,12 +67,13 @@
                         </svg> Imagenes
                     </p>
                     <div class="row">
-                        <div class="lightbox-gallery">
+                        <div class="mb-3">
+                            <input class="form-control" type="file" name="archivoPaquete[]" id="archivoPaquete" multiple>
                         </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-center">
-                            <a class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarFoto"><i
-                                    class="bi bi-plus-lg"></i></a>
-                        </div>
+                        <!--<div class="lightbox-gallery">
+                                            
+                                        </div>
+                                    -->
                     </div>
                 </div>
             </div>
@@ -84,24 +85,23 @@
             </div>
         </form>
     </div>
+    <!--
+                    <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Foto</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
 
-    <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Foto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <input class="form-control" type="file">
+                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                        <button type="submit" class="btn emp_button">Aceptar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-grid gap-2 col-6 mx-auto">
-                        <button type="submit" class="btn emp_button">Aceptar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                -->
 @endsection

@@ -204,7 +204,7 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" type="file" name="archivo" id="archivo">
+                            <input class="form-control" type="file" name="archivo[]" id="archivo" multiple>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn emp_button">Aceptar</button>

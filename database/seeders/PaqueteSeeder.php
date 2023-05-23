@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Paquete;
+use App\Models\ImagenPaquete;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,11 @@ class PaqueteSeeder extends Seeder
         $paquete->estatus = "Activo";
         $paquete->descripcion = "Paquete para bodas, con servicios completos.";
         $paquete->save();
+        $imagen1 = new ImagenPaquete();
+        $imagen1->ruta = "imagenes\bodas-en-domingo.png";
+        $imagen1->nombre = "bodas-en-domingo.png";
+        $paquete->imagenesPaquetes()->save($imagen1);
+
 
         $paquete = new Paquete();
         $paquete->nombre = "XV años";

@@ -130,20 +130,36 @@ class EventoController extends Controller
 
     public function subirImagen(Request $request, $idEvento)
     {
-
         $evento = Evento::findOrFail($idEvento);
 
-        // Subir la imagen al disco público
-        $imagen = $request->file('archivo');
-        $nombreArchivo = $imagen->getClientOriginalName();
-        $rutaImagen = $imagen->store('imagenes', 'publico');
+        $archivos = $request->file('archivo');
 
-        // Crear una nueva imagen asociada al evento
-        $nuevaImagen = new Imagen();
-        $nuevaImagen->ruta_imagen = $rutaImagen;
-        $nuevaImagen->nombre = $nombreArchivo;
+        if (is_array($archivos)) {
+            foreach ($archivos as $archivo) {
+                if ($archivo->isValid()) {
+                    $nombreArchivo = $archivo->getClientOriginalName();
+                    $rutaImagen = $archivo->store('imagenes', 'publico');
 
-        $evento->imagenes()->save($nuevaImagen);
+                    $nuevaImagen = new Imagen();
+                    $nuevaImagen->ruta_imagen = $rutaImagen;
+                    $nuevaImagen->nombre = $nombreArchivo;
+
+                    $evento->imagenes()->save($nuevaImagen);
+                }
+            }
+        } else {
+            // Solo se subió un archivo
+            if ($archivos->isValid()) {
+                $nombreArchivo = $archivos->getClientOriginalName();
+                $rutaImagen = $archivos->store('imagenes', 'publico');
+
+                $nuevaImagen = new Imagen();
+                $nuevaImagen->ruta_imagen = $rutaImagen;
+                $nuevaImagen->nombre = $nombreArchivo;
+
+                $evento->imagenes()->save($nuevaImagen);
+            }
+        }
 
         return redirect(route('evento.showCliente', ['cual' => $idEvento]));
     }

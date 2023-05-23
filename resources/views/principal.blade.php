@@ -2,8 +2,8 @@
 
 @section('usuario')
     @unless (Auth::check())
-    <li><a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a></li>
-    <li><a class="nav-link" href="{{ route('registro') }}">Registrarse </a></li>
+        <li><a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a></li>
+        <li><a class="nav-link" href="{{ route('registro') }}">Registrarse </a></li>
     @endunless
 @endsection
 
@@ -50,51 +50,51 @@ height: 400px; width: 100%;
                                     <h5 class="card-title">{{ $item['nombre'] }}</h5>
                                 </div>
                                 <!--<div class="d-flex justify-content-center align-items-center">
-                                        <div id="carouselExampleDar{{ $item['id'] }}" class="carousel carousel-dark slide"
-                                            style="width: 60vh; text-align: center">
-                                            <div class="carousel-inner">
-                                                <div class="carousel-item active" data-bs-interval="10000">
-                                                    <h6>Musica</h6>
+                                            <div id="carouselExampleDar{{ $item['id'] }}" class="carousel carousel-dark slide"
+                                                style="width: 60vh; text-align: center">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active" data-bs-interval="10000">
+                                                        <h6>Musica</h6>
+                                                    </div>
+                                                    <div class="carousel-item" data-bs-interval="2000">
+                                                        <h6>Banquete</h6>
+                                                    </div>
+                                                    <div class="carousel-item" data-bs-interval="2000">
+                                                        <h6>Jardin y capilla</h6>
+                                                    </div>
+                                                    <div class="carousel-item" data-bs-interval="2000">
+                                                        <h6>Mobiliario y decoración</h6>
+                                                    </div>
+                                                    <div class="carousel-item" data-bs-interval="2000">
+                                                        <h6>Organización</h6>
+                                                    </div>
+                                                    <div class="carousel-item" data-bs-interval="2000">
+                                                        <h6>Catering</h6>
+                                                    </div>
+                                                    <div class="carousel-item" data-bs-interval="2000">
+                                                        <h6>Fotografia</h6>
+                                                    </div>
+                                                    <div class="carousel-item" data-bs-interval="2000">
+                                                        <h6>Ambientación</h6>
+                                                    </div>
                                                 </div>
-                                                <div class="carousel-item" data-bs-interval="2000">
-                                                    <h6>Banquete</h6>
-                                                </div>
-                                                <div class="carousel-item" data-bs-interval="2000">
-                                                    <h6>Jardin y capilla</h6>
-                                                </div>
-                                                <div class="carousel-item" data-bs-interval="2000">
-                                                    <h6>Mobiliario y decoración</h6>
-                                                </div>
-                                                <div class="carousel-item" data-bs-interval="2000">
-                                                    <h6>Organización</h6>
-                                                </div>
-                                                <div class="carousel-item" data-bs-interval="2000">
-                                                    <h6>Catering</h6>
-                                                </div>
-                                                <div class="carousel-item" data-bs-interval="2000">
-                                                    <h6>Fotografia</h6>
-                                                </div>
-                                                <div class="carousel-item" data-bs-interval="2000">
-                                                    <h6>Ambientación</h6>
-                                                </div>
+                                                <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#carouselExampleDar{{ $item['id'] }}" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#carouselExampleDar{{ $item['id'] }}" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
                                             </div>
-                                            <button class="carousel-control-prev" type="button"
-                                                data-bs-target="#carouselExampleDar{{ $item['id'] }}" data-bs-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Previous</span>
-                                            </button>
-                                            <button class="carousel-control-next" type="button"
-                                                data-bs-target="#carouselExampleDar{{ $item['id'] }}" data-bs-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Next</span>
-                                            </button>
-                                        </div>
-                                    </div>-->
+                                        </div>-->
                             </div>
                             <div class="card-footer text-center" style="background-color:#d3ded4">
                                 @unless (Auth::check())
-                                <div><a href="{{ route('login') }}" class="btn btnCotizar">Cotizar</a>
-                                </div>
+                                    <div><a href="{{ route('login') }}" class="btn btnCotizar">Cotizar</a>
+                                    </div>
                                 @endunless
                             </div>
                         </div>
