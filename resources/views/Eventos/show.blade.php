@@ -70,6 +70,32 @@
         <hr>
         <div>
             <div class="row container_galery">
+                <H5>Servicios</H5>
+                <table id="tabla-servicios" class="table table-hover" name="servicios">
+                    <tbody>
+                        <tr>
+                            <td class="text-center">#</td>
+                            <td class="text-center">Servicio</td>
+                            <td class="text-center">Costo</td>
+                        </tr>
+                    </tbody>
+                    @foreach ($evento->servicios as $item)
+                        @foreach ($servicios as $servicio)
+                            @if ($item->pivot->servicio_id == $servicio->id)
+                                <tr>
+                                    <td class="text-center">{{ $servicio->id }}</td>
+                                    <td class="text-center">{{ $servicio->nombre }}</td>
+                                    <td class="text-center">${{ $servicio->costo }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    @endforeach
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div class="row container_galery">
                 <p class="label fw-bold">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-cash-coin" viewBox="0 0 16 16">
