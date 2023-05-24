@@ -9,10 +9,7 @@
 
 @section('contenido')
     <div class="p-5 text-center bg-image rounded-3"
-        style="
-background-image: url('https://cdn0.bodas.com.mx/vendor/8303/3_2/960/jpg/bjardin38_5_128303.jpeg');
-height: 400px; width: 100%;
-">
+        style="background-image: url('https://cdn0.bodas.com.mx/vendor/8303/3_2/960/jpg/bjardin38_5_128303.jpeg'); height: 400px; width: 100%;">
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); height: 300px;">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
@@ -31,7 +28,19 @@ height: 400px; width: 100%;
                     <div class="col">
                         <div class="card h-100">
                             <div class="sc-hdr">
-                                <img src="" class="card-img-top" alt="" />
+                                <div class="card-img-top">
+                                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @if ($item->imagenesPaquetes)
+                                                @foreach ($item->imagenesPaquetes as $img)
+                                                    <div class="carousel-item active">
+                                                        <img class="d-block w-100" src="{{ asset('imagenes/' . $img->ruta) }}" alt="{{ $img->nombre }}" width="500" height="250">
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="capacidad-label">
                                     <div class="cl-flex w-clearfix">
                                         <div class="cl-txt">{{ $item['costo'] }} + serv.</div>
@@ -49,47 +58,6 @@ height: 400px; width: 100%;
                                 <div>
                                     <h5 class="card-title">{{ $item['nombre'] }}</h5>
                                 </div>
-                                <!--<div class="d-flex justify-content-center align-items-center">
-                                            <div id="carouselExampleDar{{ $item['id'] }}" class="carousel carousel-dark slide"
-                                                style="width: 60vh; text-align: center">
-                                                <div class="carousel-inner">
-                                                    <div class="carousel-item active" data-bs-interval="10000">
-                                                        <h6>Musica</h6>
-                                                    </div>
-                                                    <div class="carousel-item" data-bs-interval="2000">
-                                                        <h6>Banquete</h6>
-                                                    </div>
-                                                    <div class="carousel-item" data-bs-interval="2000">
-                                                        <h6>Jardin y capilla</h6>
-                                                    </div>
-                                                    <div class="carousel-item" data-bs-interval="2000">
-                                                        <h6>Mobiliario y decoración</h6>
-                                                    </div>
-                                                    <div class="carousel-item" data-bs-interval="2000">
-                                                        <h6>Organización</h6>
-                                                    </div>
-                                                    <div class="carousel-item" data-bs-interval="2000">
-                                                        <h6>Catering</h6>
-                                                    </div>
-                                                    <div class="carousel-item" data-bs-interval="2000">
-                                                        <h6>Fotografia</h6>
-                                                    </div>
-                                                    <div class="carousel-item" data-bs-interval="2000">
-                                                        <h6>Ambientación</h6>
-                                                    </div>
-                                                </div>
-                                                <button class="carousel-control-prev" type="button"
-                                                    data-bs-target="#carouselExampleDar{{ $item['id'] }}" data-bs-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </button>
-                                                <button class="carousel-control-next" type="button"
-                                                    data-bs-target="#carouselExampleDar{{ $item['id'] }}" data-bs-slide="next">
-                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </button>
-                                            </div>
-                                        </div>-->
                             </div>
                             <div class="card-footer text-center" style="background-color:#d3ded4">
                                 @unless (Auth::check())

@@ -52,6 +52,9 @@ Route::put('/Paquete/Editar/{cual?}', [PaqueteController::class, 'update'])->nam
 Route::post('Paquete/Guardar', [PaqueteController::class, 'store'])->name('paquete.store');
 Route::delete('Paquete/Borrar/{cual?}', [PaqueteController::class, 'destroy'])->name('paquete.destroy');
 
+Route::post('Paquete/{idPaquete}/imagen', [PaqueteController::class, 'subirImagen'])->name('paquete.subirImg');
+Route::post('/eliminar-img/{id}', [PaqueteController::class, 'eliminarImagen'])->name('paquete.eliminarImg');
+
 Route::get('/Servicio/Crear', [ServicioController::class, 'create'])->name('servicio.create')->middleware('auth');
 Route::get('/Servicio/Detalles/{cual?}', [ServicioController::class, 'show'])->name('servicio.show')->middleware('auth');
 Route::get('/Servicio/Editar/{cual?}', [ServicioController::class, 'edit'])->name('servicio.edit')->middleware('auth');

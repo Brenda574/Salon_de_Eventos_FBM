@@ -167,14 +167,14 @@
                     <div class="lightbox-gallery">
                         @foreach ($evento->imagenes as $imagen)
                             <div class="image-container">
-                                <div><img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
-                                        alt="{{ $imagen->nombre }}">
+                                <div><img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}" alt="{{ $imagen->nombre }}">
                                     <div class="overlay">
                                         <form action="{{ route('eliminar_imagen', $imagen->id) }}" method="post"
                                             class="eliminar_imagen-form">
                                             @csrf
                                             <button class="btn btn-link text-decoration-none texto-color" title="Eliminar">
-                                                <i class="bi bi-trash3-fill"></i></button>
+                                                <i class="bi bi-trash3-fill"></i>
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -182,8 +182,9 @@
                         @endforeach
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-center">
-                        <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarFoto"><i
-                                class="bi bi-plus-lg"></i></button>
+                        <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarFoto">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
                     </div>
                 </div>
             </div>
