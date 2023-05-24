@@ -129,6 +129,22 @@ class EventoController extends Controller
         return redirect()->route('sistema.cliente');
     }
 
+    public function update_autorizar(Request $request, string $id)
+    {
+        $evento = Evento::find($id);
+        $evento->estatus = $request->input('estatus');
+        $evento->save();
+        return redirect(route('evento.showGerente', ['cual' => $id]));
+    }
+
+    public function update_rechazar(Request $request, string $id)
+    {
+        $evento = Evento::find($id);
+        $evento->estatus = $request->input('estatus2');
+        $evento->save();
+        return redirect(route('evento.showGerente', ['cual' => $id]));
+    }
+
     public function destroy(string $id)
     {
         $evento = Evento::find($id);
