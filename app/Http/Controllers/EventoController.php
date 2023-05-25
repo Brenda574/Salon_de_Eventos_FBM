@@ -137,14 +137,6 @@ class EventoController extends Controller
         return redirect(route('evento.showGerente', ['cual' => $id]));
     }
 
-    public function update_rechazar(Request $request, string $id)
-    {
-        $evento = Evento::find($id);
-        $evento->estatus = $request->input('estatus2');
-        $evento->save();
-        return redirect(route('evento.showGerente', ['cual' => $id]));
-    }
-
     public function destroy(string $id)
     {
         $evento = Evento::find($id);

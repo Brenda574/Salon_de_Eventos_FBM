@@ -193,7 +193,7 @@
 
     <script>
         function confirmar_estatus() {
-            document.querySelector('#estatus').value = "Confirmar";
+            document.querySelector('#estatus').value = "Confirmado";
         }
 
         function rechazar_estatus() {
