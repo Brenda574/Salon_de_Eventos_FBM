@@ -1,9 +1,9 @@
 @extends('plantilla.layout')
 
 <script>
-    var msg = '{{Session::get('alert')}}';
-    var exist = '{{Session::has('alert')}}';
-    if(exist){
+    var msg = '{{ Session::get('alert') }}';
+    var exist = '{{ Session::has('alert') }}';
+    if (exist) {
         alert(msg);
     }
 </script>
@@ -50,16 +50,19 @@
                                             <form action="{{ route('usuario.destroy', $item) }}" method="post">
                                                 @method('DELETE')
                                                 @csrf
-                                                <a href="{{ route('usuario.show', $item) }}" class="btn text-decoration-none texto-color" title="Detalles">
+                                                <a href="{{ route('usuario.show', $item) }}"
+                                                    class="btn text-decoration-none texto-color" title="Detalles">
                                                     <i class="bi bi-card-heading"></i>
                                                 </a>
-                                                <a href="{{ route('usuario.edit', $item) }}" class="btn text-decoration-none texto-color" title="Editar">
+                                                <a href="{{ route('usuario.edit', $item) }}"
+                                                    class="btn text-decoration-none texto-color" title="Editar">
                                                     <i class="bi bi-pencil-square"></i>
                                                 </a>
                                                 @can('delete', $item)
-                                                <button type="submit" class="btn btn-link text-decoration-none texto-color" title="Eliminar">
-                                                    <i class="bi bi-trash3-fill"></i>
-                                                </button>
+                                                    <button type="submit" class="btn btn-link text-decoration-none texto-color"
+                                                        title="Eliminar">
+                                                        <i class="bi bi-trash3-fill"></i>
+                                                    </button>
                                                 @endcan
                                             </form>
                                         </td>
@@ -200,9 +203,11 @@
     </div>
     <div class="container container_galery">
         <p class="label fw-bold">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event" viewBox="0 0 16 16">
-                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
-                <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-calendar4-event" viewBox="0 0 16 16">
+                <path
+                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z" />
+                <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
             </svg> EVENTOS REGISTRADOS
         </p>
         <hr>
@@ -235,10 +240,14 @@
                                 @endif
                             @endif
                         </td>
-                        <td><a href="{{ route('evento.showGerente', $evento->id) }}" class="btn emp_button_plus"><i class="bi bi-three-dots-vertical"></i></a></td>
+                        <td><a href="{{ route('evento.showGerente', $evento->id) }}" class="btn emp_button_plus"><i
+                                    class="bi bi-three-dots-vertical"></i></a></td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="padding: 2rem">
+        <a href={{ route('sistema.bitacora') }} type="submit" class="btn emp_button_c">Historial</a>
     </div>
 @endsection

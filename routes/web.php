@@ -29,6 +29,7 @@ Route::get('/Registrar', [SistemaController::class, 'registro'])->name('registro
 Route::get('/Empleado', [SistemaController::class, 'empleado'])->name('sistema.empleado')->middleware('auth');
 Route::get('/Gerente', [SistemaController::class, 'gerente'])->name('sistema.gerente')->middleware('auth');
 Route::get('/Cliente', [SistemaController::class, 'cliente'])->name('sistema.cliente')->middleware('auth');
+Route::get('/Bitacora', [SistemaController::class, 'bitacora'])->name('sistema.bitacora')->middleware('auth');
 
 Route::get('Empleado/Evento/Detalles/{cual?}', [EventoController::class, 'show'])->name('evento.show')->middleware('auth');
 Route::get('/Evento/Detalles/{cual?}', [EventoController::class, 'showCliente'])->name('evento.showCliente')->middleware('auth');

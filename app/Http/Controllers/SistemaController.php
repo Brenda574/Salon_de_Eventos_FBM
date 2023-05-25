@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Evento;
 use App\Models\Imagen;
+use App\Models\Bitacora;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -89,5 +90,12 @@ class SistemaController extends Controller
         $servicios = Servicio::all();
         $imagenesEvento = Imagen::all();
         return view('Sistema.cliente', compact('eventos', 'paquetes', 'servicios', 'imagenesEvento'));
+    }
+
+    public function bitacora()
+    {
+        $registrosBitacora = Bitacora::all();
+        //$this->authorize('viewCliente', Usuario::class);
+        return view('Sistema.bitacora')->with('registrosBitacora', $registrosBitacora);;
     }
 }

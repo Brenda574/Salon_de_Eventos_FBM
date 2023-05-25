@@ -2,16 +2,16 @@
 
 namespace App\Observers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\Paquete;
+use App\Models\Abono;
 use App\Models\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
-class ObserverPaquete
+class ObserverAbono
 {
     /**
-     * Handle the Paquete "created" event.
+     * Handle the Abono "created" event.
      */
-    public function created(Paquete $paquete): void
+    public function created(Abono $abono): void
     {
         $bitacora = new Bitacora();
 
@@ -20,14 +20,14 @@ class ObserverPaquete
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se creo un nuevo paquete " . $paquete->nombre;
+        $bitacora->que = "Se creó un nuevo abono " . $abono->nombre;
         $bitacora->save();
     }
 
     /**
-     * Handle the Paquete "updated" event.
+     * Handle the Abono "updated" event.
      */
-    public function updated(Paquete $paquete): void
+    public function updated(Abono $abono): void
     {
         $bitacora = new Bitacora();
 
@@ -36,14 +36,14 @@ class ObserverPaquete
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se actualizó el paquete " . $paquete->nombre;
+        $bitacora->que = "Se actualizó el abono" . $abono->nombre;
         $bitacora->save();
     }
 
     /**
-     * Handle the Paquete "deleted" event.
+     * Handle the Abono "deleted" event.
      */
-    public function deleted(Paquete $paquete): void
+    public function deleted(Abono $abono): void
     {
         $bitacora = new Bitacora();
 
@@ -52,22 +52,22 @@ class ObserverPaquete
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se eliminó el paquete " . $paquete->nombre;
+        $bitacora->que = "Se eliminó el abono" . $abono->nombre;
         $bitacora->save();
     }
 
     /**
-     * Handle the Paquete "restored" event.
+     * Handle the Abono "restored" event.
      */
-    public function restored(Paquete $paquete): void
+    public function restored(Abono $abono): void
     {
         //
     }
 
     /**
-     * Handle the Paquete "force deleted" event.
+     * Handle the Abono "force deleted" event.
      */
-    public function forceDeleted(Paquete $paquete): void
+    public function forceDeleted(Abono $abono): void
     {
         //
     }

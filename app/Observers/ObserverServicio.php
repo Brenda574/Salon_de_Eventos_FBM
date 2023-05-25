@@ -2,16 +2,16 @@
 
 namespace App\Observers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\Paquete;
+use App\Models\Servicio;
 use App\Models\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
-class ObserverPaquete
+class ObserverServicio
 {
     /**
-     * Handle the Paquete "created" event.
+     * Handle the Servicio "created" event.
      */
-    public function created(Paquete $paquete): void
+    public function created(Servicio $servicio): void
     {
         $bitacora = new Bitacora();
 
@@ -20,14 +20,14 @@ class ObserverPaquete
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se creo un nuevo paquete " . $paquete->nombre;
+        $bitacora->que = "Se creó un nuevo servicio" . $servicio->nombre;
         $bitacora->save();
     }
 
     /**
-     * Handle the Paquete "updated" event.
+     * Handle the Servicio "updated" event.
      */
-    public function updated(Paquete $paquete): void
+    public function updated(Servicio $servicio): void
     {
         $bitacora = new Bitacora();
 
@@ -36,14 +36,14 @@ class ObserverPaquete
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se actualizó el paquete " . $paquete->nombre;
+        $bitacora->que = "Se actualizó el servicio" . $servicio->nombre;
         $bitacora->save();
     }
 
     /**
-     * Handle the Paquete "deleted" event.
+     * Handle the Servicio "deleted" event.
      */
-    public function deleted(Paquete $paquete): void
+    public function deleted(Servicio $servicio): void
     {
         $bitacora = new Bitacora();
 
@@ -52,22 +52,22 @@ class ObserverPaquete
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se eliminó el paquete " . $paquete->nombre;
+        $bitacora->que = "Se eliminó el servicio" . $servicio->nombre;
         $bitacora->save();
     }
 
     /**
-     * Handle the Paquete "restored" event.
+     * Handle the Servicio "restored" event.
      */
-    public function restored(Paquete $paquete): void
+    public function restored(Servicio $servicio): void
     {
         //
     }
 
     /**
-     * Handle the Paquete "force deleted" event.
+     * Handle the Servicio "force deleted" event.
      */
-    public function forceDeleted(Paquete $paquete): void
+    public function forceDeleted(Servicio $servicio): void
     {
         //
     }

@@ -20,7 +20,7 @@ class ObserverUsuario
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Creo un nuevo usuario" . $usuario->nombre;
+        $bitacora->que = "Se creo un nuevo usuario" . $usuario->nombre;
         $bitacora->save();
     }
 
@@ -29,7 +29,15 @@ class ObserverUsuario
      */
     public function updated(Usuario $usuario): void
     {
-        //
+        $bitacora = new Bitacora();
+
+        if (Auth::check()) {
+            $bitacora->quien = Auth::user()->nombre;
+        } else {
+            $bitacora->quien = 'seeder';
+        }
+        $bitacora->que = "Se actualizó al usuario" . $usuario->nombre;
+        $bitacora->save();
     }
 
     /**
@@ -37,7 +45,15 @@ class ObserverUsuario
      */
     public function deleted(Usuario $usuario): void
     {
-        //
+        $bitacora = new Bitacora();
+
+        if (Auth::check()) {
+            $bitacora->quien = Auth::user()->nombre;
+        } else {
+            $bitacora->quien = 'seeder';
+        }
+        $bitacora->que = "Se eliminó al usuario" . $usuario->nombre;
+        $bitacora->save();
     }
 
     /**

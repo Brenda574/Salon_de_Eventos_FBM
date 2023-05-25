@@ -2,16 +2,34 @@
 
 namespace App\Observers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\Paquete;
+use App\Models\Imagen;
 use App\Models\Bitacora;
+use App\Models\Evento;
+use Illuminate\Support\Facades\Auth;
 
-class ObserverPaquete
+class ObserverImagen
 {
     /**
-     * Handle the Paquete "created" event.
+     * Handle the Imagen "created" event.
      */
-    public function created(Paquete $paquete): void
+    public function created(Imagen $imagen): void
+    {
+
+        $bitacora = new Bitacora();
+
+        if (Auth::check()) {
+            $bitacora->quien = Auth::user()->nombre;
+        } else {
+            $bitacora->quien = 'seeder';
+        }
+        $bitacora->que = "Se subió nuevas imagenes " . $imagen->nombre;
+        $bitacora->save();
+    }
+
+    /**
+     * Handle the Imagen "updated" event.
+     */
+    public function updated(Imagen $imagen): void
     {
         $bitacora = new Bitacora();
 
@@ -20,15 +38,16 @@ class ObserverPaquete
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se creo un nuevo paquete " . $paquete->nombre;
+        $bitacora->que = "Se actualizó la descripción " . $imagen->nombre;
         $bitacora->save();
     }
 
     /**
-     * Handle the Paquete "updated" event.
+     * Handle the Imagen "deleted" event.
      */
-    public function updated(Paquete $paquete): void
+    public function deleted(Imagen $imagen): void
     {
+
         $bitacora = new Bitacora();
 
         if (Auth::check()) {
@@ -36,38 +55,22 @@ class ObserverPaquete
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se actualizó el paquete " . $paquete->nombre;
-        $bitacora->save();
+        $bitacora->que = "Se eliminó la imagen " . $imagen->nombre .
+            $bitacora->save();
     }
 
     /**
-     * Handle the Paquete "deleted" event.
+     * Handle the Imagen "restored" event.
      */
-    public function deleted(Paquete $paquete): void
-    {
-        $bitacora = new Bitacora();
-
-        if (Auth::check()) {
-            $bitacora->quien = Auth::user()->nombre;
-        } else {
-            $bitacora->quien = 'seeder';
-        }
-        $bitacora->que = "Se eliminó el paquete " . $paquete->nombre;
-        $bitacora->save();
-    }
-
-    /**
-     * Handle the Paquete "restored" event.
-     */
-    public function restored(Paquete $paquete): void
+    public function restored(Imagen $imagen): void
     {
         //
     }
 
     /**
-     * Handle the Paquete "force deleted" event.
+     * Handle the Imagen "force deleted" event.
      */
-    public function forceDeleted(Paquete $paquete): void
+    public function forceDeleted(Imagen $imagen): void
     {
         //
     }
