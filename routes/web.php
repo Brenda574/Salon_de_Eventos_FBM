@@ -45,7 +45,6 @@ Route::post('evento/{idEvento}/subir-abono', [EventoController::class, 'subirAbo
 Route::post('Eventos/eliminar-abono/{id}', [EventoController::class, 'eliminarAbono'])->name('eliminar_abono');
 
 Route::put('/Evento/autorizar/{cual?}', [EventoController::class, 'update_autorizar'])->name('evento.update.autorizar');
-Route::put('/Evento/rechazar/{cual?}', [EventoController::class, 'update_rechazar'])->name('evento.update.rechazar');
 
 Route::post('/eliminar-imagen/{id}', [EventoController::class, 'eliminar'])->name('eliminar_imagen');
 Route::post('Eventos/eliminar-imagen/{id}', [EventoController::class, 'eliminarEmpleado'])->name('eliminar_imagen_empleado');

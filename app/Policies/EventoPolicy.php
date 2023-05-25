@@ -13,7 +13,10 @@ class EventoPolicy
      */
     public function viewAny(Usuario $usuario): bool
     {
-        //
+        if ($usuario->roll) {
+            # code...
+        }
+        return true;
     }
 
     /**
@@ -21,7 +24,7 @@ class EventoPolicy
      */
     public function view(Usuario $usuario, Evento $evento): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +32,7 @@ class EventoPolicy
      */
     public function create(Usuario $usuario): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +40,7 @@ class EventoPolicy
      */
     public function update(Usuario $usuario, Evento $evento): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +48,7 @@ class EventoPolicy
      */
     public function delete(Usuario $usuario, Evento $evento): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +56,7 @@ class EventoPolicy
      */
     public function restore(Usuario $usuario, Evento $evento): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +64,6 @@ class EventoPolicy
      */
     public function forceDelete(Usuario $usuario, Evento $evento): bool
     {
-        //
+        return true;
     }
 }
