@@ -82,11 +82,15 @@
                         <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
                     </svg> Pagos
                 </p>
+            
+                <?php
+                $resto=0;
+                ?>
                 @foreach($evento->abonos as $abono)
                 <div class="row">
-                    <div class="col-2 text-center">
-                        <small>#</small>
-                        <p class="label fw-bold">{{$abono->id}}</p>
+                    <div class="col text-center">
+                        <small>ABONO</small>
+                        <p class="label fw-bold">{{$abono->created_at->format('Y-m-d')}}</p>
                     </div>
                     <div class="col text-center">
                         <small>CANTIDAD</small>
@@ -94,13 +98,29 @@
                     </div>
                     <div class="col text-center">
                         <small>DIFERENCIA</small>
-                        <p class="label fw-bold" style="color: orange"></p>
+                        <?php
+                        $resto=$resto + $abono->monto;
+                        ?>
+                        <p class="label fw-bold" style="color: orange">$ {{$evento->costo - $resto}}</p>
                     </div>
+                    <!-- <div class="col-1 text-center">
+                        <br>
+                        <form action="{{ route('eliminar_abono', $abono->id) }}" method="post"class="eliminar_imagen-form">
+                        @csrf
+                            <button class="btn btn-link text-decoration-none texto-color" title="Eliminar">
+                                <i class="bi bi-trash3-fill"></i></button>
+                        </form>
+                    </div> -->
                 </div>
                 @endforeach
+
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                @if($evento->costo == $resto)
+                    <p class="text-success">Completado</p>
+                @else
                     <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarAbono"><i
                             class="bi bi-plus-lg"></i></i></button>
+                @endif
                 </div>
             </div>
         </div>
@@ -153,8 +173,14 @@
                     <div class="mb-3 row">
                         <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
                         <div class="col-sm-8">
-                            <input type="text" readonly class="form-control-plaintext" id="staticCosto"
-                                value="$4,500.00">
+                            <!-- <input type="text" readonly class="form-control-plaintext" id="staticCosto"
+                                value="$4,500.00"> -->
+                                @if(isset($abono->monto))
+                                <p class="label fw-bold">$ {{$evento->costo - $resto}}</p>
+                                @else 
+                                <p class="label fw-bold">Sin Abonos</p>
+                                @endif    
+                            </p>
                         </div>
                     </div>
                     <hr>
@@ -164,7 +190,7 @@
                         @csrf
                             <div class="mb-3">
                                 <small>Monto</small>
-                                <input class="form-control" type="text" name="monto">
+                                <input class="form-control" type="number" name="monto">
                             </div>
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <button type="submit" class="btn emp_button">Aceptar</button>
