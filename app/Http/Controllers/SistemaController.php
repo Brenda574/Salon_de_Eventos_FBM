@@ -77,7 +77,8 @@ class SistemaController extends Controller
         $paquetes = Paquete::all();
         $usuarios = Usuario::all();
         $servicios = Servicio::all();
-        return view('Sistema.gerente', compact('usuarios', 'paquetes', 'servicios'));
+        $eventos = Evento::all();
+        return view('Sistema.gerente', compact('usuarios', 'paquetes', 'servicios', 'eventos'));
     }
 
     public function cliente()

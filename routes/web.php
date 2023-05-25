@@ -32,6 +32,7 @@ Route::get('/Cliente', [SistemaController::class, 'cliente'])->name('sistema.cli
 
 Route::get('Empleado/Evento/Detalles/{cual?}', [EventoController::class, 'show'])->name('evento.show')->middleware('auth');
 Route::get('/Evento/Detalles/{cual?}', [EventoController::class, 'showCliente'])->name('evento.showCliente')->middleware('auth');
+Route::get('Gerente/Evento/Detalles/{cual?}', [EventoController::class, 'showGerente'])->name('evento.showGerente')->middleware('auth');
 Route::get('/Evento/Editar/{cual?}', [EventoController::class, 'edit'])->name('evento.edit')->middleware('auth');
 Route::put('/Evento/Editar/{cual?}', [EventoController::class, 'update'])->name('evento.update');
 Route::get('/Evento/Crear', [EventoController::class, 'create'])->name('evento.create')->middleware('auth');
@@ -42,6 +43,9 @@ Route::post('evento/{idEvento}/subir-imagen', [EventoController::class, 'subirIm
 Route::post('evento/{idEvento}/subir-abono', [EventoController::class, 'subirAbono'])->name('subir_abono');
 Route::post('Eventos/eliminar-abono/{id}', [EventoController::class, 'eliminarAbono'])->name('eliminar_abono');
 
+Route::put('/Evento/autorizar/{cual?}', [EventoController::class, 'update_autorizar'])->name('evento.update.autorizar');
+Route::put('/Evento/rechazar/{cual?}', [EventoController::class, 'update_rechazar'])->name('evento.update.rechazar');
+
 Route::post('/eliminar-imagen/{id}', [EventoController::class, 'eliminar'])->name('eliminar_imagen');
 Route::post('Eventos/eliminar-imagen/{id}', [EventoController::class, 'eliminarEmpleado'])->name('eliminar_imagen_empleado');
 
@@ -51,6 +55,9 @@ Route::get('/Paquete/Editar/{cual?}', [PaqueteController::class, 'edit'])->name(
 Route::put('/Paquete/Editar/{cual?}', [PaqueteController::class, 'update'])->name('paquete.update');
 Route::post('Paquete/Guardar', [PaqueteController::class, 'store'])->name('paquete.store');
 Route::delete('Paquete/Borrar/{cual?}', [PaqueteController::class, 'destroy'])->name('paquete.destroy');
+
+Route::post('Paquete/{idPaquete}/imagen', [PaqueteController::class, 'subirImagen'])->name('paquete.subirImg');
+Route::post('/eliminar-img/{id}', [PaqueteController::class, 'eliminarImagen'])->name('paquete.eliminarImg');
 
 Route::get('/Servicio/Crear', [ServicioController::class, 'create'])->name('servicio.create')->middleware('auth');
 Route::get('/Servicio/Detalles/{cual?}', [ServicioController::class, 'show'])->name('servicio.show')->middleware('auth');

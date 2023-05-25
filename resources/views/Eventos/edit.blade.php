@@ -231,7 +231,7 @@
         }
 
         function confirmar_estatus() {
-            document.querySelector('#estatus').value = "Confirmado";
+            document.querySelector('#estatus').value = "Pendiente";
         }
     </script>
 @endsection

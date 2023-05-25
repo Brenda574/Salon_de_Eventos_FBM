@@ -41,7 +41,7 @@
                                 </a>
                             </td>
                             <td>
-                                @if ($evento->estatus == 'Confirmado')
+                                @if ($evento->estatus == 'Confirmado' || $evento->estatus == 'Pendiente')
                                     <a href="{{ route('evento.showCliente', $evento) }}"
                                         class="btn emp_button_plus">Datos</a>
                                 @else

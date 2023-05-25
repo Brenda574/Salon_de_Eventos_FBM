@@ -77,6 +77,15 @@ class EventoController extends Controller
         return view('Eventos.showCliente', compact('evento', 'paquetes', 'servicios', 'abonos'));
     }
 
+    public function showGerente(string $id)
+    {
+        $evento = Evento::find($id);
+        $paquetes = Paquete::all();
+        $servicios = Servicio::all();
+        $abonos = Abono::all();
+        return view('Eventos.showGerente', compact('evento', 'paquetes', 'servicios', 'abonos'));
+    }
+
     public function edit(string $id)
     {
         $evento = Evento::find($id);
@@ -120,6 +129,22 @@ class EventoController extends Controller
         return redirect()->route('sistema.cliente');
     }
 
+    public function update_autorizar(Request $request, string $id)
+    {
+        $evento = Evento::find($id);
+        $evento->estatus = $request->input('estatus');
+        $evento->save();
+        return redirect(route('evento.showGerente', ['cual' => $id]));
+    }
+
+    public function update_rechazar(Request $request, string $id)
+    {
+        $evento = Evento::find($id);
+        $evento->estatus = $request->input('estatus2');
+        $evento->save();
+        return redirect(route('evento.showGerente', ['cual' => $id]));
+    }
+
     public function destroy(string $id)
     {
         $evento = Evento::find($id);
@@ -130,20 +155,36 @@ class EventoController extends Controller
 
     public function subirImagen(Request $request, $idEvento)
     {
-
         $evento = Evento::findOrFail($idEvento);
 
-        // Subir la imagen al disco público
-        $imagen = $request->file('archivo');
-        $nombreArchivo = $imagen->getClientOriginalName();
-        $rutaImagen = $imagen->store('imagenes', 'publico');
+        $archivos = $request->file('archivo');
 
-        // Crear una nueva imagen asociada al evento
-        $nuevaImagen = new Imagen();
-        $nuevaImagen->ruta_imagen = $rutaImagen;
-        $nuevaImagen->nombre = $nombreArchivo;
+        if (is_array($archivos)) {
+            foreach ($archivos as $archivo) {
+                if ($archivo->isValid()) {
+                    $nombreArchivo = $archivo->getClientOriginalName();
+                    $rutaImagen = $archivo->store('imagenes', 'publico');
 
-        $evento->imagenes()->save($nuevaImagen);
+                    $nuevaImagen = new Imagen();
+                    $nuevaImagen->ruta_imagen = $rutaImagen;
+                    $nuevaImagen->nombre = $nombreArchivo;
+
+                    $evento->imagenes()->save($nuevaImagen);
+                }
+            }
+        } else {
+            // Solo se subió un archivo
+            if ($archivos->isValid()) {
+                $nombreArchivo = $archivos->getClientOriginalName();
+                $rutaImagen = $archivos->store('imagenes', 'publico');
+
+                $nuevaImagen = new Imagen();
+                $nuevaImagen->ruta_imagen = $rutaImagen;
+                $nuevaImagen->nombre = $nombreArchivo;
+
+                $evento->imagenes()->save($nuevaImagen);
+            }
+        }
 
         return redirect(route('evento.showCliente', ['cual' => $idEvento]));
     }

@@ -1,7 +1,7 @@
 @extends('plantilla.layout')
 
 @section('usuario')
-    <li><a class="nav-link" href="{{ route('sistema.cliente') }}">Inicio</a></li>
+    <li><a class="nav-link" href="{{ route('sistema.gerente') }}">Inicio</a></li>
 @endsection
 
 @section('contenido')
@@ -143,11 +143,23 @@
                     </div>
                 </div>
                 @else
-                <p class="label fw-bold text-center" style="color: rgb(156, 156, 42)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
-                        <path d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
-                    </svg> EN ESPERA DE AUTORIZACIÓN
-                </p>
+                    @if ($evento->estatus == "Pendiente")
+                    <form action="{{ route('evento.update.autorizar', $evento->id) }}" method="post" id="evento">
+                        @method('PUT')
+                        @csrf
+                        <p class="label fw-bold text-center">
+                            <input type="hidden" name="estatus" id="estatus" value="Pendiente">
+                            <input type="submit" id="confirmar" class="btn emp_button_c" onclick="confirmar_estatus()" form="evento" value="Autorizar Evento">
+                            <input type="submit" id="rechazar" class="btn emp_button" onclick="rechazar_estatus()" form="evento" value="Rechazar Evento">
+                        </p>
+                    </form>
+                    @else
+                    <p class="label fw-bold text-center" style="color: rgb(156, 156, 42)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
+                            <path d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
+                        </svg> EVENTO SIN CONFIRMAR
+                    </p>
+                    @endif
                 @endif
             </div>
         </div>
@@ -167,24 +179,11 @@
                     <div class="lightbox-gallery">
                         @foreach ($evento->imagenes as $imagen)
                             <div class="image-container">
-                                <div><img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}" alt="{{ $imagen->nombre }}">
-                                    <div class="overlay">
-                                        <form action="{{ route('eliminar_imagen', $imagen->id) }}" method="post"
-                                            class="eliminar_imagen-form">
-                                            @csrf
-                                            <button class="btn btn-link text-decoration-none texto-color" title="Eliminar">
-                                                <i class="bi bi-trash3-fill"></i>
-                                            </button>
-                                        </form>
-                                    </div>
+                                <div>
+                                    <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}" alt="{{ $imagen->nombre }}">
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-center">
-                        <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarFoto">
-                            <i class="bi bi-plus-lg"></i>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -192,69 +191,13 @@
         @endif
     </div>
 
-    <div class="modal fade" id="agregarAbono" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="agregarAbonoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nuevo Abono</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3 row">
-                        <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
-                        <div class="col-sm-8">
-                            <input type="text" readonly class="form-control-plaintext" id="staticCosto"
-                                value="$4,500.00">
-                        </div>
-                    </div>
-                    <hr>
-                    <div>
-                        <form action="#">
-                            <div class="mb-3">
-                                <small>Monto</small>
-                                <input class="form-control" type="text">
-                            </div>
-                            <div class="mb-3">
-                                <small>Tipo de Pago</small>
-                                <input class="form-control" list="datalistOptions">
-                                <datalist id="datalistOptions">
-                                    <option value="Credito">
-                                    <option value="Debito">
-                                    <option value="Efectivo">
-                                </datalist>
-                            </div>
-                            <div class="d-grid gap-2 col-6 mx-auto">
-                                <button type="submit" class="btn emp_button">Aceptar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script>
+        function confirmar_estatus() {
+            document.querySelector('#estatus').value = "Confirmar";
+        }
 
-    <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Foto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('subir_imagen', ['idEvento' => $evento->id]) }}" method="post"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <input class="form-control" type="file" name="archivo[]" id="archivo" multiple>
-                        </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button type="submit" class="btn emp_button">Aceptar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+        function rechazar_estatus() {
+            document.querySelector('#estatus').value = "SinConfirmar";
+        }
+    </script>
 @endsection

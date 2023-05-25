@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Paquete;
+use App\Models\ImagenPaquete;
 use App\Models\Servicio;
-
+use Illuminate\Support\Facades\Storage;
 
 class PaqueteController extends Controller
 {
@@ -22,7 +23,6 @@ class PaqueteController extends Controller
         return view('Paquetes.create');
     }
 
-
     public function store(Request $request)
     {
         $this->authorize('create', Paquete::class);
@@ -33,6 +33,27 @@ class PaqueteController extends Controller
         $nuevo->descripcion = $request->input('descripcion');
         $nuevo->estatus = $request->input('estatus');
         $nuevo->save();
+        $paqueteId = $nuevo->id;
+        //if ($request->hasFile('archivoPaquete')) {
+        $paquete = Paquete::find($paqueteId); // Obtener el modelo del paquete
+        // Subir la imagen al disco público
+        $imagenes = $request->file('archivoPaquete');
+
+        if (is_array($imagenes)) {
+            foreach ($imagenes as $imagen) {
+                if ($imagen->isValid()) {
+                    $nombreArchivo = $imagen->getClientOriginalName();
+                    $rutaImagen = $imagen->store('imagenes', 'publico');
+
+                    // Crear una nueva imagen asociada al paquete
+                    $nuevaImagen = new ImagenPaquete();
+                    $nuevaImagen->ruta = $rutaImagen;
+                    $nuevaImagen->nombre = $nombreArchivo;
+
+                    $paquete->imagenesPaquetes()->save($nuevaImagen);
+                }
+            }
+        }
         return redirect(route('sistema.gerente'));
     }
 
@@ -71,5 +92,48 @@ class PaqueteController extends Controller
         $paquete->delete();
         return redirect(route('sistema.gerente'));
         //return redirect()->back()->with('alert', 'Oh no! No es posible eliminar el paquete ya que se encunetra en un evento activo.');
+    }
+
+    public function subirImagen(Request $request, $idPaquete)
+    {
+        $evento = Paquete::findOrFail($idPaquete);
+
+        $archivos = $request->file('archivo');
+
+        if (is_array($archivos)) {
+            foreach ($archivos as $archivo) {
+                if ($archivo->isValid()) {
+                    $nombreArchivo = $archivo->getClientOriginalName();
+                    $rutaImagen = $archivo->store('imagenes', 'publico');
+
+                    $nuevaImagen = new ImagenPaquete();
+                    $nuevaImagen->ruta = $rutaImagen;
+                    $nuevaImagen->nombre = $nombreArchivo;
+
+                    $evento->imagenesPaquetes()->save($nuevaImagen);
+                }
+            }
+        } else {
+            if ($archivos->isValid()) {
+                $nombreArchivo = $archivos->getClientOriginalName();
+                $rutaImagen = $archivos->store('imagenes', 'publico');
+
+                $nuevaImagen = new ImagenPaquete();
+                $nuevaImagen->ruta = $rutaImagen;
+                $nuevaImagen->nombre = $nombreArchivo;
+
+                $evento->imagenesPaquetes()->save($nuevaImagen);
+            }
+        }
+
+        return redirect(route('paquete.edit', ['cual' => $idPaquete]));
+    }
+
+    public function eliminarImagen($id)
+    {
+        $imagen = ImagenPaquete::findOrFail($id);
+        $imagen->delete();
+        Storage::disk('publico')->delete($imagen->ruta);
+        return redirect()->back();
     }
 }

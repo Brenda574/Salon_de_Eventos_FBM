@@ -39,32 +39,58 @@
                         <p class="label fw-bold">{{ $evento->usuario_id }}</p>
                     </div>
                     <div class="col text-center">
-                        <small>Fecha</small>
+                        <small>FEHCA</small>
                         <p class="label fw-bold">{{ $evento->fecha }}</p>
                     </div>
                     <div class="col text-center">
-                        <small>Hora Inicio</small>
+                        <small>HORA INICIO</small>
                         <p class="label fw-bold">{{ $evento->hora_inicio }}</p>
                     </div>
                     <div class="col text-center">
-                        <small>Hora Final</small>
+                        <small>HORA FINAL</small>
                         <p class="label fw-bold">{{ $evento->hora_final }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col text-center">
-                        <small>No. Invitados</small>
+                        <small>NO. INVITADOS</small>
                         <p class="label fw-bold">{{ $evento->num_invitados }}</p>
                     </div>
                     <div class="col text-center">
-                        <small>Proposito</small>
+                        <small>PROPOSITO</small>
                         <p class="label fw-bold">{{ $evento->proposito }}</p>
                     </div>
                     <div class="col text-center">
-                        <small>Costo</small>
+                        <small>COSTO</small>
                         <p class="label fw-bold">${{ $evento->costo }}</p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div class="row container_galery">
+                <H5>Servicios</H5>
+                <table id="tabla-servicios" class="table table-hover" name="servicios">
+                    <tbody>
+                        <tr>
+                            <td class="text-center">#</td>
+                            <td class="text-center">Servicio</td>
+                            <td class="text-center">Costo</td>
+                        </tr>
+                    </tbody>
+                    @foreach ($evento->servicios as $item)
+                        @foreach ($servicios as $servicio)
+                            @if ($item->pivot->servicio_id == $servicio->id)
+                                <tr>
+                                    <td class="text-center">{{ $servicio->id }}</td>
+                                    <td class="text-center">{{ $servicio->nombre }}</td>
+                                    <td class="text-center">${{ $servicio->costo }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    @endforeach
+                </table>
             </div>
         </div>
         <hr>
@@ -94,7 +120,7 @@
                     </div>
                     <div class="col text-center">
                         <small>CANTIDAD</small>
-                        <p class="label fw-bold">$ {{$abono->monto}}</p>
+                        <p class="label fw-bold">$10,500.00</p>
                     </div>
                     <div class="col text-center">
                         <small>DIFERENCIA</small>
@@ -185,9 +211,7 @@
                     </div>
                     <hr>
                     <div>
-                        <form action="{{ route('subir_abono', ['idEvento' => $evento->id]) }}" method="post"
-                        enctype="multipart/form-data">
-                        @csrf
+                        <form action="#">
                             <div class="mb-3">
                                 <small>Monto</small>
                                 <input class="form-control" type="number" name="monto">
