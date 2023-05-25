@@ -144,11 +144,15 @@
                 </div>
                 @else
                     @if ($evento->estatus == "Pendiente")
-                    <p class="label fw-bold text-center">
-                        <input type="hidden" name="estatus" id="estatus" value="Pendiente">
-                        <button type="submit" id="confirmar" class="btn emp_button_c" onclick="confirmar_estatus()" form="evento">Autorizar Evento</button>
-                        <button type="submit" id="rechazar" class="btn emp_button" onclick="rechazar_estatus()" form="evento">Rechazar Evento</button>
-                    </p>
+                    <form action="{{ route('evento.update.autorizar', $evento->id) }}" method="post" id="evento">
+                        @method('PUT')
+                        @csrf
+                        <p class="label fw-bold text-center">
+                            <input type="hidden" name="estatus" id="estatus" value="Pendiente">
+                            <input type="submit" id="confirmar" class="btn emp_button_c" onclick="confirmar_estatus()" form="evento" value="Autorizar Evento">
+                            <input type="submit" id="rechazar" class="btn emp_button" onclick="rechazar_estatus()" form="evento" value="Rechazar Evento">
+                        </p>
+                    </form>
                     @else
                     <p class="label fw-bold text-center" style="color: rgb(156, 156, 42)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
