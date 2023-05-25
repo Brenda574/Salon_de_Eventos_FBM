@@ -13,7 +13,7 @@ class ImagenPolicy
      */
     public function viewAny(Usuario $usuario): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class ImagenPolicy
      */
     public function view(Usuario $usuario, Imagen $imagen): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class ImagenPolicy
      */
     public function create(Usuario $usuario): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class ImagenPolicy
      */
     public function update(Usuario $usuario, Imagen $imagen): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class ImagenPolicy
      */
     public function delete(Usuario $usuario, Imagen $imagen): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class ImagenPolicy
      */
     public function restore(Usuario $usuario, Imagen $imagen): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class ImagenPolicy
      */
     public function forceDelete(Usuario $usuario, Imagen $imagen): bool
     {
-        //
+        return true;
     }
 }

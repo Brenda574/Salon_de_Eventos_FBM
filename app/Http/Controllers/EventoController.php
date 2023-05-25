@@ -20,6 +20,7 @@ class EventoController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Evento::class);
         $paquetes = Paquete::all();
         $servicios = Servicio::all();
         return view('Eventos.create', ['paquetes' => $paquetes], ['servicios' => $servicios]);
@@ -27,10 +28,7 @@ class EventoController extends Controller
 
     public function store(Request $request)
     {
-        $serviciosIds = json_decode($request->input('servicios_id'));
-
-        // Buscar los servicios en la base de datos
-        $servicios = Servicio::whereIn('id', $serviciosIds)->get();
+        $this->authorize('create', Evento::class);
         $usuario = Auth::user();
         $paquete = Paquete::find($request->input('paquete_id'));
 
@@ -46,21 +44,25 @@ class EventoController extends Controller
         $nuevo->usuario_id = $usuario->id;
         $nuevo->paquete_id = $paquete->id;
 
-        if ($nuevo->num_invitados > $paquete->capacidad_maxima) {
+        if ($nuevo->num_invitados > $paquete->capacidad_maxima) {       // Verifica que num de invitados no revase la capacidad max
             $nuevo->num_invitados = $paquete->capacidad_maxima;
         }
 
         $nuevo->save();
 
-        // Crear la relación entre el evento y los servicios
-        $nuevo->servicios()->attach($servicios, ['usuario_id' => $usuario->id, 'paquete_id' => $paquete->id]);
+        if (is_null(json_decode($request->input('servicios_id')))) {
+        } else {
+            $serviciosIds = json_decode($request->input('servicios_id'));
+            $servicios = Servicio::whereIn('id', $serviciosIds)->get();
+            $nuevo->servicios()->attach($servicios, ['usuario_id' => $usuario->id, 'paquete_id' => $paquete->id]);
+        }
 
-        // Redireccionar a la página del evento creado
         return redirect()->route('sistema.cliente');
     }
 
     public function show(string $id)
     {
+        $this->authorize('view', Evento::find($id));
         $evento = Evento::find($id);
         $paquetes = Paquete::all();
         $servicios = Servicio::all();
@@ -70,6 +72,7 @@ class EventoController extends Controller
 
     public function showCliente(string $id)
     {
+        $this->authorize('viewCliente', Evento::find($id));
         $evento = Evento::find($id);
         $paquetes = Paquete::all();
         $servicios = Servicio::all();
@@ -79,6 +82,7 @@ class EventoController extends Controller
 
     public function showGerente(string $id)
     {
+        $this->authorize('viewGerente', Evento::find($id));
         $evento = Evento::find($id);
         $paquetes = Paquete::all();
         $servicios = Servicio::all();
@@ -88,6 +92,7 @@ class EventoController extends Controller
 
     public function edit(string $id)
     {
+        $this->authorize('update', Evento::find($id));
         $evento = Evento::find($id);
         $paquetes = Paquete::all();
         $servicios = Servicio::all();
@@ -97,6 +102,7 @@ class EventoController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $this->authorize('update', Evento::find($id));
         $usuario = Auth::user();
         $paquete = Paquete::find($request->input('paquete_id'));
 
@@ -131,6 +137,7 @@ class EventoController extends Controller
 
     public function update_autorizar(Request $request, string $id)
     {
+        $this->authorize('updateAutorizar', Evento::find($id));
         $evento = Evento::find($id);
         $evento->estatus = $request->input('estatus');
         $evento->save();
@@ -139,6 +146,7 @@ class EventoController extends Controller
 
     public function destroy(string $id)
     {
+        $this->authorize('delete', Evento::find($id));
         $evento = Evento::find($id);
         $evento->servicios()->detach();
         $evento->delete();
@@ -148,7 +156,6 @@ class EventoController extends Controller
     public function subirImagen(Request $request, $idEvento)
     {
         $evento = Evento::findOrFail($idEvento);
-
         $archivos = $request->file('archivo');
 
         if (is_array($archivos)) {
@@ -165,7 +172,6 @@ class EventoController extends Controller
                 }
             }
         } else {
-            // Solo se subió un archivo
             if ($archivos->isValid()) {
                 $nombreArchivo = $archivos->getClientOriginalName();
                 $rutaImagen = $archivos->store('imagenes', 'publico');
@@ -183,15 +189,12 @@ class EventoController extends Controller
 
     public function subirImagenEmpleado(Request $request, $idEvento)
     {
-
         $evento = Evento::findOrFail($idEvento);
 
-        // Subir la imagen al disco público
         $imagen = $request->file('archivoEmpleado');
         $nombreArchivo = $imagen->getClientOriginalName();
         $rutaImagen = $imagen->store('imagenes', 'publico');
 
-        // Crear una nueva imagen asociada al evento
         $nuevaImagen = new Imagen();
         $nuevaImagen->ruta_imagen = $rutaImagen;
         $nuevaImagen->nombre = $nombreArchivo;
@@ -204,11 +207,7 @@ class EventoController extends Controller
     public function eliminar($id)
     {
         $imagen = Imagen::findOrFail($id);
-
-        // Elimina la imagen de la base de datos
         $imagen->delete();
-
-        // Elimina la imagen del disco público
         Storage::disk('publico')->delete($imagen->ruta_imagen);
 
         return redirect()->back();
@@ -217,11 +216,7 @@ class EventoController extends Controller
     public function eliminarEmpleado($id)
     {
         $imagen = Imagen::findOrFail($id);
-
-        // Elimina la imagen de la base de datos
         $imagen->delete();
-
-        // Elimina la imagen del disco público
         Storage::disk('publico')->delete($imagen->ruta_imagen);
 
         return redirect()->back();
@@ -232,18 +227,9 @@ class EventoController extends Controller
         return redirect(route("sistema.cliente"));
     }
 
-
-
-
-
-
-
-
     public function subirAbono(Request $request, $idEvento)
     {
         $evento = Evento::findOrFail($idEvento);
-        
-        // Crear un nuevo Abono asociada al evento
         $nuevoAbono = new Abono();
         $nuevoAbono->monto = $request->input('monto');
         
@@ -251,20 +237,14 @@ class EventoController extends Controller
             $nuevoAbono->monto = $evento->costo - Abono::where('evento_id', $evento->id)->sum('monto');
         }
         
-        
         $evento->abonos()->save($nuevoAbono);
         return redirect(route('evento.show', ['cual' => $idEvento]));
     }
+
     public function eliminarAbono($id)
     {
         $abonito = Abono::findOrFail($id);
-
-        // Elimina abono de la base de datos
         $abonito->delete();
-
-        // Elimina la imagen del disco público
-        //Storage::disk('publico')->delete($imagen->ruta_imagen);
-
         return redirect()->back();
     }
 
