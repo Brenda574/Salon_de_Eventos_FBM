@@ -34,8 +34,8 @@ class EventoPolicy
 
     public function viewCliente(Usuario $usuario, Evento $evento): bool
     {
-        if ($usuario->rol == "Cliente") {
-            if ($evento->estatus == "Confirmado" && $evento->usuario_id == $usuario->id) {
+        if ($usuario->rol == "Cliente" && $evento->usuario_id == $usuario->id) {
+            if ($evento->estatus == "Confirmado" || $evento->estatus == "Pendiente") {
                 return true;
             }
             return false;
