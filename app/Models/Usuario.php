@@ -14,4 +14,9 @@ class Usuario extends Authenticatable
     {
         return $this->hasMany(Evento::class);
     }
+
+    public function gastosHasMany()
+    {
+        return $this->hasMany(Gasto::class);
+    }
 }

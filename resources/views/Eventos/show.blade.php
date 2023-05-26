@@ -120,7 +120,7 @@
                     </div>
                     <div class="col text-center">
                         <small>CANTIDAD</small>
-                        <p class="label fw-bold">{{$abono->monto}}</p>
+                        <p class="label fw-bold">$ {{$abono->monto}}</p>
                     </div>
                     <div class="col text-center">
                         <small>DIFERENCIA</small>
