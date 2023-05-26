@@ -156,7 +156,7 @@ class EventoController extends Controller
             if ($evento->estatus == 'SinConfirmar') {
                 RechazoEvento::dispatch($cliente, $gerente, $evento, $descripcion);
             } elseif ($evento->estatus == 'Confirmado') {
-                AutorizarEvento::dispatch($cliente, $gerente, $evento, $descripcion);
+                AutorizarEvento::dispatch($cliente, $gerente, $evento);
             }
         }
         return redirect(route('evento.showGerente', ['cual' => $id]));
@@ -181,10 +181,13 @@ class EventoController extends Controller
                 if ($archivo->isValid()) {
                     $nombreArchivo = $archivo->getClientOriginalName();
                     $rutaImagen = $archivo->store('imagenes', 'publico');
+                    $descripcion = $request->input('descrip');
 
                     $nuevaImagen = new Imagen();
                     $nuevaImagen->ruta_imagen = $rutaImagen;
                     $nuevaImagen->nombre = $nombreArchivo;
+                    $nuevaImagen->descripcion = $descripcion;
+                    $nuevaImagen->usuario_id = Auth::user();
 
                     $evento->imagenes()->save($nuevaImagen);
                 }

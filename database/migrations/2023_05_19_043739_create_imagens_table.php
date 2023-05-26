@@ -17,6 +17,9 @@ return new class extends Migration
             $table->foreign('evento_id')->references('id')->on('eventos')->onDelete('cascade');
             $table->string('ruta_imagen');
             $table->string('nombre');
+            $table->string('descripcion');
+            $table->string('nombre');
+            $table->integer('usuario_id');
             $table->timestamps();
         });
     }
