@@ -219,7 +219,11 @@ class EventoController extends Controller
 
         $evento->imagenes()->save($nuevaImagen);
 
-        return redirect(route('evento.show', ['cual' => $idEvento]));
+        if (Auth::user()->rol == "Empleado") {
+            return redirect(route('evento.show', ['cual' => $idEvento]));
+        } else {
+            return redirect(route('evento.showGerente', ['cual' => $idEvento]));
+        }
     }
 
     public function eliminar($id)
@@ -247,11 +251,8 @@ class EventoController extends Controller
 
     public function subirAbono(Request $request, $idEvento)
     {
+        $this->authorize('updateAbono', Evento::find($idEvento));
         $evento = Evento::findOrFail($idEvento);
-
-
-        // Crear un nuevo Abono asociada al evento
-
         $nuevoAbono = new Abono();
         $nuevoAbono->monto = $request->input('monto');
 
@@ -259,11 +260,14 @@ class EventoController extends Controller
             $nuevoAbono->monto = $evento->costo - Abono::where('evento_id', $evento->id)->sum('monto');
         }
 
-
-
-
         $evento->abonos()->save($nuevoAbono);
-        return redirect(route('evento.show', ['cual' => $idEvento]));
+
+        if (Auth::user()->rol == "Empleado") {
+            return redirect(route('evento.show', ['cual' => $idEvento]));
+        } else {
+            return redirect(route('evento.showGerente', ['cual' => $idEvento]));
+        }
+        
     }
 
     public function eliminarAbono($id)

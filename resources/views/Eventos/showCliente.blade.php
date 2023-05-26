@@ -96,11 +96,7 @@
         <hr>
         <div>
             <div class="row container_galery">
-<<<<<<< HEAD
-                @if ($evento->estatus == 'Confirmado')
-=======
                 @if ($evento->estatus == "Confirmado")
->>>>>>> db0ce35 (revision1)
                     <p class="label fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-cash-coin" viewBox="0 0 16 16">
@@ -209,7 +205,7 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" type="file" name="archivo[]" id="archivo" multiple>
+                            <input class="form-control" type="file" name="archivo[]" id="archivo" accept="image/*" multiple>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn emp_button">Aceptar</button>
