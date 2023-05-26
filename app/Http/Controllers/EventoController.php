@@ -204,6 +204,8 @@ class EventoController extends Controller
         $nuevaImagen = new Imagen();
         $nuevaImagen->ruta_imagen = $rutaImagen;
         $nuevaImagen->nombre = $nombreArchivo;
+        $nuevaImagen->usuario_id = Auth::user()->id;
+
 
         $evento->imagenes()->save($nuevaImagen);
 
