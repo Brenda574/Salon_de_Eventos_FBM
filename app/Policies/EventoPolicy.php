@@ -80,6 +80,18 @@ class EventoPolicy
         }
     }
 
+    public function updateAbono(Usuario $usuario, Evento $evento): bool
+    {
+        if ($usuario->rol == "Gerente" || $usuario->rol == "Empleado") {
+            if ($evento->estatus == "Confirmado") {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+
     public function updateAutorizar(Usuario $usuario, Evento $evento): bool
     {
         if ($usuario->rol == "Gerente") {

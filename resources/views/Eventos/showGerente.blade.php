@@ -194,9 +194,22 @@
                                     <div>
                                         <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
                                             alt="{{ $imagen->nombre }}">
+                                        <div class="overlay">
+                                            <form action="{{ route('eliminar_imagen_empleado', $imagen->id) }}"
+                                                method="post" class="eliminar_imagen-form">
+                                                @csrf
+                                                <button class="btn btn-link text-decoration-none texto-color"
+                                                    title="Eliminar">
+                                                    <i class="bi bi-trash3-fill"></i></button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-center">
+                            <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarFoto"><i
+                                    class="bi bi-plus-lg"></i></button>
                         </div>
                     </div>
                 </div>
@@ -216,8 +229,6 @@
                     <div class="mb-3 row">
                         <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
                         <div class="col-sm-8">
-                            <!-- <input type="text" readonly class="form-control-plaintext" id="staticCosto"
-                                    value="$4,500.00"> -->
                             @if (isset($abono->monto))
                                 <p class="label fw-bold">$ {{ $evento->costo - $resto }}</p>
                             @else
@@ -240,6 +251,31 @@
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Foto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('subir_imagen_empleado', ['idEvento' => $evento->id]) }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <input class="form-control" accept="image/*" type="file" name="archivoEmpleado"
+                                id="archivoEmpleado">
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button type="submit" class="btn emp_button">Aceptar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

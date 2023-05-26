@@ -207,10 +207,8 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" type="file" name="archivo" id="archivo">
-                        </div>
-                        <div>
-                            <textarea id="descrip" name="descrip" placeholder="Ingrese una descripción" class="form-control"></textarea>
+                            <input class="form-control" type="file" name="archivo[]" id="archivo" accept="image/*"
+                                multiple>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn emp_button">Aceptar</button>
