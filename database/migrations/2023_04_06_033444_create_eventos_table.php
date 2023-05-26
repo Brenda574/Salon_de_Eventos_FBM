@@ -20,7 +20,7 @@ return new class extends Migration
             $table->double('costo');
             $table->enum('estatus', ['Confirmado', 'Pendiente', 'SinConfirmar'])->default('SinConfirmar');
             $table->string('proposito');
-            $table->integer('num_invitados')->unsigned();;
+            $table->integer('num_invitados')->unsigned();
             $table->timestamps();
             $table->unsignedBigInteger('usuario_id');
             $table->unsignedBigInteger('paquete_id');

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('usuario')->Unique();
+            $table->string('correo')->Unique();
             $table->string('clave');
             $table->enum('rol', ['Cliente', 'Gerente', 'Empleado'])->default('Cliente');
             $table->timestamps();

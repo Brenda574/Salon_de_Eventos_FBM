@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ObserverImagen
 {
+    protected $fillable = ['quien', 'que'];
     /**
      * Handle the Imagen "created" event.
      */

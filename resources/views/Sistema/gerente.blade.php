@@ -33,6 +33,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Nombre(s)</th>
                                     <th scope="col">Usuario</th>
+                                    <th scope="col">Correo</th>
                                     <th scope="col">Rol</th>
                                     <th scope="col">Creación</th>
                                     <th scope="col"></th>
@@ -44,6 +45,7 @@
                                         <th scope="row">{{ $item['id'] }}</th>
                                         <td>{{ $item['nombre'] }}</td>
                                         <td>{{ $item['usuario'] }}</td>
+                                        <td>{{ $item['correo'] }}</td>
                                         <td>{{ $item['rol'] }}</td>
                                         <td>{{ $item['created_at'] }}</td>
                                         <td>

@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\AutorizarEvento;
+use App\Jobs\RechazoEvento;
 use Illuminate\Http\Request;
+use App\Models\Usuario;
+use App\Mail\ConfirmacionEventoMail;
+use App\Mail\RechazoEventoMail;
 use App\Models\Evento;
 use App\Models\Servicio;
 use App\Models\Paquete;
@@ -10,6 +15,7 @@ use App\Models\Abono;
 use App\Models\Imagen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class EventoController extends Controller
 {
@@ -134,6 +140,18 @@ class EventoController extends Controller
         $evento = Evento::find($id);
         $evento->estatus = $request->input('estatus');
         $evento->save();
+
+
+        $cliente = $evento->usuario;
+        $gerente = Auth::user();
+        $descripcion = $request->input('descripcion');
+        if ($cliente && $gerente) {
+            if ($evento->estatus == 'SinConfirmar') {
+                RechazoEvento::dispatch($cliente, $gerente, $evento, $descripcion);
+            } elseif ($evento->estatus == 'Confirmado') {
+                AutorizarEvento::dispatch($cliente, $gerente, $evento, $descripcion);
+            }
+        }
         return redirect(route('evento.showGerente', ['cual' => $id]));
     }
 
@@ -242,16 +260,16 @@ class EventoController extends Controller
     public function subirAbono(Request $request, $idEvento)
     {
         $evento = Evento::findOrFail($idEvento);
-        
+
         // Crear un nuevo Abono asociada al evento
         $nuevoAbono = new Abono();
         $nuevoAbono->monto = $request->input('monto');
-        
+
         if ($nuevoAbono->monto > ($evento->costo - Abono::where('evento_id', $evento->id)->sum('monto'))) {
             $nuevoAbono->monto = $evento->costo - Abono::where('evento_id', $evento->id)->sum('monto');
         }
-        
-        
+
+
         $evento->abonos()->save($nuevoAbono);
         return redirect(route('evento.show', ['cual' => $idEvento]));
     }

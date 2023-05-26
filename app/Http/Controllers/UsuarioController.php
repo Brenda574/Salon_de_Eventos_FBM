@@ -25,6 +25,7 @@ class UsuarioController extends Controller
     {
         $nuevo = new Usuario();
         $nuevo->nombre = $request->input('nombre');
+        $nuevo->correo = $request->input('correo');
         $nuevo->usuario = $request->input('usuario');
         $nuevo->clave = Hash::make($request->input('clave'));
         $nuevo->save();
@@ -37,6 +38,7 @@ class UsuarioController extends Controller
         $nuevo = new Usuario();
         $nuevo->nombre = $request->input('nombre');
         $nuevo->usuario = $request->input('usuario');
+        $nuevo->correo = $request->input('correo');
         $nuevo->clave = Hash::make($request->input('clave'));
         $nuevo->rol = $request->input('rol');
         $nuevo->save();

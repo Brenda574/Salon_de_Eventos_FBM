@@ -8,6 +8,12 @@ use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Monolog\Handler\RotatingFileHandler;
+use App\Jobs\RechazoEvento;
+use App\Jobs\AutorizarEvento;
+use App\Models\Evento;
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------

@@ -8,6 +8,7 @@ use App\Models\Bitacora;
 
 class ObserverPaquete
 {
+    protected $fillable = ['quien', 'que'];
     /**
      * Handle the Paquete "created" event.
      */

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ObserverAbono
 {
+    protected $fillable = ['quien', 'que'];
     /**
      * Handle the Abono "created" event.
      */

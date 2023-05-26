@@ -9,6 +9,7 @@ use App\Models\Bitacora;
 
 class ObserverImagenPaquete
 {
+    protected $fillable = ['quien', 'que'];
     /**
      * Handle the ImagenPaquete "created" event.
      */

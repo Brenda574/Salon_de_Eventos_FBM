@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ObserverServicio
 {
+    protected $fillable = ['quien', 'que'];
     /**
      * Handle the Servicio "created" event.
      */

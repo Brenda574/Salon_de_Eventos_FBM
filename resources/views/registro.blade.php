@@ -29,11 +29,16 @@
                                         <img src="https://www.aimmedia.com/wp-content/uploads/2022/10/GardenGate_LOGO_FINAL-600x250_554e45.png"
                                             style="width: 185px; " alt="logo">
                                     </div>
-                                    <form action="{{ route('usuario.registrar') }}" method="post" style="padding-top: 2rem">
+                                    <form action="{{ route('usuario.registrar') }}" method="post"
+                                        style="padding-top: 2rem">
                                         @csrf
                                         <div class="form-outline mb-4">
                                             <input type="text" id="nombre" class="form-control" name="nombre"
                                                 placeholder="Nombre(s)" />
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input type="email" id="correo" name="correo" placeholder="Correo"
+                                                class="form-control" />
                                         </div>
                                         <div class="form-outline mb-4">
                                             <input type="text" id="usuario" name="usuario" placeholder="Usuario"
@@ -45,7 +50,8 @@
                                         </div>
                                         <div class="text-center pt-1 mb-5 pb-1">
                                             <div>
-                                                <button type="submit" class="btn boton4 custom-2 mb-3" style="background-color: #E1D5D5; transition: all 0.35s;">Registrar</button>
+                                                <button type="submit" class="btn boton4 custom-2 mb-3"
+                                                    style="background-color: #E1D5D5; transition: all 0.35s;">Registrar</button>
                                             </div>
                                         </div>
                                     </form>

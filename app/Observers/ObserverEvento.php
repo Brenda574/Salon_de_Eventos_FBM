@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ObserverEvento
 {
+    protected $fillable = ['quien', 'que'];
     /**
      * Handle the Evento "created" event.
      */
@@ -20,7 +21,7 @@ class ObserverEvento
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se creó un nuevo evento " . $evento->nombre;
+        $bitacora->que = "Se creó un nuevo evento " . $evento->nombre_evento;
         $bitacora->save();
     }
 
@@ -36,8 +37,26 @@ class ObserverEvento
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se actualizó el evento " . $evento->nombre;
+        $bitacora->que = "Se actualizó el evento " . $evento->nombre_evento;
         $bitacora->save();
+
+        if ($evento->isDirty('estatus')) {
+            $bitacora = new Bitacora();
+
+            if (Auth::check()) {
+                $bitacora->quien = Auth::user()->nombre;
+            } else {
+                $bitacora->quien = 'seeder';
+            }
+
+            if ($evento->estatus == 'Confirmado') {
+                $bitacora->que = 'Confirmó el evento: ' . $evento->nombre_evento;
+                $bitacora->save();
+            } elseif ($evento->estatus == 'SinConfirmar') {
+                $bitacora->que = 'Rechazó el evento' . $evento->nombre_evento;
+                $bitacora->save();
+            }
+        }
     }
 
     /**
@@ -52,7 +71,7 @@ class ObserverEvento
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se eliminó el evento " . $evento->nombre;
+        $bitacora->que = "Se eliminó el evento " . $evento->nombre_evento;
         $bitacora->save();
     }
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ObserverUsuario
 {
+    protected $fillable = ['quien', 'que'];
     /**
      * Handle the Usuario "created" event.
      */
