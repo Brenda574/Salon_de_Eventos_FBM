@@ -96,7 +96,11 @@
         <hr>
         <div>
             <div class="row container_galery">
+<<<<<<< HEAD
                 @if ($evento->estatus == 'Confirmado')
+=======
+                @if ($evento->estatus == "Confirmado")
+>>>>>>> db0ce35 (revision1)
                     <p class="label fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-cash-coin" viewBox="0 0 16 16">
@@ -109,45 +113,41 @@
                             <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
                         </svg> Pagos
                     </p>
-                    <div class="row">
-                        <div class="col-2 text-center">
-                            <small>#</small>
-                            @foreach ($abonos as $abono)
-                                @if ($abono->evento_id == $evento->id)
-                                    <p class="label fw-bold">{{ $abono->id }}</p>
-                                @endif
-                            @endforeach
+                    <?php
+                    $resto=0;
+                    ?>
+                    @foreach($evento->abonos as $abono)
+                        <div class="row">
+                            <div class="col text-center">
+                                <small>ABONO</small>
+                                <p class="label fw-bold">{{$abono->created_at->format('Y-m-d')}}</p>
+                            </div>
+                            <div class="col text-center">
+                                <small>CANTIDAD</small>
+                                <p class="label fw-bold">{{$abono->monto}}</p>
+                            </div>
+                            <div class="col text-center">
+                                <small>DIFERENCIA</small>
+                                <?php
+                                $resto=$resto + $abono->monto;
+                                ?>
+                                <p class="label fw-bold" style="color: orange">$ {{$evento->costo - $resto}}</p>
+                            </div>
                         </div>
-                        <div class="col text-center">
-                            <small>CANTIDAD</small>
-                            @foreach ($abonos as $abono)
-                                @if ($abono->evento_id == $evento->id)
-                                    <p class="label fw-bold">${{ $abono->monto }}</p>
-                                @endif
-                            @endforeach
-                        </div>
-                        <div class="col text-center">
-                            <small>DIFERENCIA</small>
-                            <?php
-                            $diferencia = 0;
-                            $pagado = 0;
-                            
-                            foreach ($abonos as $abono) {
-                                if ($abono->evento_id == $evento->id) {
-                                    $pagado += $abono->monto;
-                                }
-                            }
-                            $diferencia = $evento->costo - $pagado;
-                            ?>
-                            <p class="label fw-bold" style="color: orange">${{ $diferencia }}</p>
-                        </div>
+                    @endforeach
+
+                    <div class="text-center">
+                        <hr>
+                        @if($evento->costo == $resto)
+                            <p class="text-success fw-bold" style="color: rgb(4, 114, 19)">PAGADO TOTALMENTE</p>
+                        @else
+                            <p class="fw-bold" style="color: rgb(151, 6, 6)">Total pagado: ${{$resto}}</p>
+                        @endif
                     </div>
                 @else
                     <p class="label fw-bold text-center" style="color: rgb(156, 156, 42)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-hourglass-top" viewBox="0 0 16 16">
-                            <path
-                                d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
+                            <path d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
                         </svg> EN ESPERA DE AUTORIZACIÓN
                     </p>
                 @endif
@@ -194,48 +194,6 @@
                 </div>
             </div>
         @endif
-    </div>
-
-    <div class="modal fade" id="agregarAbono" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="agregarAbonoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nuevo Abono</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3 row">
-                        <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
-                        <div class="col-sm-8">
-                            <input type="text" readonly class="form-control-plaintext" id="staticCosto"
-                                value="$4,500.00">
-                        </div>
-                    </div>
-                    <hr>
-                    <div>
-                        <form action="#">
-                            <div class="mb-3">
-                                <small>Monto</small>
-                                <input class="form-control" type="text">
-                            </div>
-                            <div class="mb-3">
-                                <small>Tipo de Pago</small>
-                                <input class="form-control" list="datalistOptions">
-                                <datalist id="datalistOptions">
-                                    <option value="Credito">
-                                    <option value="Debito">
-                                    <option value="Efectivo">
-                                </datalist>
-                            </div>
-                            <div class="d-grid gap-2 col-6 mx-auto">
-                                <button type="submit" class="btn emp_button">Aceptar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

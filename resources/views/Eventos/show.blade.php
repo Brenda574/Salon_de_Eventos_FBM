@@ -108,46 +108,41 @@
                         <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
                     </svg> Pagos
                 </p>
-            
                 <?php
                 $resto=0;
                 ?>
                 @foreach($evento->abonos as $abono)
-                <div class="row">
-                    <div class="col text-center">
-                        <small>ABONO</small>
-                        <p class="label fw-bold">{{$abono->created_at->format('Y-m-d')}}</p>
+                    <div class="row">
+                        <div class="col text-center">
+                            <small>ABONO</small>
+                            <p class="label fw-bold">{{$abono->created_at->format('Y-m-d')}}</p>
+                        </div>
+                        <div class="col text-center">
+                            <small>CANTIDAD</small>
+                            <p class="label fw-bold">{{$abono->monto}}</p>
+                        </div>
+                        <div class="col text-center">
+                            <small>DIFERENCIA</small>
+                            <?php
+                            $resto=$resto + $abono->monto;
+                            ?>
+                            <p class="label fw-bold" style="color: orange">$ {{$evento->costo - $resto}}</p>
+                        </div>
                     </div>
-                    <div class="col text-center">
-                        <small>CANTIDAD</small>
-                        <p class="label fw-bold">{{$abono->monto}}</p>
-                    </div>
-                    <div class="col text-center">
-                        <small>DIFERENCIA</small>
-                        <?php
-                        $resto=$resto + $abono->monto;
-                        ?>
-                        <p class="label fw-bold" style="color: orange">$ {{$evento->costo - $resto}}</p>
-                    </div>
-                    <!-- <div class="col-1 text-center">
-                        <br>
-                        <form action="{{ route('eliminar_abono', $abono->id) }}" method="post"class="eliminar_imagen-form">
-                        @csrf
-                            <button class="btn btn-link text-decoration-none texto-color" title="Eliminar">
-                                <i class="bi bi-trash3-fill"></i></button>
-                        </form>
-                    </div> -->
-                </div>
                 @endforeach
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 @if($evento->costo == $resto)
-                    <p class="text-success">Completado</p>
+                    <div class="text-center">
+                        <hr>
+                        <p class="text-success fw-bold" style="color: rgb(4, 114, 19)">PAGADO TOTALMENTE</p>
+                    </div>
                 @else
-                    <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarAbono"><i
-                            class="bi bi-plus-lg"></i></i></button>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarAbono">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                    </div>
                 @endif
-                </div>
             </div>
         </div>
         <hr>
@@ -211,7 +206,9 @@
                     </div>
                     <hr>
                     <div>
-                        <form action="#">
+                        <form action="{{ route('subir_abono', ['idEvento' => $evento->id]) }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
                             <div class="mb-3">
                                 <small>Monto</small>
                                 <input class="form-control" type="number" name="monto">
