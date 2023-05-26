@@ -13,10 +13,11 @@ class EventoPolicy
      */
     public function viewAny(Usuario $usuario): bool
     {
-        if ($usuario->roll) {
-            # code...
+        if ($usuario->rol == "Cliente") {
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
     /**
@@ -24,7 +25,32 @@ class EventoPolicy
      */
     public function view(Usuario $usuario, Evento $evento): bool
     {
-        return true;
+        if ($usuario->rol == "Empleado") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function viewCliente(Usuario $usuario, Evento $evento): bool
+    {
+        if ($usuario->rol == "Cliente") {
+            if ($evento->estatus == "Confirmado" && $evento->usuario_id == $usuario->id) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public function viewGerente(Usuario $usuario, Evento $evento): bool
+    {
+        if ($usuario->rol == "Gerente") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -32,7 +58,11 @@ class EventoPolicy
      */
     public function create(Usuario $usuario): bool
     {
-        return true;
+        if ($usuario->rol == "Cliente") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -40,7 +70,26 @@ class EventoPolicy
      */
     public function update(Usuario $usuario, Evento $evento): bool
     {
-        return true;
+        if ($usuario->rol == "Cliente") {
+            if ($evento->estatus == "SinConfirmar" && $evento->usuario_id == $usuario->id) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateAutorizar(Usuario $usuario, Evento $evento): bool
+    {
+        if ($usuario->rol == "Gerente") {
+            if ($evento->estatus == "Pendiente") {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -48,7 +97,14 @@ class EventoPolicy
      */
     public function delete(Usuario $usuario, Evento $evento): bool
     {
-        return true;
+        if ($usuario->rol == "Cliente") {
+            if ($evento->estatus == "SinConfirmar" && $evento->usuario_id == $usuario->id) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
     }
 
     /**
