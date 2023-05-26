@@ -109,39 +109,41 @@
                             <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
                         </svg> Pagos
                     </p>
-                    <div class="row">
-                        <div class="col-2 text-center">
-                            <small>#</small>
-                            @foreach ($abonos as $abono)
-                                @if ($abono->evento_id == $evento->id)
-                                    <p class="label fw-bold">{{ $abono->id }}</p>
-                                @endif
-                            @endforeach
+                    <?php
+                    $resto = 0;
+                    ?>
+                    @foreach ($evento->abonos as $abono)
+                        <div class="row">
+                            <div class="col text-center">
+                                <small>ABONO</small>
+                                <p class="label fw-bold">{{ $abono->created_at->format('Y-m-d') }}</p>
+                            </div>
+                            <div class="col text-center">
+                                <small>CANTIDAD</small>
+                                <p class="label fw-bold">{{ $abono->monto }}</p>
+                            </div>
+                            <div class="col text-center">
+                                <small>DIFERENCIA</small>
+                                <?php
+                                $resto = $resto + $abono->monto;
+                                ?>
+                                <p class="label fw-bold" style="color: orange">$ {{ $evento->costo - $resto }}</p>
+                            </div>
                         </div>
-                        <div class="col text-center">
-                            <small>CANTIDAD</small>
-                            @foreach ($abonos as $abono)
-                                @if ($abono->evento_id == $evento->id)
-                                    <p class="label fw-bold">${{ $abono->monto }}</p>
-                                @endif
-                            @endforeach
+                    @endforeach
+
+                    @if ($evento->costo == $resto)
+                        <div class="text-center">
+                            <hr>
+                            <p class="text-success fw-bold" style="color: rgb(4, 114, 19)">PAGADO TOTALMENTE</p>
                         </div>
-                        <div class="col text-center">
-                            <small>DIFERENCIA</small>
-                            <?php
-                            $diferencia = 0;
-                            $pagado = 0;
-                            
-                            foreach ($abonos as $abono) {
-                                if ($abono->evento_id == $evento->id) {
-                                    $pagado += $abono->monto;
-                                }
-                            }
-                            $diferencia = $evento->costo - $pagado;
-                            ?>
-                            <p class="label fw-bold" style="color: orange">${{ $diferencia }}</p>
+                    @else
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarAbono">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
                         </div>
-                    </div>
+                    @endif
                 @else
                     @if ($evento->estatus == 'Pendiente')
                         <form action="{{ route('evento.update.autorizar', $evento->id) }}" method="post" id="evento">
@@ -157,8 +159,8 @@
                             <p id="descripcionContainer" style="display: none;">
                                 <label for="descripcion">DESCRIPCIÓN:</label>
                                 <textarea id="descripcion" name="descripcion" placeholder="Ingrese una descripción" class="form-control"></textarea>
-                                <input type="submit" id="enviarDescripcion" class="btn emp_button" style="margin-top: 1rem"
-                                    onclick="rechazar_estatus()" value="Enviar Descripción">
+                                <input type="submit" id="enviarDescripcion" class="btn emp_button"
+                                    style="margin-top: 1rem" onclick="rechazar_estatus()" value="Enviar Descripción">
                             </P>
                         </form>
                     @else
@@ -200,6 +202,47 @@
                 </div>
             </div>
         @endif
+    </div>
+
+    <div class="modal fade" id="agregarAbono" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="agregarAbonoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nuevo Abono</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
+                        <div class="col-sm-8">
+                            <!-- <input type="text" readonly class="form-control-plaintext" id="staticCosto"
+                                    value="$4,500.00"> -->
+                            @if (isset($abono->monto))
+                                <p class="label fw-bold">$ {{ $evento->costo - $resto }}</p>
+                            @else
+                                <p class="label fw-bold">Sin Abonos</p>
+                            @endif
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <form action="{{ route('subir_abono', ['idEvento' => $evento->id]) }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <small>Monto</small>
+                                <input class="form-control" type="number" name="monto">
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button type="submit" class="btn emp_button">Aceptar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
