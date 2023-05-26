@@ -14,9 +14,10 @@
 
     <p>Motivo del rechazo: </p>
     <p>{{ $descripcion }}</p>
-
+    <p>Precio del paquete {{ $evento->costo }}.</p>
     <p>Gracias por su comprensión.</p>
     <p>Atentamente el equipo de gerentes de Garden Gate.</p>
+
 </body>
 
 </html>

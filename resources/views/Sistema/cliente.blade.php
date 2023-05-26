@@ -32,34 +32,38 @@
                                 @if ($evento['estatus'] == 'Confirmado')
                                     <input class="form-check-input" type="checkbox" value="" checked disabled>
                                 @else
-                                    <input class="form-check-input" type="checkbox" value="" disabled>
+                                    @if ($evento['estatus'] == 'Pendiente')
+                                        <p style="color: rgb(156, 156, 42)">Pendiente</p>
+                                    @else
+                                        <input class="form-check-input" type="checkbox" value="" disabled>
+                                    @endif
                                 @endif
                             </td>
                             <td>
-                                <a class="text-decoration-none texto-color" onclick="mostrarGaleria({{ $evento->id }})">
-                                    <i class="bi bi-images" style="font-size:20px;"></i>
-                                </a>
+                                @if ($evento['estatus'] == 'Confirmado')
+                                    <a class="text-decoration-none texto-color" onclick="mostrarGaleria({{ $evento->id }})">
+                                        <i class="bi bi-images" style="font-size:20px;"></i>
+                                    </a>
+                                @endif
                             </td>
                             <td>
-                                @if ($evento->estatus == 'Confirmado' || $evento->estatus == 'Pendiente')
-                                    <a href="{{ route('evento.showCliente', $evento) }}"
-                                        class="btn emp_button_plus">Datos</a>
-                                @else
+                                @can('viewCliente', $evento)
+                                    <a href="{{ route('evento.showCliente', $evento) }}" class="btn emp_button_plus">Datos</a>
+                                @endcan
+                                @can('update', $evento)
                                     <a href="{{ route('evento.edit', $evento) }}" class="btn emp_button_plus">Editar</a>
-                                @endif
+                                @endcan
                             </td>
                             <td>
                                 <form action="{{ route('evento.destroy', $evento) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     @if ($evento->estatus == 'Confirmado')
-                                        <a class="btn emp_button_plus"
-                                            data-bs-target="#modalDetallesContrato{{ $evento['id'] }}"
-                                            data-bs-toggle="modal">Contrato</a>
-                                    @else
-                                        <button type="submit" class="btn emp_button_plus"
-                                            title="Eliminar">Eliminar</button>
+                                        <a class="btn emp_button_plus" data-bs-target="#modalDetallesContrato{{ $evento['id'] }}" data-bs-toggle="modal">Contrato</a>
                                     @endif
+                                    @can('delete', $evento)
+                                        <button type="submit" class="btn emp_button_plus" title="Eliminar">Eliminar</button>
+                                    @endcan
                                 </form>
                             </td>
                         </tr>
@@ -69,7 +73,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5 text-success" id="modalDetallesContratoLabel">
-                                            {{ $evento['nombre_evento'] }}</h1>
+                                            CONTRATO DE VENTA</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -106,15 +110,14 @@
                                                 </ul>
                                             </div>
                                             <br>
-                                            <p><strong>Estado de cuenta:</strong></p>
                                         </dl>
-                                        <p class="text-end">$0/<strong
+                                        <p class="text-end">TOTAL: <strong
                                                 class="text-success">${{ $evento['costo'] }}</strong></p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn emp_button_c"
+                                        <!--<button class="btn emp_button_c"
                                             data-bs-target="#modalDetallesContrato2{{ $evento['id'] }}"
-                                            data-bs-toggle="modal">Cancelar Evento</button>
+                                            data-bs-toggle="modal">Cancelar Evento</button>-->
                                     </div>
                                 </div>
                             </div>

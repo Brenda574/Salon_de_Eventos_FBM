@@ -156,7 +156,7 @@ class EventoController extends Controller
             if ($evento->estatus == 'SinConfirmar') {
                 RechazoEvento::dispatch($cliente, $gerente, $evento, $descripcion);
             } elseif ($evento->estatus == 'Confirmado') {
-                AutorizarEvento::dispatch($cliente, $gerente, $evento, $descripcion);
+                AutorizarEvento::dispatch($cliente, $gerente, $evento);
             }
         }
         return redirect(route('evento.showGerente', ['cual' => $id]));
@@ -174,33 +174,21 @@ class EventoController extends Controller
     public function subirImagen(Request $request, $idEvento)
     {
         $evento = Evento::findOrFail($idEvento);
-        $archivos = $request->file('archivo');
+        $archivo = $request->file('archivo');
+        $nombreArchivo = $archivo->getClientOriginalName();
+        $rutaImagen = $archivo->store('imagenes', 'publico');
+        $descripcion = $request->input('descrip');
 
-        if (is_array($archivos)) {
-            foreach ($archivos as $archivo) {
-                if ($archivo->isValid()) {
-                    $nombreArchivo = $archivo->getClientOriginalName();
-                    $rutaImagen = $archivo->store('imagenes', 'publico');
+        $nuevaImagen = new Imagen();
+        $nuevaImagen->ruta_imagen = $rutaImagen;
+        $nuevaImagen->nombre = $nombreArchivo;
+        $nuevaImagen->descripcion = $descripcion;
+        $nuevaImagen->usuario_id = Auth::user()->id;
 
-                    $nuevaImagen = new Imagen();
-                    $nuevaImagen->ruta_imagen = $rutaImagen;
-                    $nuevaImagen->nombre = $nombreArchivo;
+        $evento->imagenes()->save($nuevaImagen);
 
-                    $evento->imagenes()->save($nuevaImagen);
-                }
-            }
-        } else {
-            if ($archivos->isValid()) {
-                $nombreArchivo = $archivos->getClientOriginalName();
-                $rutaImagen = $archivos->store('imagenes', 'publico');
 
-                $nuevaImagen = new Imagen();
-                $nuevaImagen->ruta_imagen = $rutaImagen;
-                $nuevaImagen->nombre = $nombreArchivo;
 
-                $evento->imagenes()->save($nuevaImagen);
-            }
-        }
 
         return redirect(route('evento.showCliente', ['cual' => $idEvento]));
     }
