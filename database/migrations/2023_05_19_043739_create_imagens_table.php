@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('ruta_imagen');
             $table->string('nombre');
             $table->string('descripcion');
-            $table->string('nombre');
             $table->integer('usuario_id');
             $table->timestamps();
         });
