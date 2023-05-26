@@ -113,17 +113,6 @@ class PaqueteController extends Controller
                     $evento->imagenesPaquetes()->save($nuevaImagen);
                 }
             }
-        } else {
-            if ($archivos->isValid()) {
-                $nombreArchivo = $archivos->getClientOriginalName();
-                $rutaImagen = $archivos->store('imagenes', 'publico');
-
-                $nuevaImagen = new ImagenPaquete();
-                $nuevaImagen->ruta = $rutaImagen;
-                $nuevaImagen->nombre = $nombreArchivo;
-
-                $evento->imagenesPaquetes()->save($nuevaImagen);
-            }
         }
 
         return redirect(route('paquete.edit', ['cual' => $idPaquete]));
