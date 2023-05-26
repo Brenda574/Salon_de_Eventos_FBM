@@ -68,7 +68,7 @@
                     </p>
                     <div class="row">
                         <div class="mb-3">
-                            <input class="form-control" type="file" name="archivoPaquete[]" id="archivoPaquete" multiple>
+                            <input class="form-control" type="file" accept="image/*" name="archivoPaquete[]" id="archivoPaquete" multiple>
                         </div>
                         <!--<div class="lightbox-gallery">
                                             
