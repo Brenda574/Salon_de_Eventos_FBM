@@ -270,8 +270,12 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
+<<<<<<< HEAD
                             <input class="form-control" accept="image/*" type="file" name="archivoEmpleado"
                                 id="archivoEmpleado">
+=======
+                            <input class="form-control" accept="image/*" type="file" name="archivoEmpleado" id="archivoEmpleado">
+>>>>>>> 8c7ae52 (revision2.0)
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn emp_button">Aceptar</button>
