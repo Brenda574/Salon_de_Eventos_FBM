@@ -48,8 +48,8 @@
                         <div class="row">
                             <div class="col">
                                 <small>CORREO</small>
-                                <input type="email" class="form-control" id="correo" name="correo" value="{{ $usuario->correo }}" name="correo"
-                                    id="correo">
+                                <input type="email" class="form-control" id="correo" name="correo"
+                                    value="{{ $usuario->correo }}" name="correo" id="correo">
                             </div>
                         </div>
                     </div>

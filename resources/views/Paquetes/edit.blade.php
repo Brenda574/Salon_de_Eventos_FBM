@@ -11,7 +11,7 @@
             <h3 class="label fw-bold" style="color: #af9495">Editar Paquete</h3>
         </div>
         <hr>
-        <form action="{{ route('paquete.update', $paquete->id) }}" method="POST">
+        <form action="{{ route('paquete.update', $paquete->id) }}" method="POST" id="update">
             @method('PUT')
             @csrf
             <div>
@@ -34,6 +34,23 @@
                     <div class="mb-3">
                         <small>DESCRIPCIÓN</small>
                         <textarea class="form-control" rows="3" name="descripcion" id="descripcion">{{ $paquete->descripcion }}</textarea>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="container_galery">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <select class="form-select estatus_ac" aria-label="Default select example" id="estatus"
+                            name="estatus">
+                            @if ($paquete->estatus == 'Activo')
+                                <option>Inactivo</option>
+                                <option selected>Activo</option>
+                            @else
+                                <option selected>Inactivo</option>
+                                <option>Activo</option>
+                            @endif
+                        </select>
                     </div>
                 </div>
             </div>
@@ -75,53 +92,58 @@
             </div>
             <hr>
             <div>
-                <div class="container_galery">
-                    <div class="d-grid gap-2 col-6 mx-auto">
-                        <select class="form-select estatus_ac" aria-label="Default select example" id="estatus"
-                            name="estatus">
-                            @if ($paquete->estatus == 'Activo')
-                                <option>Inactivo</option>
-                                <option selected>Activo</option>
-                            @else
-                                <option selected>Inactivo</option>
-                                <option>Activo</option>
-                            @endif
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div>
                 <div class="row container_galery">
-                    <button type="submit" class="btn emp_button">Guardar</button>
+                    <button type="submit" form="update" class="btn emp_button">Guardar</button>
                 </div>
             </div>
+        </form>
 
-            <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Foto</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ route('paquete.subirImg', ['idPaquete' => $paquete->id]) }}" method="post"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="mb-3">
-                                    <input class="form-control" type="file" name="archivo[]" id="archivo" multiple
-                                        accept="image/*">
-                                </div>
-                                <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button type="submit" class="btn emp_button">Aceptar</button>
-                                </div>
-                            </form>
-                        </div>
+        <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Foto</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form action="{{ route('paquete.subirImg', ['idPaquete' => $paquete->id]) }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" value="" id="nombre2" name="nombre2">
+                            <input type="hidden" value="" id="capacidadMax" name="capacidadMax">
+                            <input type="hidden" value="" id="costo2" name="costo2">
+                            <input type="hidden" value="" id="descripcion2" name="descripcion2">
+                            <input type="hidden" value="" id="estatus2" name="estatus2">
+                            <div class="mb-3">
+                                <input class="form-control" type="file" name="archivo[]" id="archivo" multiple
+                                    accept="image/*">
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button type="submit" class="btn emp_button" onclick="valores()">Aceptar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-        </form>
+        </div>
     </div>
 @endsection
+<script>
+    function valores() {
+
+        var nom = document.querySelector('#nombre').value;
+        console.log(nom);
+        var cap = document.querySelector('#capacidad').value;
+        var cos = document.querySelector('#costo').value;
+        var des = document.querySelector('#descripcion').value;
+        var est = document.querySelector('#estatus').value;
+        document.querySelector('#nombre2').value = "" + nom;
+        document.querySelector('#capacidadMax').value = "" + cap;
+        document.querySelector('#costo2').value = "" + cos;
+        document.querySelector('#descripcion2').value = "" + des;
+        document.querySelector('#estatus2').value = "" + est;
+
+    }
+</script>

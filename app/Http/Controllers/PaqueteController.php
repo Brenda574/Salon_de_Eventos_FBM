@@ -74,7 +74,6 @@ class PaqueteController extends Controller
 
     public function update(Request $request, string $id)
     {
-
         $this->authorize('update', Paquete::find($id));
         $paquete = Paquete::find($id);
         $paquete->nombre = $request->input('nombre');
@@ -83,7 +82,29 @@ class PaqueteController extends Controller
         $paquete->descripcion = $request->input('descripcion');
         $paquete->estatus = $request->input('estatus');
         $paquete->save();
+        return redirect(route('paquete.show', $id));
+    }
 
+    public function destroy(string $id)
+    {
+        $this->authorize('delete', Paquete::find($id));
+        $paquete = Paquete::find($id);
+        $paquete->delete();
+        return redirect(route('sistema.gerente'));
+        //return redirect()->back()->with('alert', 'Oh no! No es posible eliminar el paquete ya que se encunetra en un evento activo.');
+    }
+
+    public function subirImagen(Request $request, $idPaquete)
+    {
+        $paquete = Paquete::findOrFail($idPaquete);
+
+
+        $paquete->nombre = $request->input('nombre2');
+        $paquete->capacidad_maxima = $request->input('capacidadMax');
+        $paquete->costo = $request->input('costo2');
+        $paquete->descripcion = $request->input('descripcion2');
+        $paquete->estatus = $request->input('estatus2');
+        $paquete->save();
 
         $archivos = $request->file('archivo');
 
@@ -102,24 +123,7 @@ class PaqueteController extends Controller
             }
         }
 
-        if ($archivos) {
-            return redirect(route('paquete.edit', ['cual' => $id]));
-        } else {
-            return redirect(route('paquete.show', $id));
-        }
-    }
-
-    public function destroy(string $id)
-    {
-        $this->authorize('delete', Paquete::find($id));
-        $paquete = Paquete::find($id);
-        $paquete->delete();
-        return redirect(route('sistema.gerente'));
-        //return redirect()->back()->with('alert', 'Oh no! No es posible eliminar el paquete ya que se encunetra en un evento activo.');
-    }
-
-    public function subirImagen(Request $request, $idPaquete)
-    {
+        return redirect(route('paquete.edit', ['cual' => $idPaquete]));
     }
 
     public function eliminarImagen($id)
