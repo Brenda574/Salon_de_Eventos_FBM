@@ -96,7 +96,7 @@
         <hr>
         <div>
             <div class="row container_galery">
-                @if ($evento->estatus == "Confirmado")
+                @if ($evento->estatus == 'Confirmado')
                     <p class="label fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-cash-coin" viewBox="0 0 16 16">
@@ -110,40 +110,42 @@
                         </svg> Pagos
                     </p>
                     <?php
-                    $resto=0;
+                    $resto = 0;
                     ?>
-                    @foreach($evento->abonos as $abono)
+                    @foreach ($evento->abonos as $abono)
                         <div class="row">
                             <div class="col text-center">
                                 <small>ABONO</small>
-                                <p class="label fw-bold">{{$abono->created_at->format('Y-m-d')}}</p>
+                                <p class="label fw-bold">{{ $abono->created_at->format('Y-m-d') }}</p>
                             </div>
                             <div class="col text-center">
                                 <small>CANTIDAD</small>
-                                <p class="label fw-bold">{{$abono->monto}}</p>
+                                <p class="label fw-bold">{{ $abono->monto }}</p>
                             </div>
                             <div class="col text-center">
                                 <small>DIFERENCIA</small>
                                 <?php
-                                $resto=$resto + $abono->monto;
+                                $resto = $resto + $abono->monto;
                                 ?>
-                                <p class="label fw-bold" style="color: orange">$ {{$evento->costo - $resto}}</p>
+                                <p class="label fw-bold" style="color: orange">$ {{ $evento->costo - $resto }}</p>
                             </div>
                         </div>
                     @endforeach
 
                     <div class="text-center">
                         <hr>
-                        @if($evento->costo == $resto)
+                        @if ($evento->costo == $resto)
                             <p class="text-success fw-bold" style="color: rgb(4, 114, 19)">PAGADO TOTALMENTE</p>
                         @else
-                            <p class="fw-bold" style="color: rgb(151, 6, 6)">Total pagado: ${{$resto}}</p>
+                            <p class="fw-bold" style="color: rgb(151, 6, 6)">Total pagado: ${{ $resto }}</p>
                         @endif
                     </div>
                 @else
                     <p class="label fw-bold text-center" style="color: rgb(156, 156, 42)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
-                            <path d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-hourglass-top" viewBox="0 0 16 16">
+                            <path
+                                d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z" />
                         </svg> EN ESPERA DE AUTORIZACIÓN
                     </p>
                 @endif
@@ -205,13 +207,12 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" type="file" name="archivo" id="archivo">
+                            <input class="form-control" type="file" name="archivo" accept="image/*" id="archivo">
                         </div>
                         <div>
                             <textarea id="descrip" name="descrip" placeholder="Ingrese una descripción" class="form-control"></textarea>
-                            <input class="form-control" type="file" name="archivo[]" id="archivo" accept="image/*" multiple>
                         </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
+                        <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 2rem">
                             <button type="submit" class="btn emp_button">Aceptar</button>
                         </div>
                     </form>

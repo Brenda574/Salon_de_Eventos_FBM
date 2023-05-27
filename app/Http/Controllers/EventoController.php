@@ -198,12 +198,16 @@ class EventoController extends Controller
         $evento = Evento::findOrFail($idEvento);
 
         $imagen = $request->file('archivoEmpleado');
+        $descript = $request->input('descript');
         $nombreArchivo = $imagen->getClientOriginalName();
         $rutaImagen = $imagen->store('imagenes', 'publico');
 
         $nuevaImagen = new Imagen();
         $nuevaImagen->ruta_imagen = $rutaImagen;
         $nuevaImagen->nombre = $nombreArchivo;
+        $nuevaImagen->descripcion = $descript;
+        $nuevaImagen->usuario_id = Auth::user()->id;
+
 
         $evento->imagenes()->save($nuevaImagen);
 
@@ -255,7 +259,6 @@ class EventoController extends Controller
         } else {
             return redirect(route('evento.showGerente', ['cual' => $idEvento]));
         }
-        
     }
 
     public function eliminarAbono($id)

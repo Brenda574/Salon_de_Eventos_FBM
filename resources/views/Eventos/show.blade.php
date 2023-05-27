@@ -109,29 +109,29 @@
                     </svg> Pagos
                 </p>
                 <?php
-                $resto=0;
+                $resto = 0;
                 ?>
-                @foreach($evento->abonos as $abono)
+                @foreach ($evento->abonos as $abono)
                     <div class="row">
                         <div class="col text-center">
                             <small>ABONO</small>
-                            <p class="label fw-bold">{{$abono->created_at->format('Y-m-d')}}</p>
+                            <p class="label fw-bold">{{ $abono->created_at->format('Y-m-d') }}</p>
                         </div>
                         <div class="col text-center">
                             <small>CANTIDAD</small>
-                            <p class="label fw-bold">{{$abono->monto}}</p>
+                            <p class="label fw-bold">{{ $abono->monto }}</p>
                         </div>
                         <div class="col text-center">
                             <small>DIFERENCIA</small>
                             <?php
-                            $resto=$resto + $abono->monto;
+                            $resto = $resto + $abono->monto;
                             ?>
-                            <p class="label fw-bold" style="color: orange">$ {{$evento->costo - $resto}}</p>
+                            <p class="label fw-bold" style="color: orange">$ {{ $evento->costo - $resto }}</p>
                         </div>
                     </div>
                 @endforeach
 
-                @if($evento->costo == $resto)
+                @if ($evento->costo == $resto)
                     <div class="text-center">
                         <hr>
                         <p class="text-success fw-bold" style="color: rgb(4, 114, 19)">PAGADO TOTALMENTE</p>
@@ -161,7 +161,8 @@
                         @foreach ($evento->imagenes as $imagen)
                             <div class="image-container">
                                 <div>
-                                    <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}" alt="{{ $imagen->nombre }}">
+                                    <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
+                                        alt="{{ $imagen->nombre }}">
                                     <div class="overlay">
                                         <form action="{{ route('eliminar_imagen_empleado', $imagen->id) }}" method="post"
                                             class="eliminar_imagen-form">
@@ -195,11 +196,11 @@
                     <div class="mb-3 row">
                         <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
                         <div class="col-sm-8">
-                                @if(isset($abono->monto))
-                                <p class="label fw-bold">$ {{$evento->costo - $resto}}</p>
-                                @else 
+                            @if (isset($abono->monto))
+                                <p class="label fw-bold">$ {{ $evento->costo - $resto }}</p>
+                            @else
                                 <p class="label fw-bold">Sin Abonos</p>
-                                @endif    
+                            @endif
                             </p>
                         </div>
                     </div>
@@ -221,7 +222,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -235,9 +236,13 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" accept="image/*" type="file" name="archivoEmpleado[]" id="archivoEmpleado">
+                            <input class="form-control" accept="image/*" type="file" name="archivoEmpleado"
+                                id="archivoEmpleado">
                         </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
+                        <div>
+                            <textarea id="descript" name="descript" placeholder="Ingrese una descripción" class="form-control"></textarea>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 2rem">
                             <button type="submit" class="btn emp_button">Aceptar</button>
                         </div>
                     </form>
