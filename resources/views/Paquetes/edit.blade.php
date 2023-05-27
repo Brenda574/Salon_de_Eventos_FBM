@@ -96,7 +96,7 @@
                     <button type="submit" class="btn emp_button">Guardar</button>
                 </div>
             </div>
-
+            
             <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -121,7 +121,6 @@
                     </div>
                 </div>
             </div>
-
         </form>
     </div>
 @endsection

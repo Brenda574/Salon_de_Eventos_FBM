@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ImagenPaquete extends Model
+class ImagenServicio extends Model
 {
     use HasFactory;
 
-    public function paquete()
+    public function Servicio()
     {
-        return $this->belongsTo(Paquete::class);
+        return $this->belongsTo(Servicio::class);
     }
 }

@@ -111,7 +111,6 @@ class EventoController extends Controller
         $this->authorize('update', Evento::find($id));
         $usuario = Auth::user();
         $paquete = Paquete::find($request->input('paquete_id'));
-
         $evento = Evento::find($id);
         $evento->nombre_evento = $request->input('nombre_evento');
         $evento->fecha = $request->input('fecha');
@@ -148,7 +147,6 @@ class EventoController extends Controller
         $evento->estatus = $request->input('estatus');
         $evento->save();
 
-
         $cliente = $evento->usuario;
         $gerente = Auth::user();
         $descripcion = $request->input('descripcion');
@@ -171,6 +169,8 @@ class EventoController extends Controller
         return redirect(route('sistema.cliente'));
     }
 
+    // IMAGENES
+
     public function subirImagen(Request $request, $idEvento)
     {
         $evento = Evento::findOrFail($idEvento);
@@ -187,39 +187,38 @@ class EventoController extends Controller
 
         $evento->imagenes()->save($nuevaImagen);
 
-
-
-
-        return redirect(route('evento.showCliente', ['cual' => $idEvento]));
-    }
-
-    public function subirImagenEmpleado(Request $request, $idEvento)
-    {
-        $evento = Evento::findOrFail($idEvento);
-
-        $imagen = $request->file('archivoEmpleado');
-        $descript = $request->input('descript');
-        $nombreArchivo = $imagen->getClientOriginalName();
-        $rutaImagen = $imagen->store('imagenes', 'publico');
-
-        $nuevaImagen = new Imagen();
-        $nuevaImagen->ruta_imagen = $rutaImagen;
-        $nuevaImagen->nombre = $nombreArchivo;
-        $nuevaImagen->descripcion = $descript;
-        $nuevaImagen->usuario_id = Auth::user()->id;
-
-
-        $evento->imagenes()->save($nuevaImagen);
-
         if (Auth::user()->rol == "Empleado") {
             return redirect(route('evento.show', ['cual' => $idEvento]));
         } else {
-            return redirect(route('evento.showGerente', ['cual' => $idEvento]));
+            if (Auth::user()->rol == "Cliente") {
+                return redirect(route('evento.showCliente', ['cual' => $idEvento]));
+            } else {
+                return redirect(route('evento.showGerente', ['cual' => $idEvento]));
+            }
         }
     }
 
-    public function eliminar($id)
+    public function updateImagen(Request $request, $id) 
     {
+        $this->authorize('update', Imagen::find($id));
+        $img = Imagen::find($id);
+        $img->descripcion = $request->input('descrip');
+        $img->save();
+
+        if (Auth::user()->rol == "Empleado") {
+            return redirect(route('evento.show', ['cual' => $img->evento_id]));
+        } else {
+            if (Auth::user()->rol == "Cliente") {
+                return redirect(route('evento.showCliente', ['cual' => $img->evento_id]));
+            } else {
+                return redirect(route('evento.showGerente', ['cual' => $img->evento_id]));
+            }
+        }
+    }
+
+    public function eliminarImagen($id)
+    {
+        $this->authorize('delete', Imagen::find($id));
         $imagen = Imagen::findOrFail($id);
         $imagen->delete();
         Storage::disk('publico')->delete($imagen->ruta_imagen);
@@ -227,19 +226,7 @@ class EventoController extends Controller
         return redirect()->back();
     }
 
-    public function eliminarEmpleado($id)
-    {
-        $imagen = Imagen::findOrFail($id);
-        $imagen->delete();
-        Storage::disk('publico')->delete($imagen->ruta_imagen);
-
-        return redirect()->back();
-    }
-
-    public function mostrarGaleria($idEvento)
-    {
-        return redirect(route("sistema.cliente"));
-    }
+    // ABONOS
 
     public function subirAbono(Request $request, $idEvento)
     {
@@ -266,10 +253,5 @@ class EventoController extends Controller
         $abonito = Abono::findOrFail($id);
         $abonito->delete();
         return redirect()->back();
-    }
-
-    public function mostrarAbono($idEvento)
-    {
-        return redirect(route("sistema.cliente"));
     }
 }
