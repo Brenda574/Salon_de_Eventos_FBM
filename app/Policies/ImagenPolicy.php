@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Imagen;
 use App\Models\Usuario;
+use App\Models\Evento;
 use Illuminate\Auth\Access\Response;
 
 class ImagenPolicy

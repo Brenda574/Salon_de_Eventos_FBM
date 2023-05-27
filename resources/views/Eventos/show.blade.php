@@ -93,121 +93,127 @@
                 </table>
             </div>
         </div>
-        <hr>
-        <div>
-            <div class="row container_galery">
-                <p class="label fw-bold">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-cash-coin" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" />
-                        <path
-                            d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" />
-                        <path
-                            d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" />
-                        <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
-                    </svg> Pagos
-                </p>
-                <?php
-                $resto = 0;
-                ?>
-                @foreach ($evento->abonos as $abono)
-                    <div class="row">
-                        <div class="col text-center">
-                            <small>FECHA</small>
-                            <p class="label fw-bold">{{$abono->created_at->format('Y-m-d')}}</p>
+        @if ($evento->estatus == "Confirmado")
+            <hr>
+            <div>
+                <div class="row container_galery">
+                    <p class="label fw-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-cash-coin" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" />
+                            <path
+                                d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" />
+                            <path
+                                d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" />
+                            <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
+                        </svg> Pagos
+                    </p>
+                    <?php
+                    $resto = 0;
+                    ?>
+                    @foreach ($evento->abonos as $abono)
+                        <div class="row">
+                            <div class="col text-center">
+                                <small>FECHA</small>
+                                <p class="label fw-bold">{{$abono->created_at->format('Y-m-d')}}</p>
+                            </div>
+                            <div class="col text-center">
+                                <small>CANTIDAD</small>
+                                <p class="label fw-bold">$ {{$abono->monto}}</p>
+                            </div>
+                            <div class="col text-center">
+                                <small>DIFERENCIA</small>
+                                <?php
+                                $resto = $resto + $abono->monto;
+                                ?>
+                                <p class="label fw-bold" style="color: orange">$ {{ $evento->costo - $resto }}</p>
+                            </div>
                         </div>
-                        <div class="col text-center">
-                            <small>CANTIDAD</small>
-                            <p class="label fw-bold">$ {{$abono->monto}}</p>
-                        </div>
-                        <div class="col text-center">
-                            <small>DIFERENCIA</small>
-                            <?php
-                            $resto = $resto + $abono->monto;
-                            ?>
-                            <p class="label fw-bold" style="color: orange">$ {{ $evento->costo - $resto }}</p>
-                        </div>
-                    </div>
-                    <!-- <div class="col-1 text-center">
-                        <br>
-                        <form action="{{ route('eliminar_abono', $abono->id) }}" method="post"class="eliminar_imagen-form">
-                        @csrf
-                            <button class="btn btn-link text-decoration-none texto-color" title="Eliminar">
-                                <i class="bi bi-trash3-fill"></i></button>
-                        </form>
-                    </div> -->
-                
-                @endforeach
+                    @endforeach
 
-                @if ($evento->costo == $resto)
-                    <div class="text-center">
-                        <hr>
-                        <p class="text-success fw-bold" style="color: rgb(4, 114, 19)">PAGADO TOTALMENTE</p>
-                    </div>
-                @else
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarAbono">
-                            <i class="bi bi-plus-lg"></i>
-                        </button>
-                    </div>
-                @endif
+                    @if ($evento->costo == $resto)
+                        <div class="text-center">
+                            <hr>
+                            <p class="text-success fw-bold" style="color: rgb(4, 114, 19)">PAGADO TOTALMENTE</p>
+                        </div>
+                    @else
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarAbono">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    @endif
+                </div>
             </div>
-        </div>
-        <hr>
-        <div>
-            <div class="row container_galery">
-                <p class="label fw-bold">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-images" viewBox="0 0 16 16">
-                        <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                        <path
-                            d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z" />
-                    </svg> Galeria
-                </p>
-                <div class="row">
-                    <div class="lightbox-gallery">
-                        @foreach ($evento->imagenes as $imagen)
-                            <div class="image-container">
-                                <div>
-                                    <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
-                                        alt="{{ $imagen->nombre }}">
-                                    <form action="{{ route('eliminar_imagen', $imagen->id) }}" method="post"
-                                        class="eliminar_imagen-form" id="eliminarImg{{ $imagen->id }}">
-                                        @csrf
-                                        @can('delete', $imagen)
-                                            <button type="submit" class="btn btn-link text-decoration-none texto-color"
-                                                title="Eliminar" form="eliminarImg{{ $imagen->id }}">
-                                                <i class="bi bi-trash3-fill"></i>
-                                            </button>
-                                        @endcan
-                                        @can('update', $imagen)
-                                            <a class="btn btn-link text-decoration-none texto-color" data-bs-toggle="collapse" href="#collapseExample{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseExample{{ $imagen->id }}">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </a>
-                                        @endcan
-                                    </form>
-                                    <div class="collapse" id="collapseExample{{ $imagen->id }}">
-                                        <div class="card card-body">
-                                            <form action="{{ route('update_imagen', $imagen->id) }}" method="post">
-                                                @method("PUT")
-                                                @csrf
-                                                <textarea id="descrip" name="descrip" class="form-control">{{ $imagen->descripcion }}</textarea>
-                                                <div><button type="submit" class="btn emp_button">Guardar</button></div>
-                                            </form>
+            <hr>
+            <div>
+                <div class="row container_galery">
+                    <p class="label fw-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-images" viewBox="0 0 16 16">
+                            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                            <path
+                                d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z" />
+                        </svg> Galeria
+                    </p>
+                    <div class="row">
+                        <div class="lightbox-gallery">
+                            @foreach ($evento->imagenes as $imagen)
+                                <div class="image-container">
+                                    <div>
+                                        <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
+                                            alt="{{ $imagen->nombre }}">
+                                        <form action="{{ route('eliminar_imagen', $imagen->id) }}" method="post"
+                                            class="eliminar_imagen-form" id="eliminarImg{{ $imagen->id }}">
+                                            @csrf
+                                            @can('delete', $imagen)
+                                                <button type="submit" class="btn btn-link text-decoration-none texto-color"
+                                                    title="Eliminar" form="eliminarImg{{ $imagen->id }}">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </button>
+                                            @endcan
+                                            @can('update', $imagen)
+                                                <a class="btn btn-link text-decoration-none texto-color" data-bs-toggle="collapse" href="#collapseExample{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseExample{{ $imagen->id }}">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                            @endcan
+                                        </form>
+                                        <div class="collapse" id="collapseExample{{ $imagen->id }}">
+                                            <div class="card card-body">
+                                                <form action="{{ route('update_imagen', $imagen->id) }}" method="post">
+                                                    @method("PUT")
+                                                    @csrf
+                                                    <textarea id="descrip" name="descrip" class="form-control">{{ $imagen->descripcion }}</textarea>
+                                                    <div><button type="submit" class="btn emp_button">Guardar</button></div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            @endforeach
+                        </div>
+                        @can('addFoto', $evento)
+                            <div class="d-grid gap-2 d-md-flex justify-content-center">
+                                <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarFoto"><i
+                                        class="bi bi-plus-lg"></i></button>
                             </div>
-                        @endforeach
-                    </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-center">
-                        <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarFoto"><i
-                                class="bi bi-plus-lg"></i></button>
+                        @endcan
                     </div>
                 </div>
             </div>
-        </div>
+        @else
+            <hr>
+            <div>
+                <div class="row container_galery">
+                    <p class="label fw-bold text-center" style="color: rgb(156, 156, 42)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
+                            <path d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
+                        </svg> EN ESPERA DE AUTORIZACIÓN
+                    </p>
+                </div>
+            </div>
+        @endif
     </div>
 
     <div class="modal fade" id="agregarAbono" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
