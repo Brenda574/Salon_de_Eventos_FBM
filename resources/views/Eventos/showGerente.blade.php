@@ -195,18 +195,33 @@
                                     <div>
                                         <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
                                             alt="{{ $imagen->nombre }}">
-                                        <div class="overlay">
-                                            <form
-                                                action="{{ route('eliminar_imagen_empleado', $imagen->id) }}"
-                                                method="post" class="eliminar_imagen-form">
+                                        <form action="{{ route('eliminar_imagen', $imagen->id) }}" method="post"
+                                            class="eliminar_imagen-form" id="eliminarImg{{ $imagen->id }}">
                                             @csrf
-                                                <button
-                                                    class="btn btn-link text-decoration-none texto-color"
-                                                    title="Eliminar">
-                                                    <i class="bi bi-trash3-fill"></i></button>
-                                            </form>
+                                            @can('delete', $imagen)
+                                                <button type="submit" class="btn btn-link text-decoration-none texto-color"
+                                                    title="Eliminar" form="eliminarImg{{ $imagen->id }}">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </button>
+                                            @endcan
+                                            @can('update', $imagen)
+                                                <a class="btn btn-link text-decoration-none texto-color" data-bs-toggle="collapse" href="#collapseExample{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseExample{{ $imagen->id }}">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                            @endcan
+                                        </form>
+                                        <div class="collapse" id="collapseExample{{ $imagen->id }}">
+                                            <div class="card card-body">
+                                                <form action="{{ route('update_imagen', $imagen->id) }}" method="post">
+                                                    @method("PUT")
+                                                    @csrf
+                                                    <textarea id="descrip" name="descrip" class="form-control">{{ $imagen->descripcion }}</textarea>
+                                                    <div><button type="submit" class="btn emp_button">Guardar</button></div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
+                                </div>
                             @endforeach
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-center">
@@ -267,12 +282,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('subir_imagen_empleado', ['idEvento' => $evento->id]) }}" method="post"
+                    <form action="{{ route('subir_imagen', ['idEvento' => $evento->id]) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" accept="image/*" type="file" name="archivoEmpleado"
-                                id="archivoEmpleado">
+                            <input class="form-control" type="file" name="archivo" accept="image/*" id="archivo">
+                        </div>
+                        <div>
+                            <textarea id="descrip" name="descrip" placeholder="Ingrese una descripción" class="form-control"></textarea>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 2rem">
                             <button type="submit" class="btn emp_button">Aceptar</button>

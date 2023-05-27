@@ -165,17 +165,33 @@
                         <div class="lightbox-gallery">
                             @foreach ($evento->imagenes as $imagen)
                                 <div class="image-container">
-                                    <div><img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
+                                    <div>
+                                        <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
                                             alt="{{ $imagen->nombre }}">
-                                        <div class="overlay">
-                                            <form action="{{ route('eliminar_imagen', $imagen->id) }}" method="post"
-                                                class="eliminar_imagen-form">
-                                                @csrf
-                                                <button class="btn btn-link text-decoration-none texto-color"
-                                                    title="Eliminar">
+                                        <form action="{{ route('eliminar_imagen', $imagen->id) }}" method="post"
+                                            class="eliminar_imagen-form" id="eliminarImg{{ $imagen->id }}">
+                                            @csrf
+                                            @can('delete', $imagen)
+                                                <button type="submit" class="btn btn-link text-decoration-none texto-color"
+                                                    title="Eliminar" form="eliminarImg{{ $imagen->id }}">
                                                     <i class="bi bi-trash3-fill"></i>
                                                 </button>
-                                            </form>
+                                            @endcan
+                                            @can('update', $imagen)
+                                                <a class="btn btn-link text-decoration-none texto-color" data-bs-toggle="collapse" href="#collapseExample{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseExample{{ $imagen->id }}">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                            @endcan
+                                        </form>
+                                        <div class="collapse" id="collapseExample{{ $imagen->id }}">
+                                            <div class="card card-body">
+                                                <form action="{{ route('update_imagen', $imagen->id) }}" method="post">
+                                                    @method("PUT")
+                                                    @csrf
+                                                    <textarea id="descrip" name="descrip" class="form-control">{{ $imagen->descripcion }}</textarea>
+                                                    <div><button type="submit" class="btn emp_button">Guardar</button></div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
