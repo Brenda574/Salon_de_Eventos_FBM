@@ -160,7 +160,8 @@
                     <div class="lightbox-gallery">
                         @foreach ($evento->imagenes as $imagen)
                             <div class="image-container">
-                                <div><img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
+                                <div>
+                                    <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
                                         alt="{{ $imagen->nombre }}">
                                     <div class="overlay">
                                         <form action="{{ route('eliminar_imagen_empleado', $imagen->id) }}" method="post"
@@ -195,8 +196,6 @@
                     <div class="mb-3 row">
                         <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
                         <div class="col-sm-8">
-                            <!-- <input type="text" readonly class="form-control-plaintext" id="staticCosto"
-                                                value="$4,500.00"> -->
                             @if (isset($abono->monto))
                                 <p class="label fw-bold">$ {{ $evento->costo - $resto }}</p>
                             @else
@@ -237,9 +236,13 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" type="file" name="archivoEmpleado" id="archivoEmpleado">
+                            <input class="form-control" accept="image/*" type="file" name="archivoEmpleado"
+                                id="archivoEmpleado">
                         </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
+                        <div>
+                            <textarea id="descript" name="descript" placeholder="Ingrese una descripción" class="form-control"></textarea>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 2rem">
                             <button type="submit" class="btn emp_button">Aceptar</button>
                         </div>
                     </form>

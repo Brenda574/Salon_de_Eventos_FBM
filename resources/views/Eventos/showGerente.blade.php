@@ -192,19 +192,31 @@
                             @foreach ($evento->imagenes as $imagen)
                                 <div class="image-container">
                                     <div>
-                                        <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
+                                        <<<<<<< HEAD <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
                                             alt="{{ $imagen->nombre }}">
-                                        <div class="overlay">
-                                            <form action="{{ route('eliminar_imagen_empleado', $imagen->id) }}"
-                                                method="post" class="eliminar_imagen-form">
-                                                @csrf
-                                                <button class="btn btn-link text-decoration-none texto-color"
-                                                    title="Eliminar">
-                                                    <i class="bi bi-trash3-fill"></i></button>
-                                            </form>
-                                        </div>
+                                            <div class="overlay">
+                                                <form action="{{ route('eliminar_imagen_empleado', $imagen->id) }}"
+                                                    method="post" class="eliminar_imagen-form">
+                                                    @csrf
+                                                    <button class="btn btn-link text-decoration-none texto-color"
+                                                        title="Eliminar">
+                                                        =======
+                                                        <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
+                                                            alt="{{ $imagen->nombre }}">
+                                                        <div class="overlay">
+                                                            <form
+                                                                action="{{ route('eliminar_imagen_empleado', $imagen->id) }}"
+                                                                method="post" class="eliminar_imagen-form">
+                                                                @csrf
+                                                                <button
+                                                                    class="btn btn-link text-decoration-none texto-color"
+                                                                    title="Eliminar">
+                                                                    >>>>>>> 8c7ae52e2dc33a00440d5b2c13a127c954ca53a4
+                                                                    <i class="bi bi-trash3-fill"></i></button>
+                                                            </form>
+                                                        </div>
+                                            </div>
                                     </div>
-                                </div>
                             @endforeach
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-center">
@@ -229,12 +241,17 @@
                     <div class="mb-3 row">
                         <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
                         <div class="col-sm-8">
-                            @if (isset($abono->monto))
+                            <<<<<<< HEAD @if (isset($abono->monto))
                                 <p class="label fw-bold">$ {{ $evento->costo - $resto }}</p>
                             @else
-                                <p class="label fw-bold">Sin Abonos</p>
-                            @endif
-                            </p>
+                                =======
+                                @if (isset($abono->monto))
+                                    <p class="label fw-bold">$ {{ $evento->costo - $resto }}</p>
+                                @else
+                                    >>>>>>> 8c7ae52e2dc33a00440d5b2c13a127c954ca53a4
+                                    <p class="label fw-bold">Sin Abonos</p>
+                                @endif
+                                </p>
                         </div>
                     </div>
                     <hr>
@@ -272,7 +289,7 @@
                             <input class="form-control" accept="image/*" type="file" name="archivoEmpleado"
                                 id="archivoEmpleado">
                         </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
+                        <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 2rem">
                             <button type="submit" class="btn emp_button">Aceptar</button>
                         </div>
                     </form>
