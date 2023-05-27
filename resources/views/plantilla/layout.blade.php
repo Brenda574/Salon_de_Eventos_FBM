@@ -12,26 +12,42 @@
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('img/icono_mh.svg') }}" rel="stylesheet">
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="{{route('principal')}}"><img src="https://cdn-icons-png.flaticon.com/512/8915/8915119.png" width="40"><img src="https://www.aimmedia.com/wp-content/uploads/2022/10/GardenGate_LOGO_FINAL-600x250_554e45.png" width="100"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="{{ route('principal') }}"><img
+                        src="https://cdn-icons-png.flaticon.com/512/8915/8915119.png" width="40"><img
+                        src="https://www.aimmedia.com/wp-content/uploads/2022/10/GardenGate_LOGO_FINAL-600x250_554e45.png"
+                        width="100"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         @yield('usuario')
+                        @unless (!Auth::check())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i> {{ Auth::user()->nombre }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+                        @endunless
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container" style="margin-block: 100px;">
+    <div style="margin-bottom: 60px; margin-top: 60px;">
         @yield('contenido')
     </div>
 
@@ -58,4 +74,5 @@
         </div>
     </footer>
 </body>
+
 </html>
