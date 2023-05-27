@@ -66,11 +66,11 @@
                 </p>
                 <div class="row">
                     <div class="lightbox-gallery">
-                        <div>
-                            @foreach ($paquete->imagenesPaquetes as $imagen)
-                                <div><img src="{{ asset('imagenes/' . $imagen->ruta) }}" alt="{{ $imagen->nombre }}"></div>
-                            @endforeach
-                        </div>
+                        @foreach ($paquete->imagenesPaquetes as $imagen)
+                            <div class="image-container">
+                                <img src="{{ asset('imagenes/' . $imagen->ruta) }}" alt="{{ $imagen->nombre }}">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

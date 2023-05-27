@@ -148,16 +148,19 @@ class EventoController extends Controller
         $evento->estatus = $request->input('estatus');
         $evento->save();
 
-        $cliente = $evento->usuario;
-        $gerente = Auth::user();
-        $descripcion = $request->input('descripcion');
-        if ($cliente && $gerente) {
-            if ($evento->estatus == 'SinConfirmar') {
-                RechazoEvento::dispatch($cliente, $gerente, $evento, $descripcion);
-            } elseif ($evento->estatus == 'Confirmado') {
-                AutorizarEvento::dispatch($cliente, $gerente, $evento);
+        if ($request->input('estatus') != "Confirmado") {
+            $cliente = $evento->usuario;
+            $gerente = Auth::user();
+            $descripcion = $request->input('descripcion');
+            if ($cliente && $gerente) {
+                if ($evento->estatus == 'SinConfirmar') {
+                    RechazoEvento::dispatch($cliente, $gerente, $evento, $descripcion);
+                } elseif ($evento->estatus == 'Confirmado') {
+                    AutorizarEvento::dispatch($cliente, $gerente, $evento);
+                }
             }
         }
+        
         return redirect(route('evento.showGerente', ['cual' => $id]));
     }
 

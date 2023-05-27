@@ -65,6 +65,25 @@ class EventoPolicy
         }
     }
 
+    public function addFoto(Usuario $usuario, Evento $evento): bool
+    {
+        date_default_timezone_set('America/Mexico_City');
+        $fechaActual = date('Y-m-d H:i:s');
+
+        $AhoraFecha = date('Y-m-d H:i:s',strtotime('-1 hour',strtotime($fechaActual))); 
+        $FechaInicio = date('Y-m-d H:i:s',strtotime($evento->fecha . " " . $evento->hora_inicio));
+        $FechaFin = date('Y-m-d H:i:s',strtotime('+5 hour',strtotime($evento->fecha . " " . $evento->hora_inicio)));
+
+        if ($usuario->rol == "Empleado") {
+            if ($AhoraFecha >= $FechaInicio && $AhoraFecha <= $FechaFin) {
+                return true;
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can update the model.
      */

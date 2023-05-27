@@ -201,10 +201,12 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-center">
-                        <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarFoto"><i
-                                class="bi bi-plus-lg"></i></button>
-                    </div>
+                    @can('addFoto', $evento)
+                        <div class="d-grid gap-2 d-md-flex justify-content-center">
+                            <button class="emp_button_plus btn" data-bs-toggle="modal" data-bs-target="#agregarFoto"><i
+                                    class="bi bi-plus-lg"></i></button>
+                        </div>
+                    @endcan
                 </div>
             </div>
         </div>
