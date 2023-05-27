@@ -160,8 +160,13 @@
                     <div class="lightbox-gallery">
                         @foreach ($evento->imagenes as $imagen)
                             <div class="image-container">
+<<<<<<< HEAD
                                 <div><img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
                                         alt="{{ $imagen->nombre }}">
+=======
+                                <div>
+                                    <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}" alt="{{ $imagen->nombre }}">
+>>>>>>> 7ccf3f3 (revision1)
                                     <div class="overlay">
                                         <form action="{{ route('eliminar_imagen_empleado', $imagen->id) }}" method="post"
                                             class="eliminar_imagen-form">
@@ -237,7 +242,7 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" type="file" name="archivoEmpleado" id="archivoEmpleado">
+                            <input class="form-control" accept="image/*" type="file" name="archivoEmpleado[]" id="archivoEmpleado">
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn emp_button">Aceptar</button>
