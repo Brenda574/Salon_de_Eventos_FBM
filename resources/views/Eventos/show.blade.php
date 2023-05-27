@@ -114,12 +114,12 @@
                 @foreach($evento->abonos as $abono)
                     <div class="row">
                         <div class="col text-center">
-                            <small>ABONO</small>
+                            <small>FECHA</small>
                             <p class="label fw-bold">{{$abono->created_at->format('Y-m-d')}}</p>
                         </div>
                         <div class="col text-center">
                             <small>CANTIDAD</small>
-                            <p class="label fw-bold">{{$abono->monto}}</p>
+                            <p class="label fw-bold">$ {{$abono->monto}}</p>
                         </div>
                         <div class="col text-center">
                             <small>DIFERENCIA</small>
@@ -129,17 +129,6 @@
                             <p class="label fw-bold" style="color: orange">$ {{$evento->costo - $resto}}</p>
                         </div>
                     </div>
-                    <div class="col text-center">
-                        <small>CANTIDAD</small>
-                        <p class="label fw-bold">$ {{$abono->monto}}</p>
-                    </div>
-                    <div class="col text-center">
-                        <small>DIFERENCIA</small>
-                        <?php
-                        $resto=$resto + $abono->monto;
-                        ?>
-                        <p class="label fw-bold" style="color: orange">$ {{$evento->costo - $resto}}</p>
-                    </div>
                     <!-- <div class="col-1 text-center">
                         <br>
                         <form action="{{ route('eliminar_abono', $abono->id) }}" method="post"class="eliminar_imagen-form">
@@ -148,7 +137,7 @@
                                 <i class="bi bi-trash3-fill"></i></button>
                         </form>
                     </div> -->
-                </div>
+                
                 @endforeach
 
                 @if($evento->costo == $resto)

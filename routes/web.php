@@ -49,6 +49,9 @@ Route::post('Empleado/evento/{idEvento}/subir-imagen', [EventoController::class,
 Route::post('evento/{idEvento}/subir-imagen', [EventoController::class, 'subirImagen'])->name('subir_imagen');
 Route::post('evento/{idEvento}/subir-abono', [EventoController::class, 'subirAbono'])->name('subir_abono');
 Route::post('Eventos/eliminar-abono/{id}', [EventoController::class, 'eliminarAbono'])->name('eliminar_abono');
+Route::post('evento/{idEvento}/subir-gasto', [EventoController::class, 'subirGasto'])->name('subir_gasto');
+Route::post('Eventos/eliminar-gasto/{id}', [EventoController::class, 'eliminarGasto'])->name('eliminar_gasto');
+Route::put('Eventos/editar-gasto/{id}', [EventoController::class, 'editarGasto'])->name('editar_gasto');
 
 Route::put('/Evento/autorizar/{cual?}', [EventoController::class, 'update_autorizar'])->name('evento.update.autorizar');
 
