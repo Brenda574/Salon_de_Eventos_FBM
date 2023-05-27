@@ -15,7 +15,7 @@ class ObserverImagenPaquete
      */
     public function created(ImagenPaquete $imagenPaquete): void
     {
-        $paquete = Paquete::find($imagenPaquete->paquete_id);
+        $paquete = $imagenPaquete->paquete;
         $bitacora = new Bitacora();
 
         if (Auth::check()) {
@@ -23,7 +23,7 @@ class ObserverImagenPaquete
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se eliminó la imagen " . $imagenPaquete->nombre;
+        $bitacora->que = "Se eliminó la imagen " . $imagenPaquete->nombre . " del paquete " . $paquete->nombre;
         $bitacora->save();
     }
 
@@ -39,14 +39,14 @@ class ObserverImagenPaquete
      */
     public function deleted(ImagenPaquete $imagenPaquete): void
     {
-
+        $paquete = $imagenPaquete->paquete;
         $bitacora = new Bitacora();
         if (Auth::check()) {
             $bitacora->quien = Auth::user()->nombre;
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se eliminó la imagen " . $imagenPaquete->nombre;
+        $bitacora->que = "Se eliminó la imagen " . $imagenPaquete->nombre . " del paquete " . $paquete->nombre;
         $bitacora->save();
     }
 

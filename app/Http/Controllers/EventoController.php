@@ -12,6 +12,7 @@ use App\Models\Evento;
 use App\Models\Servicio;
 use App\Models\Paquete;
 use App\Models\Abono;
+use App\Models\Gasto;
 use App\Models\Imagen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -253,5 +254,44 @@ class EventoController extends Controller
         $abonito = Abono::findOrFail($id);
         $abonito->delete();
         return redirect()->back();
+    }
+
+    public function mostrarAbono($idEvento)
+    {
+        return redirect(route("sistema.cliente"));
+    }
+
+
+
+    public function subirGasto(Request $request, $idEvento)
+    {
+        $evento = Evento::findOrFail($idEvento);
+        // Crear un nuevo Gasto asociada al evento
+        $nuevoGasto = new Gasto();
+        $nuevoGasto->monto = $request->input('monto');
+        $nuevoGasto->descripcion = $request->input('descripcion');
+        $nuevoGasto->usuario_id = Auth::user()->id;
+        $evento->gastos()->save($nuevoGasto);
+        return redirect(route('evento.showGerente', ['cual' => $idEvento]));
+    }
+
+    public function editarGasto(Request $request, $id)
+    {
+        $gastito = Gasto::findOrFail($id);
+        $gastito->monto=$request->input('cantidadGasto');
+        $gastito->descripcion = $request->input('conceptoGasto');
+        $gastito->save();
+        return redirect()->back();
+    }
+    public function eliminarGasto($id)
+    {
+        $gastito = Gasto::findOrFail($id);
+        $gastito->delete();
+        return redirect()->back();
+    }
+
+    public function mostrarGasto($idEvento)
+    {
+        return redirect(route("sistema.cliente"));
     }
 }

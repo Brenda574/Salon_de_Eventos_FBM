@@ -34,9 +34,8 @@ class PaqueteController extends Controller
         $nuevo->estatus = $request->input('estatus');
         $nuevo->save();
         $paqueteId = $nuevo->id;
-        //if ($request->hasFile('archivoPaquete')) {
-        $paquete = Paquete::find($paqueteId); // Obtener el modelo del paquete
-        // Subir la imagen al disco público
+
+        $paquete = Paquete::find($paqueteId);
         $imagenes = $request->file('archivoPaquete');
 
         if (is_array($imagenes)) {

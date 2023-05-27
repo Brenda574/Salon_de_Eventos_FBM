@@ -47,6 +47,9 @@ Route::post('Evento/Guardar', [EventoController::class, 'store'])->name('evento.
 Route::delete('Evento/Borrar/{cual?}', [EventoController::class, 'destroy'])->name('evento.destroy');
 Route::post('evento/{idEvento}/subir-abono', [EventoController::class, 'subirAbono'])->name('subir_abono');
 Route::post('Eventos/eliminar-abono/{id}', [EventoController::class, 'eliminarAbono'])->name('eliminar_abono');
+Route::post('evento/{idEvento}/subir-gasto', [EventoController::class, 'subirGasto'])->name('subir_gasto');
+Route::post('Eventos/eliminar-gasto/{id}', [EventoController::class, 'eliminarGasto'])->name('eliminar_gasto');
+Route::put('Eventos/editar-gasto/{id}', [EventoController::class, 'editarGasto'])->name('editar_gasto');
 
 Route::put('/Evento/autorizar/{cual?}', [EventoController::class, 'update_autorizar'])->name('evento.update.autorizar');
 
@@ -70,6 +73,9 @@ Route::get('/Servicio/Editar/{cual?}', [ServicioController::class, 'edit'])->nam
 Route::put('/Servicio/Editar/{cual?}', [ServicioController::class, 'update'])->name('servicio.update');
 Route::post('Servicio/Guardar', [ServicioController::class, 'store'])->name('servicio.store');
 Route::delete('Servicio/Borrar/{cual?}', [ServicioController::class, 'destroy'])->name('servicio.destroy');
+
+Route::post('Servicio/{idServicio}/imagen', [ServicioController::class, 'editImagen'])->name('servicio.editImg');
+Route::post('/eliminar-img/{id}', [ServicioController::class, 'eliminarImg'])->name('servicio.eliminarImg');
 
 Route::get('/Usuario/Crear', [UsuarioController::class, 'create'])->name('usuario.create')->middleware('auth');
 Route::get('/Usuario/Detalles/{cual?}', [UsuarioController::class, 'show'])->name('usuario.show')->middleware('auth');

@@ -4,8 +4,8 @@ namespace App\Observers;
 
 use App\Models\Imagen;
 use App\Models\Bitacora;
-use App\Models\Evento;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ObserverImagen
 {
@@ -15,7 +15,7 @@ class ObserverImagen
      */
     public function created(Imagen $imagen): void
     {
-
+        $evento = $imagen->evento;
         $bitacora = new Bitacora();
 
         if (Auth::check()) {
@@ -23,7 +23,7 @@ class ObserverImagen
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se subió nuevas imagenes " . $imagen->nombre;
+        $bitacora->que = "Se subió una nueva imagen " . $imagen->nombre . " al evento " . $evento->nombre_evento;
         $bitacora->save();
     }
 
@@ -32,6 +32,7 @@ class ObserverImagen
      */
     public function updated(Imagen $imagen): void
     {
+        $evento = $imagen->evento;
         $bitacora = new Bitacora();
 
         if (Auth::check()) {
@@ -39,7 +40,7 @@ class ObserverImagen
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se actualizó la descripción " . $imagen->nombre;
+        $bitacora->que = "Se actualizó la descripción de " . $imagen->nombre . " al evento " . $evento->nombre_evento;
         $bitacora->save();
     }
 
@@ -48,7 +49,7 @@ class ObserverImagen
      */
     public function deleted(Imagen $imagen): void
     {
-
+        $evento = $imagen->evento;
         $bitacora = new Bitacora();
 
         if (Auth::check()) {
@@ -56,8 +57,8 @@ class ObserverImagen
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se eliminó la imagen " . $imagen->nombre .
-            $bitacora->save();
+        $bitacora->que = "Se eliminó la imagen " . $imagen->nombre . " al evento " . $evento->nombre;
+        $bitacora->save();
     }
 
     /**

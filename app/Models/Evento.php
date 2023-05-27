@@ -24,6 +24,11 @@ class Evento extends Model
         return $this->hasMany('App\Models\Abono');
     }
 
+    public function gastos()
+    {
+        return $this->hasMany('App\Models\Gasto');
+    }
+
     protected $fillable = ['usuario_id', 'paquete_id'];
 
     public function servicios()
