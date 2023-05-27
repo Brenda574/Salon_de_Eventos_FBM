@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Abono;
+use App\Models\Gasto;
 use App\Models\Usuario;
 use Illuminate\Auth\Access\Response;
 
-class AbonoPolicy
+class GastoPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class AbonoPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(Usuario $usuario, Abono $abono): bool
+    public function view(Usuario $usuario, Gasto $gasto): bool
     {
         return true;
     }
@@ -35,7 +35,7 @@ class AbonoPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(Usuario $usuario, Abono $abono): bool
+    public function update(Usuario $usuario, Gasto $gasto): bool
     {
         return true;
     }
@@ -43,7 +43,7 @@ class AbonoPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(Usuario $usuario, Abono $abono): bool
+    public function delete(Usuario $usuario, Gasto $gasto): bool
     {
         return true;
     }
@@ -51,7 +51,7 @@ class AbonoPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(Usuario $usuario, Abono $abono): bool
+    public function restore(Usuario $usuario, Gasto $gasto): bool
     {
         return true;
     }
@@ -59,7 +59,7 @@ class AbonoPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(Usuario $usuario, Abono $abono): bool
+    public function forceDelete(Usuario $usuario, Gasto $gasto): bool
     {
         return true;
     }

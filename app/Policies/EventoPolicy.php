@@ -84,6 +84,18 @@ class EventoPolicy
         }
     }
 
+    public function addGasto(Usuario $usuario, Evento $evento): bool
+    {
+        if ($usuario->rol == "Gerente") {
+            if ($evento->quien_autoriza == $usuario->id) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Determine whether the user can update the model.
      */
@@ -153,4 +165,5 @@ class EventoPolicy
     {
         return true;
     }
+    
 }

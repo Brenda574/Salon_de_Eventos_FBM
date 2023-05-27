@@ -20,10 +20,7 @@ use Illuminate\Support\Facades\Mail;
 
 class EventoController extends Controller
 {
-    public function index()
-    {
-        //
-    }
+    public function index() {}
 
     public function create()
     {
@@ -146,6 +143,7 @@ class EventoController extends Controller
         $this->authorize('updateAutorizar', Evento::find($id));
         $evento = Evento::find($id);
         $evento->estatus = $request->input('estatus');
+        $evento->quien_autoriza = $request->input('gerente');
         $evento->save();
 
         if ($request->input('estatus') != "Confirmado") {
@@ -259,17 +257,12 @@ class EventoController extends Controller
         return redirect()->back();
     }
 
-    public function mostrarAbono($idEvento)
-    {
-        return redirect(route("sistema.cliente"));
-    }
-
-
+    // GATOS
 
     public function subirGasto(Request $request, $idEvento)
     {
+        $this->authorize('addGasto', Evento::find($idEvento));
         $evento = Evento::findOrFail($idEvento);
-        // Crear un nuevo Gasto asociada al evento
         $nuevoGasto = new Gasto();
         $nuevoGasto->monto = $request->input('monto');
         $nuevoGasto->descripcion = $request->input('descripcion');
@@ -280,21 +273,20 @@ class EventoController extends Controller
 
     public function editarGasto(Request $request, $id)
     {
+        $this->authorize('addGasto', Evento::find(Gasto::find($id)->evento_id));
         $gastito = Gasto::findOrFail($id);
         $gastito->monto=$request->input('cantidadGasto');
         $gastito->descripcion = $request->input('conceptoGasto');
         $gastito->save();
         return redirect()->back();
     }
+
     public function eliminarGasto($id)
     {
+        $this->authorize('addGasto', Evento::find(Gasto::find($id)->evento_id));
         $gastito = Gasto::findOrFail($id);
         $gastito->delete();
         return redirect()->back();
     }
 
-    public function mostrarGasto($idEvento)
-    {
-        return redirect(route("sistema.cliente"));
-    }
 }
