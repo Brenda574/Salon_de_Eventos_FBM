@@ -251,7 +251,6 @@
                             @else
                                 <p class="label fw-bold">Sin Abonos</p>
                             @endif
-                            </p>
                         </div>
                     </div>
                     <hr>
