@@ -170,7 +170,6 @@
     function valores() {
 
         var nom = document.querySelector('#nombre').value;
-        console.log(nom);
         var cap = document.querySelector('#capacidad').value;
         var cos = document.querySelector('#costo').value;
         var des = document.querySelector('#descripcion').value;
