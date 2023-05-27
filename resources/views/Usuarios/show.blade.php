@@ -45,6 +45,10 @@
                         <p class="label fw-bold">{{ $usuario->usuario }}</p>
                     </div>
                     <div class="col text-center">
+                        <small>Correo</small>
+                        <p class="label fw-bold">{{ $usuario->correo }}</p>
+                    </div>
+                    <div class="col text-center">
                         <small>Rol</small>
                         <p class="label fw-bold">{{ $usuario->rol }}</p>
                     </div>

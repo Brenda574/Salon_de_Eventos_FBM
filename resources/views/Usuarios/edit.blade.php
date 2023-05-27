@@ -29,7 +29,7 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class="col">
-                                <small>NOMBRE(S)</small>
+                                <small>NOMBRE</small>
                                 <input type="text" class="form-control" value="{{ $usuario->nombre }}" name="nombre"
                                     id="nombre">
                             </div>
@@ -41,6 +41,15 @@
                                 <small>USUARIO</small>
                                 <input type="text" class="form-control" value="{{ $usuario->usuario }}" name="usuario"
                                     id="usuario">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <small>CORREO</small>
+                                <input type="email" class="form-control" id="correo" name="correo" value="{{ $usuario->correo }}" name="correo"
+                                    id="correo">
                             </div>
                         </div>
                     </div>
@@ -67,7 +76,7 @@
                                 <br>
                                 <div class="collapse" id="collapseExample">
                                     <div class="card card-body">
-                                        <small>CONTRASEÑA</small>
+                                        <small>NUEVA CONTRASEÑA</small>
                                         <input type="password" class="form-control" value="" name="clave"
                                             id="clave">
                                     </div>

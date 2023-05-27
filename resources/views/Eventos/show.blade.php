@@ -109,9 +109,9 @@
                     </svg> Pagos
                 </p>
                 <?php
-                $resto=0;
+                $resto = 0;
                 ?>
-                @foreach($evento->abonos as $abono)
+                @foreach ($evento->abonos as $abono)
                     <div class="row">
                         <div class="col text-center">
                             <small>FECHA</small>
@@ -124,9 +124,9 @@
                         <div class="col text-center">
                             <small>DIFERENCIA</small>
                             <?php
-                            $resto=$resto + $abono->monto;
+                            $resto = $resto + $abono->monto;
                             ?>
-                            <p class="label fw-bold" style="color: orange">$ {{$evento->costo - $resto}}</p>
+                            <p class="label fw-bold" style="color: orange">$ {{ $evento->costo - $resto }}</p>
                         </div>
                     </div>
                     <!-- <div class="col-1 text-center">
@@ -140,7 +140,7 @@
                 
                 @endforeach
 
-                @if($evento->costo == $resto)
+                @if ($evento->costo == $resto)
                     <div class="text-center">
                         <hr>
                         <p class="text-success fw-bold" style="color: rgb(4, 114, 19)">PAGADO TOTALMENTE</p>
@@ -169,14 +169,33 @@
                     <div class="lightbox-gallery">
                         @foreach ($evento->imagenes as $imagen)
                             <div class="image-container">
-                                <div><img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}" alt="{{ $imagen->nombre }}">
-                                    <div class="overlay">
-                                        <form action="{{ route('eliminar_imagen_empleado', $imagen->id) }}" method="post"
-                                            class="eliminar_imagen-form">
-                                            @csrf
-                                            <button class="btn btn-link text-decoration-none texto-color" title="Eliminar">
-                                                <i class="bi bi-trash3-fill"></i></button>
-                                        </form>
+                                <div>
+                                    <img src="{{ asset('imagenes/' . $imagen->ruta_imagen) }}"
+                                        alt="{{ $imagen->nombre }}">
+                                    <form action="{{ route('eliminar_imagen', $imagen->id) }}" method="post"
+                                        class="eliminar_imagen-form" id="eliminarImg{{ $imagen->id }}">
+                                        @csrf
+                                        @can('delete', $imagen)
+                                            <button type="submit" class="btn btn-link text-decoration-none texto-color"
+                                                title="Eliminar" form="eliminarImg{{ $imagen->id }}">
+                                                <i class="bi bi-trash3-fill"></i>
+                                            </button>
+                                        @endcan
+                                        @can('update', $imagen)
+                                            <a class="btn btn-link text-decoration-none texto-color" data-bs-toggle="collapse" href="#collapseExample{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseExample{{ $imagen->id }}">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                        @endcan
+                                    </form>
+                                    <div class="collapse" id="collapseExample{{ $imagen->id }}">
+                                        <div class="card card-body">
+                                            <form action="{{ route('update_imagen', $imagen->id) }}" method="post">
+                                                @method("PUT")
+                                                @csrf
+                                                <textarea id="descrip" name="descrip" class="form-control">{{ $imagen->descripcion }}</textarea>
+                                                <div><button type="submit" class="btn emp_button">Guardar</button></div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -203,13 +222,11 @@
                     <div class="mb-3 row">
                         <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
                         <div class="col-sm-8">
-                            <!-- <input type="text" readonly class="form-control-plaintext" id="staticCosto"
-                                value="$4,500.00"> -->
-                                @if(isset($abono->monto))
-                                <p class="label fw-bold">$ {{$evento->costo - $resto}}</p>
-                                @else 
+                            @if (isset($abono->monto))
+                                <p class="label fw-bold">$ {{ $evento->costo - $resto }}</p>
+                            @else
                                 <p class="label fw-bold">Sin Abonos</p>
-                                @endif    
+                            @endif
                             </p>
                         </div>
                     </div>
@@ -241,13 +258,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('subir_imagen_empleado', ['idEvento' => $evento->id]) }}" method="post"
+                    <form action="{{ route('subir_imagen', ['idEvento' => $evento->id]) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" type="file" name="archivoEmpleado" id="archivoEmpleado">
+                            <input class="form-control" type="file" name="archivo" accept="image/*" id="archivo">
                         </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
+                        <div>
+                            <textarea id="descrip" name="descrip" placeholder="Ingrese una descripción" class="form-control"></textarea>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 2rem">
                             <button type="submit" class="btn emp_button">Aceptar</button>
                         </div>
                     </form>

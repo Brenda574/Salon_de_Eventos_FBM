@@ -37,7 +37,11 @@ class ImagenPolicy
      */
     public function update(Usuario $usuario, Imagen $imagen): bool
     {
-        return true;
+        if ($imagen->usuario_id == $usuario->id) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -45,7 +49,11 @@ class ImagenPolicy
      */
     public function delete(Usuario $usuario, Imagen $imagen): bool
     {
-        return true;
+        if ($imagen->usuario_id == $usuario->id) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
