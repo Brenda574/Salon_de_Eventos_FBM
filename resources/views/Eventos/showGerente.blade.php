@@ -241,17 +241,12 @@
                     <div class="mb-3 row">
                         <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
                         <div class="col-sm-8">
-                            <<<<<<< HEAD @if (isset($abono->monto))
+                            @if (isset($abono->monto))
                                 <p class="label fw-bold">$ {{ $evento->costo - $resto }}</p>
                             @else
-                                =======
-                                @if (isset($abono->monto))
-                                    <p class="label fw-bold">$ {{ $evento->costo - $resto }}</p>
-                                @else
-                                    >>>>>>> 8c7ae52e2dc33a00440d5b2c13a127c954ca53a4
-                                    <p class="label fw-bold">Sin Abonos</p>
-                                @endif
-                                </p>
+                                <p class="label fw-bold">Sin Abonos</p>
+                            @endif
+                            </p>
                         </div>
                     </div>
                     <hr>

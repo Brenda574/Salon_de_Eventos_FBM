@@ -238,6 +238,10 @@
                         <div class="mb-3">
                             <input class="form-control" accept="image/*" type="file" name="archivoEmpleado"
                                 id="archivoEmpleado">
+
+                            <input class="form-control" accept="image/*" type="file" name="archivoEmpleado[]"
+                                id="archivoEmpleado">
+
                         </div>
                         <div>
                             <textarea id="descript" name="descript" placeholder="Ingrese una descripción" class="form-control"></textarea>

@@ -28,15 +28,17 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class="col">
-                                <small>NOMBRE(S)</small>
+                                <small>NOMBRE</small>
                                 <input type="text" class="form-control" name="nombre" id="nombre">
                             </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
                             <div class="col">
                                 <small>USUARIO</small>
                                 <input type="text" class="form-control" name="usuario" id="usuario">
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col">
                                 <small>CORREO</small>
                                 <input type="email" class="form-control" id="correo" name="correo">

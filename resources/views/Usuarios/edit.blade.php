@@ -47,6 +47,15 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class="col">
+                                <small>CORREO</small>
+                                <input type="email" class="form-control" id="correo" name="correo" value="{{ $usuario->correo }}" name="correo"
+                                    id="correo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
                                 <div class="mb-3">
                                     <small>ROL</small>
                                     <select class="form-select" aria-label="Default select example" aria-placeholder="ROL"
@@ -67,7 +76,7 @@
                                 <br>
                                 <div class="collapse" id="collapseExample">
                                     <div class="card card-body">
-                                        <small>CONTRASEÑA</small>
+                                        <small>NUEVA CONTRASEÑA</small>
                                         <input type="password" class="form-control" value="" name="clave"
                                             id="clave">
                                     </div>
