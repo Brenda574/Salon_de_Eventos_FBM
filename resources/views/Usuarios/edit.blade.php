@@ -29,7 +29,7 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class="col">
-                                <small>NOMBRE(S)</small>
+                                <small>NOMBRE</small>
                                 <input type="text" class="form-control" value="{{ $usuario->nombre }}" name="nombre"
                                     id="nombre">
                             </div>
