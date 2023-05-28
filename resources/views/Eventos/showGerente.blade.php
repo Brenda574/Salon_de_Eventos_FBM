@@ -301,6 +301,9 @@
                                                     <i class="bi bi-pencil-square"></i>
                                                 </a>
                                             @endcan
+                                            <a class="btn btn-link text-decoration-none texto-color" data-bs-toggle="collapse" href="#collapseDes{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseDes{{ $imagen->id }}">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </a>
                                         </form>
                                         <div class="collapse" id="collapseExample{{ $imagen->id }}">
                                             <div class="card card-body">
@@ -310,6 +313,11 @@
                                                     <textarea id="descrip" name="descrip" class="form-control">{{ $imagen->descripcion }}</textarea>
                                                     <div><button type="submit" class="btn emp_button">Guardar</button></div>
                                                 </form>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="collapseDes{{ $imagen->id }}">
+                                            <div class="card card-body">
+                                                <input type="text" readonly class="form-control-plaintext"value="{{ $imagen->descripcion }}">
                                             </div>
                                         </div>
                                     </div>
@@ -338,26 +346,11 @@
                     <div class="mb-3 row">
                         <label for="staticCosto" class="col-sm-4 col-form-label fw-bold">Diferencia: </label>
                         <div class="col-sm-8">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ae06a546e9061c8634711a72a95716e4cd972ed0
                             @if (isset($abono->monto))
                                 <p class="label fw-bold">$ {{ $evento->costo - $resto }}</p>
                             @else
                                 <p class="label fw-bold">Sin Abonos</p>
                             @endif
-<<<<<<< HEAD
-=======
-                                @if(isset($abono->monto))
-                                <p class="label fw-bold">$ {{$evento->costo - $resto}}</p>
-                                @else 
-                                <p class="label fw-bold">Sin Abonos</p>
-                                @endif    
->>>>>>> 31c31c6c0467651aab617ade9eaba669790bafad
-                            </p>
-=======
->>>>>>> ae06a546e9061c8634711a72a95716e4cd972ed0
                         </div>
                     </div>
                     <hr>
@@ -482,11 +475,8 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" accept="image/*" type="file" name="archivoEmpleado"
-                                id="archivoEmpleado">
-                        </div>
-                        <div>
-                            <textarea id="descrip" name="descrip" placeholder="Ingrese una descripción" class="form-control"></textarea>
+                            <input class="form-control" accept="image/*" type="file" name="archivo"
+                                id="archivo">
                         </div>
                         <div>
                             <textarea id="descrip" name="descrip" placeholder="Ingrese una descripción" class="form-control"></textarea>

@@ -178,6 +178,9 @@
                                                     <i class="bi bi-pencil-square"></i>
                                                 </a>
                                             @endcan
+                                            <a class="btn btn-link text-decoration-none texto-color" data-bs-toggle="collapse" href="#collapseDes{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseDes{{ $imagen->id }}">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </a>
                                         </form>
                                         <div class="collapse" id="collapseExample{{ $imagen->id }}">
                                             <div class="card card-body">
@@ -187,6 +190,11 @@
                                                     <textarea id="descrip" name="descrip" class="form-control">{{ $imagen->descripcion }}</textarea>
                                                     <div><button type="submit" class="btn emp_button">Guardar</button></div>
                                                 </form>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="collapseDes{{ $imagen->id }}">
+                                            <div class="card card-body">
+                                                <input type="text" readonly class="form-control-plaintext"value="{{ $imagen->descripcion }}">
                                             </div>
                                         </div>
                                     </div>
