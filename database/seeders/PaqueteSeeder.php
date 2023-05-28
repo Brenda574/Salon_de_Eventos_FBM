@@ -119,7 +119,7 @@ class PaqueteSeeder extends Seeder
 
         $imagen2 = new ImagenPaquete();
         $imagen2->ruta = "imagenes\baby.jpg";
-        $imagen2->nombre = "baby.jpg";
+        $imagen2->nombre = "baby.jpeg";
         $paquete->imagenesPaquetes()->save($imagen2);
     }
 }

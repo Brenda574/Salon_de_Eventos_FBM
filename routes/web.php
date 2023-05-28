@@ -75,7 +75,7 @@ Route::post('Paquete/Guardar', [PaqueteController::class, 'store'])->name('paque
 Route::delete('Paquete/Borrar/{cual?}', [PaqueteController::class, 'destroy'])->name('paquete.destroy');
 
 Route::post('Paquete/{idPaquete}/imagen', [PaqueteController::class, 'subirImagen'])->name('paquete.subirImg');
-Route::post('/eliminar-img/{id}', [PaqueteController::class, 'eliminarImagen'])->name('paquete.eliminarImg');
+Route::delete('Paquete/eliminar-img/{id}', [PaqueteController::class, 'eliminarImagen'])->name('paquete.eliminarImg');
 
 // SERVICIOS
 
@@ -87,7 +87,7 @@ Route::post('Servicio/Guardar', [ServicioController::class, 'store'])->name('ser
 Route::delete('Servicio/Borrar/{cual?}', [ServicioController::class, 'destroy'])->name('servicio.destroy');
 
 Route::post('Servicio/{idServicio}/imagen', [ServicioController::class, 'editImagen'])->name('servicio.editImg');
-Route::post('/eliminar-img/{id}', [ServicioController::class, 'eliminarImg'])->name('servicio.eliminarImg');
+Route::delete('Servicio/eliminar-img/{id}', [ServicioController::class, 'eliminarImg'])->name('servicio.eliminarImg');
 
 // USUARIOS
 
