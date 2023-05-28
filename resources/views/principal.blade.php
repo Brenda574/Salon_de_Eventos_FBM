@@ -86,6 +86,15 @@
                     </div>
                 @endforeach
             </div>
+            <br>
+            <br>
+            <div class="wrapper d-grid gap-2 col-6 mx-auto"> 
+                <div> 
+                    @foreach ($imagenesServicios as $img)
+                        <img src="{{ asset('imagenes/' . $img->ruta) }}" alt="{{ $img->nombre }}">
+                    @endforeach
+                </div> 
+            </div>
         </div>
     </div>
 @endsection

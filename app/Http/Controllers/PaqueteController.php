@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Paquete;
 use App\Models\ImagenPaquete;
+use App\Models\ImagenServicio;
 use App\Models\Servicio;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +15,8 @@ class PaqueteController extends Controller
     {
         $paquetes = Paquete::all();
         $servicios = Servicio::all();
-        return view('principal', compact('paquetes', 'servicios'));
+        $imagenesServicios = ImagenServicio::all();
+        return view('principal', compact('paquetes', 'servicios', 'imagenesServicios'));
     }
 
     public function create()
