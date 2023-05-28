@@ -10,10 +10,10 @@ class Gasto extends Model
     use HasFactory;
 
     public function evento(){
-        return $this->belonsTo('App\Models\Evento');
+        return $this->belongsTo('App\Models\Evento');
     }
 
     public function usuario(){
-        return $this->belonsTo(Usuario::class, 'usuario_id');
+        return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 }
