@@ -61,7 +61,11 @@ class EventoController extends Controller
             $nuevo->servicios()->attach($servicios, ['usuario_id' => $usuario->id, 'paquete_id' => $paquete->id]);
         }
 
-        return redirect()->route('sistema.cliente');
+        if (request()->expectsJson()) {
+            return response()->json($nuevo);
+        } else {
+            return redirect()->route('sistema.cliente');
+        }
     }
 
     public function show(string $id)

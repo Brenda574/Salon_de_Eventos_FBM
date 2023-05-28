@@ -50,10 +50,19 @@ class ImagenPolicy
      */
     public function delete(Usuario $usuario, Imagen $imagen): bool
     {
-        if ($imagen->usuario_id == $usuario->id) {
-            return true;
+        if ($usuario->rol == "Gerente") {
+            $user = Usuario::find($imagen->usuario_id);
+            if ($imagen->usuario_id == $usuario->id || $user->rol == "Empleado") {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            if ($imagen->usuario_id == $usuario->id) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
