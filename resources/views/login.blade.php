@@ -42,7 +42,6 @@
                                             <div><button class="btn boton4 custom-2 mb-3" type="submit"
                                                     style="background-color: #E1D5D5; transition: all 0.35s;">Iniciar
                                                     sesión</button></div>
-                                            <a class="text-muted" href="#!">¿Olvidaste tu contraseña?</a>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">¿No tienes cuenta?</p>
