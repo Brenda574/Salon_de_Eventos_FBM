@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Abono;
+use App\Models\Evento;
 use App\Models\Bitacora;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,8 +13,9 @@ class ObserverAbono
     /**
      * Handle the Abono "created" event.
      */
-    public function created(Abono $abono): void
+    public function created(Abono $abono,): void
     {
+        $evento = $abono->evento;
         $bitacora = new Bitacora();
 
         if (Auth::check()) {
@@ -21,24 +23,15 @@ class ObserverAbono
         } else {
             $bitacora->quien = 'seeder';
         }
-        $bitacora->que = "Se creó un nuevo abono " . $abono->nombre;
+        $bitacora->que = "Se creó un nuevo abono " . $abono->nombre . "dentro del evento " . $evento->nombre_evento;
         $bitacora->save();
     }
 
     /**
      * Handle the Abono "updated" event.
      */
-    public function updated(Abono $abono): void
+    public function updated(): void
     {
-        $bitacora = new Bitacora();
-
-        if (Auth::check()) {
-            $bitacora->quien = Auth::user()->nombre;
-        } else {
-            $bitacora->quien = 'seeder';
-        }
-        $bitacora->que = "Se actualizó el abono" . $abono->nombre;
-        $bitacora->save();
     }
 
     /**
@@ -46,15 +39,6 @@ class ObserverAbono
      */
     public function deleted(Abono $abono): void
     {
-        $bitacora = new Bitacora();
-
-        if (Auth::check()) {
-            $bitacora->quien = Auth::user()->nombre;
-        } else {
-            $bitacora->quien = 'seeder';
-        }
-        $bitacora->que = "Se eliminó el abono" . $abono->nombre;
-        $bitacora->save();
     }
 
     /**

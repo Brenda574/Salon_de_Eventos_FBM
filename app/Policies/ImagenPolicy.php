@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Imagen;
 use App\Models\Usuario;
+use App\Models\Evento;
 use Illuminate\Auth\Access\Response;
 
 class ImagenPolicy
@@ -37,7 +38,11 @@ class ImagenPolicy
      */
     public function update(Usuario $usuario, Imagen $imagen): bool
     {
-        return true;
+        if ($imagen->usuario_id == $usuario->id) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -45,7 +50,20 @@ class ImagenPolicy
      */
     public function delete(Usuario $usuario, Imagen $imagen): bool
     {
-        return true;
+        if ($usuario->rol == "Gerente") {
+            $user = Usuario::find($imagen->usuario_id);
+            if ($imagen->usuario_id == $usuario->id || $user->rol == "Empleado") {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if ($imagen->usuario_id == $usuario->id) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     /**

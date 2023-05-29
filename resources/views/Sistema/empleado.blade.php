@@ -28,7 +28,11 @@
                             @if ($evento['estatus'] == 'Confirmado')
                                 <input class="form-check-input" type="checkbox" value="" checked disabled>
                             @else
-                                <input class="form-check-input" type="checkbox" value="" disabled>
+                                @if ($evento['estatus'] == 'Pendiente')
+                                    <p style="color: rgb(156, 156, 42)">Pendiente</p>
+                                @else
+                                    <input class="form-check-input" type="checkbox" value="" disabled>
+                                @endif
                             @endif
                         </td>
                         <td><a href="{{ route('evento.show', $evento->id) }}" class="btn emp_button_plus"><i class="bi bi-three-dots-vertical"></i></a></td>

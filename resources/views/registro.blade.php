@@ -34,19 +34,19 @@
                                         @csrf
                                         <div class="form-outline mb-4">
                                             <input type="text" id="nombre" class="form-control" name="nombre"
-                                                placeholder="Nombre(s)" />
+                                                placeholder="Nombre(s)" required>
                                         </div>
                                         <div class="form-outline mb-4">
                                             <input type="email" id="correo" name="correo" placeholder="Correo"
-                                                class="form-control" />
+                                                class="form-control" required/>
                                         </div>
                                         <div class="form-outline mb-4">
                                             <input type="text" id="usuario" name="usuario" placeholder="Usuario"
-                                                class="form-control" />
+                                                class="form-control" required/>
                                         </div>
                                         <div class="form-outline mb-4">
                                             <input type="password" id="clave" name="clave"
-                                                placeholder="Contraseña" class="form-control" />
+                                                placeholder="Contraseña" class="form-control" required/>
                                         </div>
                                         <div class="text-center pt-1 mb-5 pb-1">
                                             <div>

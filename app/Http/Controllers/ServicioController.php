@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Servicio;
 use App\Models\Evento;
+use App\Models\Paquete;
+use App\Models\ImagenServicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ServicioController extends Controller
 {
@@ -27,6 +30,27 @@ class ServicioController extends Controller
         $nuevo->costo = $request->input('costo');
         $nuevo->descripcion = $request->input('descripcion');
         $nuevo->save();
+
+        $ServicioId = $nuevo->id;
+
+        $servicios = Servicio::find($ServicioId);
+
+        $archivosS = $request->file('archivoServicio');
+
+        if (is_array($archivosS)) {
+            foreach ($archivosS as $archivoS) {
+                if ($archivoS->isValid()) {
+                    $nombreArchivo = $archivoS->getClientOriginalName();
+                    $rutaImagen = $archivoS->store('imagenes', 'publico');
+
+                    $nuevaImagen = new ImagenServicio();
+                    $nuevaImagen->ruta = $rutaImagen;
+                    $nuevaImagen->nombre = $nombreArchivo;
+
+                    $servicios->imagenesServicios()->save($nuevaImagen);
+                }
+            }
+        }
         return redirect(route('sistema.gerente'));
     }
 
@@ -60,5 +84,42 @@ class ServicioController extends Controller
         $servicio = Servicio::find($id);
         $servicio->delete();
         return redirect(route('sistema.gerente'));
+    }
+
+    public function editImagen(Request $request, $idServicio)
+    {
+        $servicio = Servicio::findOrFail($idServicio);
+
+
+        $servicio->nombre = $request->input('nom');
+        $servicio->costo = $request->input('cost');
+        $servicio->descripcion = $request->input('descript');
+        $servicio->save();
+
+        $archivos = $request->file('archivoServicio');
+
+        if (is_array($archivos)) {
+            foreach ($archivos as $archivo) {
+                if ($archivo->isValid()) {
+                    $nombreArchivo = $archivo->getClientOriginalName();
+                    $rutaImagen = $archivo->store('imagenes', 'publico');
+
+                    $nuevaImagen = new ImagenServicio();
+                    $nuevaImagen->ruta = $rutaImagen;
+                    $nuevaImagen->nombre = $nombreArchivo;
+
+                    $servicio->imagenesServicios()->save($nuevaImagen);
+                }
+            }
+        }
+
+        return redirect(route('servicio.edit', ['cual' => $idServicio]));
+    }
+    public function eliminarImg($id)
+    {
+        $imagen = ImagenServicio::findOrFail($id);
+        $imagen->delete();
+        Storage::disk('publico')->delete($imagen->ruta);
+        return redirect()->back();
     }
 }

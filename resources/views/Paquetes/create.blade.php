@@ -68,12 +68,13 @@
                     </p>
                     <div class="row">
                         <div class="mb-3">
-                            <input class="form-control" type="file" accept="image/*" name="archivoPaquete[]" id="archivoPaquete" multiple>
+                            <input class="form-control" type="file" accept="image/*" name="archivoPaquete[]"
+                                id="archivoPaquete" multiple>
                         </div>
                         <!--<div class="lightbox-gallery">
-                                            
-                                        </div>
-                                    -->
+                                                
+                                            </div>
+                                        -->
                     </div>
                 </div>
             </div>
@@ -86,22 +87,22 @@
         </form>
     </div>
     <!--
-                    <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Foto</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
+                        <div class="modal fade" id="agregarFoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Foto</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
 
-                                    <div class="d-grid gap-2 col-6 mx-auto">
-                                        <button type="submit" class="btn emp_button">Aceptar</button>
+                                        <div class="d-grid gap-2 col-6 mx-auto">
+                                            <button type="submit" class="btn emp_button">Aceptar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                -->
+                    -->
 @endsection

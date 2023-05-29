@@ -250,6 +250,6 @@
         </table>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="padding: 2rem">
-        <a href={{ route('sistema.bitacora') }} type="submit" class="btn emp_button_c">Historial</a>
+        <a href={{ route('sistema.bitacora') }} type="submit" class="btn emp_button_c">BITACORA</a>
     </div>
 @endsection

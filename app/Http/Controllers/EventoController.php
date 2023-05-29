@@ -12,6 +12,7 @@ use App\Models\Evento;
 use App\Models\Servicio;
 use App\Models\Paquete;
 use App\Models\Abono;
+use App\Models\Gasto;
 use App\Models\Imagen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -19,10 +20,7 @@ use Illuminate\Support\Facades\Mail;
 
 class EventoController extends Controller
 {
-    public function index()
-    {
-        //
-    }
+    public function index() {}
 
     public function create()
     {
@@ -63,7 +61,11 @@ class EventoController extends Controller
             $nuevo->servicios()->attach($servicios, ['usuario_id' => $usuario->id, 'paquete_id' => $paquete->id]);
         }
 
-        return redirect()->route('sistema.cliente');
+        if (request()->expectsJson()) {
+            return response()->json($nuevo);
+        } else {
+            return redirect()->route('sistema.cliente');
+        }
     }
 
     public function show(string $id)
@@ -111,7 +113,6 @@ class EventoController extends Controller
         $this->authorize('update', Evento::find($id));
         $usuario = Auth::user();
         $paquete = Paquete::find($request->input('paquete_id'));
-
         $evento = Evento::find($id);
         $evento->nombre_evento = $request->input('nombre_evento');
         $evento->fecha = $request->input('fecha');
@@ -146,19 +147,22 @@ class EventoController extends Controller
         $this->authorize('updateAutorizar', Evento::find($id));
         $evento = Evento::find($id);
         $evento->estatus = $request->input('estatus');
+        $evento->quien_autoriza = $request->input('gerente');
         $evento->save();
 
-
-        $cliente = $evento->usuario;
-        $gerente = Auth::user();
-        $descripcion = $request->input('descripcion');
-        if ($cliente && $gerente) {
-            if ($evento->estatus == 'SinConfirmar') {
-                RechazoEvento::dispatch($cliente, $gerente, $evento, $descripcion);
-            } elseif ($evento->estatus == 'Confirmado') {
-                AutorizarEvento::dispatch($cliente, $gerente, $evento);
+        if ($request->input('estatus') != "Confirmado") {
+            $cliente = $evento->usuario;
+            $gerente = Auth::user();
+            $descripcion = $request->input('descripcion');
+            if ($cliente && $gerente) {
+                if ($evento->estatus == 'SinConfirmar') {
+                    RechazoEvento::dispatch($cliente, $gerente, $evento, $descripcion);
+                } elseif ($evento->estatus == 'Confirmado') {
+                    AutorizarEvento::dispatch($cliente, $gerente, $evento);
+                }
             }
         }
+        
         return redirect(route('evento.showGerente', ['cual' => $id]));
     }
 
@@ -170,6 +174,8 @@ class EventoController extends Controller
         $evento->delete();
         return redirect(route('sistema.cliente'));
     }
+
+    // IMAGENES
 
     public function subirImagen(Request $request, $idEvento)
     {
@@ -187,39 +193,38 @@ class EventoController extends Controller
 
         $evento->imagenes()->save($nuevaImagen);
 
-
-
-
-        return redirect(route('evento.showCliente', ['cual' => $idEvento]));
-    }
-
-    public function subirImagenEmpleado(Request $request, $idEvento)
-    {
-        $evento = Evento::findOrFail($idEvento);
-
-        $imagen = $request->file('archivoEmpleado');
-        $descript = $request->input('descript');
-        $nombreArchivo = $imagen->getClientOriginalName();
-        $rutaImagen = $imagen->store('imagenes', 'publico');
-
-        $nuevaImagen = new Imagen();
-        $nuevaImagen->ruta_imagen = $rutaImagen;
-        $nuevaImagen->nombre = $nombreArchivo;
-        $nuevaImagen->descripcion = $descript;
-        $nuevaImagen->usuario_id = Auth::user()->id;
-
-
-        $evento->imagenes()->save($nuevaImagen);
-
         if (Auth::user()->rol == "Empleado") {
             return redirect(route('evento.show', ['cual' => $idEvento]));
         } else {
-            return redirect(route('evento.showGerente', ['cual' => $idEvento]));
+            if (Auth::user()->rol == "Cliente") {
+                return redirect(route('evento.showCliente', ['cual' => $idEvento]));
+            } else {
+                return redirect(route('evento.showGerente', ['cual' => $idEvento]));
+            }
         }
     }
 
-    public function eliminar($id)
+    public function updateImagen(Request $request, $id) 
     {
+        $this->authorize('update', Imagen::find($id));
+        $img = Imagen::find($id);
+        $img->descripcion = $request->input('descrip');
+        $img->save();
+
+        if (Auth::user()->rol == "Empleado") {
+            return redirect(route('evento.show', ['cual' => $img->evento_id]));
+        } else {
+            if (Auth::user()->rol == "Cliente") {
+                return redirect(route('evento.showCliente', ['cual' => $img->evento_id]));
+            } else {
+                return redirect(route('evento.showGerente', ['cual' => $img->evento_id]));
+            }
+        }
+    }
+
+    public function eliminarImagen($id)
+    {
+        $this->authorize('delete', Imagen::find($id));
         $imagen = Imagen::findOrFail($id);
         $imagen->delete();
         Storage::disk('publico')->delete($imagen->ruta_imagen);
@@ -227,19 +232,7 @@ class EventoController extends Controller
         return redirect()->back();
     }
 
-    public function eliminarEmpleado($id)
-    {
-        $imagen = Imagen::findOrFail($id);
-        $imagen->delete();
-        Storage::disk('publico')->delete($imagen->ruta_imagen);
-
-        return redirect()->back();
-    }
-
-    public function mostrarGaleria($idEvento)
-    {
-        return redirect(route("sistema.cliente"));
-    }
+    // ABONOS
 
     public function subirAbono(Request $request, $idEvento)
     {
@@ -268,8 +261,36 @@ class EventoController extends Controller
         return redirect()->back();
     }
 
-    public function mostrarAbono($idEvento)
+    // GATOS
+
+    public function subirGasto(Request $request, $idEvento)
     {
-        return redirect(route("sistema.cliente"));
+        $this->authorize('addGasto', Evento::find($idEvento));
+        $evento = Evento::findOrFail($idEvento);
+        $nuevoGasto = new Gasto();
+        $nuevoGasto->monto = $request->input('monto');
+        $nuevoGasto->descripcion = $request->input('descripcion');
+        $nuevoGasto->usuario_id = Auth::user()->id;
+        $evento->gastos()->save($nuevoGasto);
+        return redirect(route('evento.showGerente', ['cual' => $idEvento]));
     }
+
+    public function editarGasto(Request $request, $id)
+    {
+        $this->authorize('addGasto', Evento::find(Gasto::find($id)->evento_id));
+        $gastito = Gasto::findOrFail($id);
+        $gastito->monto=$request->input('cantidadGasto');
+        $gastito->descripcion = $request->input('conceptoGasto');
+        $gastito->save();
+        return redirect()->back();
+    }
+
+    public function eliminarGasto($id)
+    {
+        $this->authorize('addGasto', Evento::find(Gasto::find($id)->evento_id));
+        $gastito = Gasto::findOrFail($id);
+        $gastito->delete();
+        return redirect()->back();
+    }
+
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->time('hora_final');
             $table->double('costo');
             $table->enum('estatus', ['Confirmado', 'Pendiente', 'SinConfirmar'])->default('SinConfirmar');
+            $table->string('quien_autoriza')->default('0');
             $table->string('proposito');
             $table->integer('num_invitados')->unsigned();
             $table->timestamps();

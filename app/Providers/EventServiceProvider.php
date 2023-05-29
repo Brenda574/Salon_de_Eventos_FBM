@@ -7,15 +7,19 @@ use App\Models\Servicio;
 use App\Models\Usuario;
 use App\Models\Evento;
 use App\Models\Abono;
+use App\Models\Gasto;
 use App\Models\ImagenPaquete;
 use App\Models\Imagen;
+use App\Models\ImagenServicio;
 use App\Observers\ObserverUsuario;
 use App\Observers\ObserverPaquete;
 use App\Observers\ObserverServicio;
 use App\Observers\ObserverEvento;
 use App\Observers\ObserverAbono;
+use App\Observers\ObserverGasto;
 use App\Observers\ObserverImagenPaquete;
 use App\Observers\ObserverImagen;
+use App\Observers\ObserverImagenServicio;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -46,6 +50,8 @@ class EventServiceProvider extends ServiceProvider
         Servicio::observe(ObserverServicio::class);
         Imagen::observe(ObserverImagen::class);
         ImagenPaquete::observe(ObserverImagenPaquete::class);
+        ImagenServicio::observe(ObserverImagenServicio::class);
+        Gasto::observe(ObserverGasto::class);
     }
 
     /**

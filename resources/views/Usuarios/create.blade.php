@@ -28,18 +28,20 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class="col">
-                                <small>NOMBRE(S)</small>
-                                <input type="text" class="form-control" name="nombre" id="nombre">
-                            </div>
-                            <div class="col">
-                                <small>USUARIO</small>
-                                <input type="text" class="form-control" name="usuario" id="usuario">
+                                <small>NOMBRE</small>
+                                <input type="text" class="form-control" name="nombre" id="nombre" required>
                             </div>
                         </div>
+                    </div>
+                    <div class="mb-3">
                         <div class="row">
                             <div class="col">
+                                <small>USUARIO</small>
+                                <input type="text" class="form-control" name="usuario" id="usuario" required>
+                            </div>
+                            <div class="col">
                                 <small>CORREO</small>
-                                <input type="email" class="form-control" id="correo" name="correo">
+                                <input type="email" class="form-control" id="correo" name="correo" required>
                             </div>
                         </div>
                     </div>
@@ -47,13 +49,13 @@
                         <div class="row">
                             <div class="col">
                                 <small>CONTRASEÑA</small>
-                                <input type="password" class="form-control" id="clave" name="clave">
+                                <input type="password" class="form-control" id="clave" name="clave" required>
                             </div>
                             <div class="col">
                                 <div class="mb-3">
                                     <small>ROL</small>
                                     <select class="form-select" aria-label="Default select example" aria-placeholder="ROL"
-                                        id="rol" name="rol">
+                                        id="rol" name="rol" required>
                                         <option selected></option>
                                         <option value="Cliente">Cliente</option>
                                         <option value="Empleado">Empleado</option>
