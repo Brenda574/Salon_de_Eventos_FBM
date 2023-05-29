@@ -19,21 +19,33 @@
                     <div class="mb-3">
                         <small>TITULO</small>
                         <input type="text" class="form-control" value="{{ $paquete->nombre }}" name="nombre"
-                            id="nombre">
+                            id="nombre" required>
+                        @if($errors->first('nombre'))
+                        <div class="text-danger text-opacity-75">Se requiere de un nombre</div> @else  
+                        @endif
                     </div>
                     <div class="mb-3">
                         <small>CAPACIDAD MAX</small>
-                        <input type="text" class="form-control" value="{{ $paquete->capacidad_maxima }}" name="capacidad"
-                            id="capacidad">
+                        <input type="number" class="form-control" value="{{ $paquete->capacidad_maxima }}" name="capacidad"
+                            id="capacidad" required>
+                        @if($errors->first('capacidad'))
+                        <div class="text-danger text-opacity-75">Solo se aceptan cantidades enteras</div> @else  
+                        @endif
                     </div>
                     <div class="mb-3">
                         <small>COSTO</small>
-                        <input type="text" class="form-control" value="{{ $paquete->costo }}" name="costo"
-                            id="costo">
+                        <input type="number" class="form-control" value="{{ $paquete->costo }}" step="0.01" name="costo"
+                            id="costo" required>
+                        @if($errors->first('costo'))
+                        <div class="text-danger text-opacity-75">Solo se aceptan precios</div> @else  
+                        @endif
                     </div>
                     <div class="mb-3">
                         <small>DESCRIPCIÓN</small>
-                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion">{{ $paquete->descripcion }}</textarea>
+                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion" required>{{ $paquete->descripcion }}</textarea>
+                        @if($errors->first('descripcion'))
+                        <div class="text-danger text-opacity-75">La descripcion ayuda a saber mas sobre el paquete</div> @else  
+                        @endif
                     </div>
                 </div>
             </div>

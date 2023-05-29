@@ -20,11 +20,14 @@
                         <div class="col mb-3">
                             <small>EVENTO</small>
                             <input type="text" class="form-control" name="nombre_evento" id="nombre_evento"
-                                value="{{ $evento->nombre_evento }}">
+                                value="{{ $evento->nombre_evento }}" required>
+                            @if($errors->first('nombre_evento'))
+                            <div class="text-danger text-opacity-75">Este nombre ya se encuentra registrado</div> @else  
+                            @endif
                         </div>
                         <div class="col mb-3">
                             <small>PAQUETE</small>
-                            <select class="form-select" name="paquete_id" id="paquete_id" onchange="ShowSelected();">
+                            <select class="form-select" name="paquete_id" id="paquete_id" onchange="ShowSelected();" required>
                                 @foreach ($paquetes as $paquete)
                                     @if ($paquete->id == $evento->paquete_id)
                                         <option selected value="{{ $paquete->id }}" data-costo="{{ $paquete->costo }}">
@@ -39,34 +42,52 @@
                                     @endif
                                 @endforeach
                             </select>
+                            @if($errors->first('paquete_id'))
+                            <div class="text-danger text-opacity-75">Es importante que seleccione un paqute</div> @else  
+                            @endif
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
                             <small>FECHA</small>
                             <input type="date" class="form-control" name="fecha" id="fecha"
-                                value="{{ $evento->fecha }}">
+                                value="{{ $evento->fecha }}" required>
+                            @if($errors->first('fecha'))
+                            <div class="text-danger text-opacity-75">Es importante que defina su fecha</div> @else  
+                            @endif
                         </div>
                         <div class="col mb-3">
                             <small>HORA INICIO</small>
                             <input type="time" class="form-control" name="hora_inicio" id="hora_inicio"
-                                value="{{ $evento->hora_inicio }}">
+                                value="{{ $evento->hora_inicio }}" required>
+                            @if($errors->first('hora_inicio'))
+                            <div class="text-danger text-opacity-75">Es importante que defina la hora de inicio</div> @else  
+                            @endif
                         </div>
                         <div class="col mb-3">
                             <small>HORA FIN</small>
                             <input type="time" class="form-control" name="hora_final" id="hora_final"
-                                value="{{ $evento->hora_final }}">
+                                value="{{ $evento->hora_final }}" required>
+                            @if($errors->first('hora_final'))
+                            <div class="text-danger text-opacity-75">Es importante que defina la hora final</div> @else  
+                            @endif
                         </div>
                         <div class="col mb-3">
                             <small>INVITADOS CONTEMPLADOS</small>
-                            <input type="text" class="form-control" name="num_invitados" id="num_invitados"
+                            <input type="number" class="form-control" name="num_invitados" id="num_invitados"
                                 value="{{ $evento->num_invitados }}">
+                            @if($errors->first('num_invitados'))
+                            <div class="text-danger text-opacity-75">Es importante que defina la cantidad de invitados</div> @else  
+                            @endif
                         </div>
                     </div>
                     <div class="col mb-3">
                         <small>PROPOSITO</small>
                         <input type="text" class="form-control" name="proposito" id="proposito"
                             value="{{ $evento->proposito }}">
+                        @if($errors->first('proposito'))
+                        <div class="text-danger text-opacity-75">Saber su proposito, es muy importante para nosotros</div> @else  
+                        @endif
                     </div>
                 </div>
             </div>

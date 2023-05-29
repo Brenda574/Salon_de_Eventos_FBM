@@ -19,16 +19,25 @@
                     <div class="mb-3">
                         <small>NOMBRE</small>
                         <input type="text" class="form-control" value="{{ $servicio->nombre }}" name="nombre"
-                            id="nombre">
+                            id="nombre" required>
+                        @if($errors->first('nombre'))
+                        <div class="text-danger text-opacity-75">Se requiere de un nombre</div> @else  
+                        @endif
                     </div>
                     <div class="mb-3">
                         <small>COSTO</small>
-                        <input type="text" class="form-control" value="{{ $servicio->costo }}" name="costo"
-                            id="costo">
+                        <input type="number" step="0.01" class="form-control" value="{{ $servicio->costo }}" name="costo"
+                            id="costo" required>
+                        @if($errors->first('costo'))
+                        <div class="text-danger text-opacity-75">Solo se aceptan precios</div> @else  
+                        @endif
                     </div>
                     <div class="mb-3">
                         <small>DESCRIPCIÓN</small>
-                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion">{{ $servicio->descripcion }}</textarea>
+                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion" required>{{ $servicio->descripcion }}</textarea>
+                        @if($errors->first('descripcion'))
+                        <div class="text-danger text-opacity-75">La descripcion ayuda a saber mas sobre el paquete</div> @else  
+                        @endif
                     </div>
                 </div>
             </div>

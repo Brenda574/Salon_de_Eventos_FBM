@@ -29,7 +29,10 @@
                         <div class="row">
                             <div class="col">
                                 <small>NOMBRE</small>
-                                <input type="text" class="form-control" name="nombre" id="nombre" required>
+                                <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="validationServer03Feedback" required value="{{old('nombre')}}">
+                                @if($errors->first('nombre')) 
+                                <div class="text-danger text-opacity-75">Verifique que su nombre este bien escrito</div> @else  
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -37,11 +40,17 @@
                         <div class="row">
                             <div class="col">
                                 <small>USUARIO</small>
-                                <input type="text" class="form-control" name="usuario" id="usuario" required>
+                                <input type="text" class="form-control" name="usuario" id="usuario" required value="{{old('usuario')}}">
+                                @if($errors->first('usuario')) 
+                                <div class="text-danger text-opacity-75">Este usuario ya se encuentra registrado</div> @else  
+                                @endif
                             </div>
                             <div class="col">
                                 <small>CORREO</small>
-                                <input type="email" class="form-control" id="correo" name="correo" required>
+                                <input type="email" class="form-control" id="correo" name="correo" required value="{{old('correo')}}">
+                                @if($errors->first('usuario'))
+                                <div class="text-danger text-opacity-75">Este correo ya se encuentra registrado</div> @else  
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -49,13 +58,17 @@
                         <div class="row">
                             <div class="col">
                                 <small>CONTRASEÑA</small>
-                                <input type="password" class="form-control" id="clave" name="clave" required>
+                                <input type="password" class="form-control" id="clave" name="clave" required value="{{old('clave')}}">
+                                @if($errors->first('usuario'))
+                                <div class="text-danger text-opacity-75">Clave demasiado corta</div> @else  
+                                @endif
                             </div>
+                            
                             <div class="col">
                                 <div class="mb-3">
                                     <small>ROL</small>
                                     <select class="form-select" aria-label="Default select example" aria-placeholder="ROL"
-                                        id="rol" name="rol" required>
+                                        id="rol" name="rol" required value="{{old('rol')}}">
                                         <option selected></option>
                                         <option value="Cliente">Cliente</option>
                                         <option value="Empleado">Empleado</option>

@@ -27,6 +27,13 @@ class PaqueteController extends Controller
 
     public function store(Request $request)
     {
+        $validacion = $request->validate([
+            'nombre' => 'required|unique:paquetes,nombre',
+            'capacidad' => 'required|integer',
+            'costo' => 'required|decimal:2',
+            'descripcion' => 'required',
+            'archivoPaquete[]' => 'image'
+        ]);
         $this->authorize('create', Paquete::class);
         $nuevo = new Paquete();
         $nuevo->nombre = $request->input('nombre');
@@ -75,6 +82,12 @@ class PaqueteController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $validacion = $request->validate([
+            'nombre' => 'required',
+            'capacidad' => 'required|integer',
+            'costo' => 'required|numeric',
+            'descripcion' => 'required'
+        ]);
         $this->authorize('update', Paquete::find($id));
         $paquete = Paquete::find($id);
         $paquete->nombre = $request->input('nombre');
@@ -97,6 +110,13 @@ class PaqueteController extends Controller
 
     public function subirImagen(Request $request, $idPaquete)
     {
+        $validacion = $request->validate([
+            'nombre2' => 'required',
+            'capacidadMax' => 'required|integer',
+            'costo2' => 'required|numeric',
+            'descripcion2' => 'required',
+            'archivo[]' => 'image'
+        ]);
         $paquete = Paquete::findOrFail($idPaquete);
 
 

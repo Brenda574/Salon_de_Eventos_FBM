@@ -27,19 +27,31 @@
                 <div class="row container_galery">
                     <div class="mb-3">
                         <small>TITULO</small>
-                        <input type="text" class="form-control" name="nombre" id="nombre">
+                        <input type="text" class="form-control" name="nombre" id="nombre" required value="{{old('nombre')}}">
+                        @if($errors->first('nombre'))
+                        <div class="text-danger text-opacity-75">Este paquete ya existe</div> @else  
+                        @endif
                     </div>
                     <div class="mb-3">
                         <small>CAPACIDAD MAX</small>
-                        <input type="text" class="form-control" name="capacidad" id="capacidad">
+                        <input type="number" class="form-control" name="capacidad" id="capacidad" required value="{{old('capacidad')}}">
+                        @if($errors->first('capacidad'))
+                        <div class="text-danger text-opacity-75">Solo se aceptan cantidades enteras</div> @else  
+                        @endif
                     </div>
                     <div class="mb-3">
                         <small>COSTO</small>
-                        <input type="text" class="form-control" name="costo" id="costo">
+                        <input type="number" class="form-control" name="costo" id="costo" step="0.01" required value="{{old('costo')}}">
+                        @if($errors->first('costo'))
+                        <div class="text-danger text-opacity-75">Solo se aceptan precios</div> @else  
+                        @endif
                     </div>
                     <div class="mb-3">
                         <small>DESCRIPCIÓN</small>
-                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion"></textarea>
+                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion" required value="{{old('descripcion')}}"></textarea>
+                        @if($errors->first('descripcion'))
+                        <div class="text-danger text-opacity-75">La descripcion ayuda a saber mas sobre el paquete</div> @else  
+                        @endif
                     </div>
                 </div>
             </div>
@@ -69,7 +81,10 @@
                     <div class="row">
                         <div class="mb-3">
                             <input class="form-control" type="file" accept="image/*" name="archivoPaquete[]"
-                                id="archivoPaquete" multiple>
+                                id="archivoPaquete" multiple required value="{{old('archivoPaquete[]')}}">
+                                @if($errors->first('archivoPaquete[]'))
+                                <div class="text-danger text-opacity-75">Se requiere una imagen para el paquete</div> @else  
+                                @endif
                         </div>
                         <!--<div class="lightbox-gallery">
                                                 

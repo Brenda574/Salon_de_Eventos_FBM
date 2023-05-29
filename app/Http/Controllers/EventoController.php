@@ -32,6 +32,15 @@ class EventoController extends Controller
 
     public function store(Request $request)
     {
+        $validacion = $request->validate([
+            'nombre_evento' => 'required|unique:eventos,nombre_evento',
+            'paquete_id' => 'required',
+            'fecha' => 'required|date',
+            'hora_inicio' => 'required',
+            'hora_final' => 'required',
+            'num_invitados' => 'required|integer',
+            'proposito' => 'required'
+        ]);
         $this->authorize('create', Evento::class);
         $usuario = Auth::user();
         $paquete = Paquete::find($request->input('paquete_id'));
@@ -110,6 +119,15 @@ class EventoController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $validacion = $request->validate([
+            'nombre_evento' => 'required',
+            'paquete_id' => 'required',
+            'fecha' => 'required|date',
+            'hora_inicio' => 'required',
+            'hora_final' => 'required',
+            'num_invitados' => 'required|integer',
+            'proposito' => 'required'
+        ]);
         $this->authorize('update', Evento::find($id));
         $usuario = Auth::user();
         $paquete = Paquete::find($request->input('paquete_id'));
@@ -179,6 +197,10 @@ class EventoController extends Controller
 
     public function subirImagen(Request $request, $idEvento)
     {
+        $validacion = $request->validate([
+            'archivo' => 'image',
+            'descrip' => 'required'
+        ]);
         $evento = Evento::findOrFail($idEvento);
         $archivo = $request->file('archivo');
         $nombreArchivo = $archivo->getClientOriginalName();
@@ -236,6 +258,10 @@ class EventoController extends Controller
 
     public function subirAbono(Request $request, $idEvento)
     {
+        $validacion = $request->validate([
+            'monto' => 'required|decimal:2',
+            'descripcion' => 'required'
+        ]);
         $this->authorize('updateAbono', Evento::find($idEvento));
         $evento = Evento::findOrFail($idEvento);
         $nuevoAbono = new Abono();
@@ -265,6 +291,10 @@ class EventoController extends Controller
 
     public function subirGasto(Request $request, $idEvento)
     {
+        $validacion = $request->validate([
+            'monto' => 'required|decimal:2',
+            'descripcion' => 'required'
+        ]);
         $this->authorize('addGasto', Evento::find($idEvento));
         $evento = Evento::findOrFail($idEvento);
         $nuevoGasto = new Gasto();
