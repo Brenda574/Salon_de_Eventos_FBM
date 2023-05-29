@@ -24,6 +24,12 @@ class ServicioController extends Controller
 
     public function store(Request $request)
     {
+        $validacion = $request->validate([
+            'nombre' => 'required|unique:servicios,nombre',
+            'costo' => 'required|decimal:2',
+            'descripcion' => 'required',
+            'archivoServicio[]' => 'image'
+        ]);
         $this->authorize('create', Servicio::class);
         $nuevo = new Servicio();
         $nuevo->nombre = $request->input('nombre');
@@ -70,6 +76,11 @@ class ServicioController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $validacion = $request->validate([
+            'nombre' => 'required',
+            'costo' => 'required|decimal:2',
+            'descripcion' => 'required',
+        ]);
         $this->authorize('update', Servicio::find($id));
         $servicio = Servicio::find($id);
         $servicio->nombre = $request->input('nombre');
@@ -88,6 +99,12 @@ class ServicioController extends Controller
 
     public function editImagen(Request $request, $idServicio)
     {
+        $validacion = $request->validate([
+            'nom' => 'required',
+            'cost' => 'required|decimal:2',
+            'descript' => 'required',
+            'archivoServicio[]' => 'image'
+        ]);
         $servicio = Servicio::findOrFail($idServicio);
 
 

@@ -34,6 +34,13 @@ class UsuarioController extends Controller
 
     public function store(Request $request)
     {
+        $validacion = $request->validate([
+            'nombre' => 'required|unique:usuarios,nombre|regex:/^[\pL\s\-]+$/u',
+            'usuario' => 'required|unique:usuarios,usuario',
+            'correo' => 'required|unique:usuarios,correo',
+            'clave' => 'required|min:6',
+            'rol' =>  'required'
+        ]);
         $this->authorize('create', Usuario::class);
         $nuevo = new Usuario();
         $nuevo->nombre = $request->input('nombre');
@@ -61,6 +68,12 @@ class UsuarioController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validacion = $request->validate([
+            'nombre' => 'required|regex:/^[\pL\s\-]+$/u',
+            'usuario' => 'required',
+            'correo' => 'required',
+            'rol' =>  'required'
+        ]);
         $this->authorize('update', Usuario::find($id));
         $usuario = Usuario::find($id);
         $usuario->nombre = $request->input('nombre');

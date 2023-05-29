@@ -313,3 +313,17 @@ body {
     height: auto;
 }
 
+.wrapper {
+    overflow: hidden;
+}
+
+.wrapper div {
+    margin-top: -10px;
+}
+
+.wrapper img {
+    width: 200px;
+    height: 150px;
+    float: left;
+    margin: 10px 10px 0 0;
+}

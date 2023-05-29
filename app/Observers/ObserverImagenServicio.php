@@ -46,9 +46,10 @@ class ObserverImagenServicio
     /**
      * Handle the ImagenServicio "deleted" event.
      */
-    public function deleted(ImagenServicio $imagenServicio, Servicio $servicio): void
+    public function deleted(ImagenServicio $imagenServicio): void
     {
         $bitacora = new Bitacora();
+        $servicio = $imagenServicio->Servicio;
 
         if (Auth::check()) {
             $bitacora->quien = Auth::user()->nombre;

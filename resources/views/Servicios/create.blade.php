@@ -17,15 +17,24 @@
                 <div class="row container_galery">
                     <div class="mb-3">
                         <small>NOMBRE</small>
-                        <input type="text" class="form-control" name="nombre" id="nombre">
+                        <input type="text" class="form-control" name="nombre" id="nombre" required value="{{old('nombre')}}">
+                        @if($errors->first('nombre'))
+                        <div class="text-danger text-opacity-75">Este nombre ya se encuentra registrado</div> @else  
+                        @endif
                     </div>
                     <div class="mb-3">
                         <small>COSTO</small>
-                        <input type="text" class="form-control" name="costo" id="costo">
+                        <input type="number" step="0.01" class="form-control" name="costo" id="costo" required value="{{old('costo')}}">
+                        @if($errors->first('costo'))
+                        <div class="text-danger text-opacity-75">Solo se aceptan precios</div> @else  
+                        @endif
                     </div>
                     <div class="mb-3">
                         <small>DESCRIPCIÓN</small>
-                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion"></textarea>
+                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion" value required value="{{old('descripcion')}}"></textarea>
+                        @if($errors->first('descripcion'))
+                        <div class="text-danger text-opacity-75">La descripcion ayuda a saber mas sobre el paquete</div> @else  
+                        @endif
                     </div>
                 </div>
             </div>
@@ -43,7 +52,7 @@
                     <div class="row">
                         <div class="mb-3">
                             <input class="form-control" type="file" accept="image/*" name="archivoServicio[]"
-                                id="archivoServicios" multiple>
+                                id="archivoServicios" multiple required value="{{old('archivoServicio[]')}}">
                         </div>
                     </div>
                 </div>

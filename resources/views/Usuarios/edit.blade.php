@@ -32,6 +32,9 @@
                                 <small>NOMBRE</small>
                                 <input type="text" class="form-control" value="{{ $usuario->nombre }}" name="nombre"
                                     id="nombre" required>
+                                @if($errors->first('nombre')) 
+                                <div class="text-danger text-opacity-75">Verifique que su nombre este bien escrito</div> @else  
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -97,6 +100,9 @@
                                         <small>NUEVA CONTRASEÑA</small>
                                         <input type="password" class="form-control" value="" name="clave"
                                             id="clave">
+                                            @if($errors->first('usuario'))
+                                            <div class="text-danger text-opacity-75">Claves demasiado corta</div> @else  
+                                            @endif
                                     </div>
                                 </div>
                             </div>

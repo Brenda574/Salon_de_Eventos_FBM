@@ -360,7 +360,10 @@
                             @csrf
                             <div class="mb-3">
                                 <small>Monto</small>
-                                <input class="form-control" type="number" name="monto">
+                                <input class="form-control" type="number" step="0.01" name="monto" required>
+                                @if($errors->first('costo'))
+                                <div class="text-danger text-opacity-75">Solo se aceptan montos</div> @else  
+                                @endif
                             </div>
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <button type="submit" class="btn emp_button">Aceptar</button>
@@ -401,11 +404,17 @@
                             @csrf
                             <div class="mb-3">
                                 <small>Gasto</small>
-                                <input class="form-control" type="number" name="monto">
+                                <input class="form-control" type="number" step="0.01" name="monto" required value="{{old('monto')}}">
+                                @if($errors->first('monto'))
+                                <div class="text-danger text-opacity-75">Solo se aceptan gastos</div> @else  
+                                @endif
                             </div>
                             <div class="mb-3">
                                 <small>Concepto</small>
-                                <input class="form-control" type="text" name="descripcion">
+                                <input class="form-control" type="text" name="descripcion" required value="{{old('descripcion')}}">
+                                @if($errors->first('descripcion'))
+                                <div class="text-danger text-opacity-75">Es importante colocar el concepto</div> @else  
+                                @endif
                             </div>
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <button type="submit" class="btn emp_button">Aceptar</button>
@@ -446,11 +455,11 @@
                             @csrf
                             <div class="mb-3">
                                 <small>Gasto</small>
-                                <input class="form-control" type="number" name="monto">
+                                <input class="form-control" type="number" step="0.01" name="monto" required>
                             </div>
                             <div class="mb-3">
                                 <small>Concepto</small>
-                                <input class="form-control" type="text" name="descripcion">
+                                <input class="form-control" type="text" name="descripcion" required>
                             </div>
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <button type="submit" class="btn emp_button">Aceptar</button>
@@ -476,10 +485,10 @@
                         @csrf
                         <div class="mb-3">
                             <input class="form-control" accept="image/*" type="file" name="archivo"
-                                id="archivo">
+                                id="archivo" disabled>
                         </div>
                         <div>
-                            <textarea id="descrip" name="descrip" placeholder="Ingrese una descripción" class="form-control"></textarea>
+                            <textarea id="descrip" disabled name="descrip" placeholder="Ingrese una descripción" class="form-control"></textarea>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 2rem">
                             <button type="submit" class="btn emp_button">Aceptar</button>
