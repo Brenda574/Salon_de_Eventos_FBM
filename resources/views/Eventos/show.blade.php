@@ -93,7 +93,7 @@
                 </table>
             </div>
         </div>
-        @if ($evento->estatus == "Confirmado")
+        @if ($evento->estatus == 'Confirmado')
             <hr>
             <div>
                 <div class="row container_galery">
@@ -116,11 +116,15 @@
                         <div class="row">
                             <div class="col text-center">
                                 <small>FECHA</small>
-                                <p class="label fw-bold">{{$abono->created_at->format('Y-m-d')}}</p>
+                                <p class="label fw-bold">{{ $abono->created_at->format('Y-m-d') }}</p>
                             </div>
                             <div class="col text-center">
                                 <small>CANTIDAD</small>
-                                <p class="label fw-bold">$ {{$abono->monto}}</p>
+                                <p class="label fw-bold">$ {{ $abono->monto }}</p>
+                            </div>
+                            <div class="col text-center">
+                                <small>QUIEN</small>
+                                <p class="label fw-bold">{{ $abono->quien }}</p>
                             </div>
                             <div class="col text-center">
                                 <small>DIFERENCIA</small>
@@ -174,27 +178,33 @@
                                                 </button>
                                             @endcan
                                             @can('update', $imagen)
-                                                <a class="btn btn-link text-decoration-none texto-color" data-bs-toggle="collapse" href="#collapseExample{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseExample{{ $imagen->id }}">
+                                                <a class="btn btn-link text-decoration-none texto-color"
+                                                    data-bs-toggle="collapse" href="#collapseExample{{ $imagen->id }}"
+                                                    aria-expanded="false" aria-controls="collapseExample{{ $imagen->id }}">
                                                     <i class="bi bi-pencil-square"></i>
                                                 </a>
                                             @endcan
-                                            <a class="btn btn-link text-decoration-none texto-color" data-bs-toggle="collapse" href="#collapseDes{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseDes{{ $imagen->id }}">
+                                            <a class="btn btn-link text-decoration-none texto-color"
+                                                data-bs-toggle="collapse" href="#collapseDes{{ $imagen->id }}"
+                                                aria-expanded="false" aria-controls="collapseDes{{ $imagen->id }}">
                                                 <i class="bi bi-chat-dots"></i>
                                             </a>
                                         </form>
                                         <div class="collapse" id="collapseExample{{ $imagen->id }}">
                                             <div class="card card-body">
                                                 <form action="{{ route('update_imagen', $imagen->id) }}" method="post">
-                                                    @method("PUT")
+                                                    @method('PUT')
                                                     @csrf
                                                     <textarea id="descrip" name="descrip" class="form-control">{{ $imagen->descripcion }}</textarea>
-                                                    <div><button type="submit" class="btn emp_button">Guardar</button></div>
+                                                    <div><button type="submit" class="btn emp_button">Guardar</button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
                                         <div class="collapse" id="collapseDes{{ $imagen->id }}">
                                             <div class="card card-body">
-                                                <input type="text" readonly class="form-control-plaintext"value="{{ $imagen->descripcion }}">
+                                                <input type="text" readonly
+                                                    class="form-control-plaintext"value="{{ $imagen->descripcion }}">
                                             </div>
                                         </div>
                                     </div>
@@ -215,8 +225,10 @@
             <div>
                 <div class="row container_galery">
                     <p class="label fw-bold text-center" style="color: rgb(156, 156, 42)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
-                            <path d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-hourglass-top" viewBox="0 0 16 16">
+                            <path
+                                d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z" />
                         </svg> EN ESPERA DE AUTORIZACIÓN
                     </p>
                 </div>

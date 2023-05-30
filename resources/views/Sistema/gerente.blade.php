@@ -229,7 +229,7 @@
                     <tr>
                         <th class="text-center" scope="row">{{ $evento->id }}</th>
                         <td>{{ $evento->nombre_evento }}</td>
-                        <td class="text-center">{{ $evento->usuario_id }}</td>
+                        <td class="text-center">{{ $evento->usuario->nombre }}</td>
                         <td class="text-center">{{ $evento->fecha }}</td>
                         <td class="text-center">
                             @if ($evento['estatus'] == 'Confirmado')

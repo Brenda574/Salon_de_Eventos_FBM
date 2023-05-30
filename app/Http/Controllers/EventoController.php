@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Mail;
 
 class EventoController extends Controller
 {
-    public function index() {}
+    public function index()
+    {
+    }
 
     public function create()
     {
@@ -180,7 +182,7 @@ class EventoController extends Controller
                 }
             }
         }
-        
+
         return redirect(route('evento.showGerente', ['cual' => $id]));
     }
 
@@ -226,7 +228,7 @@ class EventoController extends Controller
         }
     }
 
-    public function updateImagen(Request $request, $id) 
+    public function updateImagen(Request $request, $id)
     {
         $this->authorize('update', Imagen::find($id));
         $img = Imagen::find($id);
@@ -260,12 +262,12 @@ class EventoController extends Controller
     {
         $validacion = $request->validate([
             'monto' => 'required|decimal:2',
-            'descripcion' => 'required'
         ]);
         $this->authorize('updateAbono', Evento::find($idEvento));
         $evento = Evento::findOrFail($idEvento);
         $nuevoAbono = new Abono();
         $nuevoAbono->monto = $request->input('monto');
+        $nuevoAbono->quien = Auth::user()->nombre;
 
         if ($nuevoAbono->monto > ($evento->costo - Abono::where('evento_id', $evento->id)->sum('monto'))) {
             $nuevoAbono->monto = $evento->costo - Abono::where('evento_id', $evento->id)->sum('monto');
@@ -309,7 +311,7 @@ class EventoController extends Controller
     {
         $this->authorize('addGasto', Evento::find(Gasto::find($id)->evento_id));
         $gastito = Gasto::findOrFail($id);
-        $gastito->monto=$request->input('cantidadGasto');
+        $gastito->monto = $request->input('cantidadGasto');
         $gastito->descripcion = $request->input('conceptoGasto');
         $gastito->save();
         return redirect()->back();
@@ -322,5 +324,4 @@ class EventoController extends Controller
         $gastito->delete();
         return redirect()->back();
     }
-
 }

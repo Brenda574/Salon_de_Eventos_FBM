@@ -36,18 +36,7 @@ class ApiController extends Controller
         } else {
             $password_bd = $usuario->clave;
             $encontrado = Hash::check($request->clave, $password_bd);
-
             if ($encontrado) {
-                Auth::login($usuario);
-                $token = $usuario->createToken('token', ['create']);
-                $accessToken = $token->plainTextToken;
-                $expiresAt = now()->addMinutes(20);
-                $personalAccessToken = PersonalAccessToken::findToken($accessToken);
-                $personalAccessToken->forceFill([
-                    'expires_at' => $expiresAt,
-                    'abilities' => ['create']
-                ])->save();
-
                 $rol_bd = $usuario->rol;
                 switch ($rol_bd) {
                     case 'Cliente':
@@ -60,18 +49,12 @@ class ApiController extends Controller
                         $eventos = Evento::where('Confirmado', true)->get();
                         break;
                 }
-
                 return response()->json([
                     'res' => true,
-                    'token' =>  $accessToken,
-                    'expira' => $expiresAt,
                     'eventos' => $eventos,
                     'message' => 'Hola'
                 ], 200);
             } else {
-                var_dump($usuario);
-                var_dump($request->clave); // Imprime el valor de $request->clave
-                var_dump($usuario->clave);
                 return response()->json([
                     'res' => false,
                     'message' => 'Usuario o contraseña incorrectos',

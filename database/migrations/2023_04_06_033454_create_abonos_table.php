@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('abonos', function (Blueprint $table) {
             $table->id();
             $table->double('monto');
+            $table->string('quien')->default('Seeder');
             $table->enum('tipo_pago', ['Efectivo', 'Credito', 'Debito'])->default('Efectivo');
             $table->unsignedBigInteger('evento_id');
             $table->timestamps();
